@@ -2,14 +2,14 @@ const markdownIt = require("markdown-it");
 const makeWikilinks = require("markdown-it-wikilinks");
 
 module.exports = function(eleventyConfig) {
-  // Заставляем Eleventy сохранять файлы как имя.html прямо в корень, а не в папки
+  // Указываем новое имя репозитория для правильных ссылок
   eleventyConfig.addGlobalData("permalink", "{{ page.filePathStem }}.html");
 
   const wikilinks = makeWikilinks({
-    baseURL: "/garden-test/",
+    baseURL: "/[ВАШЕ-НОВОЕ-ИМЯ]/",
     relativeURLs: false,
     makeUrl: (name) => {
-      return "/garden-test/" + name.toLowerCase().replace(/ /g, "-") + ".html";
+      return "/[ВАШЕ-НОВОЕ-ИМЯ]/" + name.toLowerCase().replace(/ /g, "-") + ".html";
     }
   });
 
