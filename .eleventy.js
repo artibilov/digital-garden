@@ -6,10 +6,10 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addGlobalData("permalink", "{{ page.filePathStem }}.html");
 
   const wikilinks = makeWikilinks({
-    baseURL: "/[ВАШЕ-НОВОЕ-ИМЯ]/",
+    baseURL: "/digital-garden/",
     relativeURLs: false,
     makeUrl: (name) => {
-      return "/[ВАШЕ-НОВОЕ-ИМЯ]/" + name.toLowerCase().replace(/ /g, "-") + ".html";
+      return "/digital-garden/" + name.toLowerCase().replace(/ /g, "-") + ".html";
     }
   });
 
