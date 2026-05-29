@@ -2,8 +2,12 @@ const markdownIt = require("markdown-it");
 const makeWikilinks = require("markdown-it-wikilinks");
 
 module.exports = function(eleventyConfig) {
-  // Вычисляем путь динамически средствами JavaScript, а не шаблонизатора
+  // Безопасное динамическое вычисление путей
   eleventyConfig.addGlobalData("permalink", (data) => {
+    // Если данные страницы еще не инициализированы, возвращаем undefined
+    if (!data || !data.page) {
+      return undefined; 
+    }
     // Если в YAML-заголовке заметки жестко прописан permalink (как у index.md), берем его
     if (data.permalink) {
       return data.permalink;
