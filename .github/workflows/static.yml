@@ -1,4 +1,4 @@
-name: Deploy static content to Pages
+name: Deploy Obsidian Engine to Pages
 
 on:
   push:
@@ -19,10 +19,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Build Site via Eleventy
+        run: npm run build
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site' # Робот берет готовый сайт из папки, куда его сохранил Eleventy
           
       - name: Deploy to GitHub Pages
         id: deployment
