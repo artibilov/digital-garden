@@ -1,14 +1,19 @@
 const markdownIt = require("markdown-it");
-const markdownItObsidian = require("markdown-it-obsidian");
+const makeWikilinks = require("markdown-it-wikilinks");
 
 module.exports = function(eleventyConfig) {
-  // Настраиваем обработчик Markdown и подключаем плагин ссылок Obsidian
-  let markdownLib = markdownIt({ html: true }).use(markdownItObsidian, {
-    baseDir: "notes"
+  // Настраиваем вики-ссылки, чтобы они вели в корень нашего сайта
+  const wikilinks = makeWikilinks({
+    baseURL: "/garden-test/",
+    relativeURLs: false,
+    makeUrl: (name) => {
+      return "/garden-test/" + name.toLowerCase().replace(/ /g, "-") + "/";
+    }
   });
+
+  let markdownLib = markdownIt({ html: true }).use(wikilinks);
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // Указываем, откуда брать файлы и куда складывать готовый сайт
   return {
     dir: {
       input: "notes",
