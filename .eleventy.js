@@ -2,7 +2,7 @@ const markdownIt = require("markdown-it");
 const makeWikilinks = require("markdown-it-wikilinks");
 
 module.exports = function(eleventyConfig) {
-  // Настраиваем вики-ссылки, чтобы они вели в корень нашего сайта
+  // Настраиваем плагин wikilinks для обработки [[ссылок]]
   const wikilinks = makeWikilinks({
     baseURL: "/garden-test/",
     relativeURLs: false,
