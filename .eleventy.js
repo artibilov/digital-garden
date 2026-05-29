@@ -2,7 +2,9 @@ const markdownIt = require("markdown-it");
 const makeWikilinks = require("markdown-it-wikilinks");
 
 module.exports = function(eleventyConfig) {
-  // Настраиваем вики-ссылки с точным указанием .html файлов
+  // Заставляем Eleventy сохранять файлы как имя.html прямо в корень, а не в папки
+  eleventyConfig.addGlobalData("permalink", "{{ page.filePathStem }}.html");
+
   const wikilinks = makeWikilinks({
     baseURL: "/garden-test/",
     relativeURLs: false,
