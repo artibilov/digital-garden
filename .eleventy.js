@@ -2,12 +2,12 @@ const markdownIt = require("markdown-it");
 const makeWikilinks = require("markdown-it-wikilinks");
 
 module.exports = function(eleventyConfig) {
-  // Настраиваем плагин wikilinks для обработки [[ссылок]]
+  // Настраиваем вики-ссылки с точным указанием .html файлов
   const wikilinks = makeWikilinks({
     baseURL: "/garden-test/",
     relativeURLs: false,
     makeUrl: (name) => {
-      return "/garden-test/" + name.toLowerCase().replace(/ /g, "-") + "/";
+      return "/garden-test/" + name.toLowerCase().replace(/ /g, "-") + ".html";
     }
   });
 
