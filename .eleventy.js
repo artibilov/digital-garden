@@ -2,8 +2,15 @@ const markdownIt = require("markdown-it");
 const makeWikilinks = require("markdown-it-wikilinks");
 
 module.exports = function(eleventyConfig) {
-  // Движок будет генерировать плоские .html файлы, убирая вложенность папок для сайта
-  eleventyConfig.addGlobalData("permalink", "{{ permalink | default: (page.filePathStem | replace: '/src/site/notes/', '') | append: '.html' }}");
+  // Вычисляем путь динамически средствами JavaScript, а не шаблонизатора
+  eleventyConfig.addGlobalData("permalink", (data) => {
+    // Если в YAML-заголовке заметки жестко прописан permalink (как у index.md), берем его
+    if (data.permalink) {
+      return data.permalink;
+    }
+    // Для всех остальных файлов убираем префикс папки плагина и добавляем .html
+    return data.page.filePathStem.replace("/src/site/notes/", "") + ".html";
+  });
 
   const wikilinks = makeWikilinks({
     baseURL: "/digital-garden/",
@@ -18,7 +25,7 @@ module.exports = function(eleventyConfig) {
 
   return {
     dir: {
-      input: "src/site/notes", // Теперь Eleventy ищет заметки там, куда их кладет плагин
+      input: "src/site/notes",
       output: "_site"
     }
   };
