@@ -2,8 +2,8 @@ const markdownIt = require("markdown-it");
 const makeWikilinks = require("markdown-it-wikilinks");
 
 module.exports = function(eleventyConfig) {
-  // Указываем новое имя репозитория для правильных ссылок
-  eleventyConfig.addGlobalData("permalink", "{{ page.filePathStem }}.html");
+  // Движок будет генерировать плоские .html файлы, убирая вложенность папок для сайта
+  eleventyConfig.addGlobalData("permalink", "{{ page.fileSlug }}.html");
 
   const wikilinks = makeWikilinks({
     baseURL: "/digital-garden/",
@@ -18,7 +18,7 @@ module.exports = function(eleventyConfig) {
 
   return {
     dir: {
-      input: "notes",
+      input: "src/site/notes", // Теперь Eleventy ищет заметки там, куда их кладет плагин
       output: "_site"
     }
   };
