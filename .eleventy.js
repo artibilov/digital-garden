@@ -3,7 +3,7 @@ const makeWikilinks = require("markdown-it-wikilinks");
 
 module.exports = function(eleventyConfig) {
   // Движок будет генерировать плоские .html файлы, убирая вложенность папок для сайта
-  eleventyConfig.addGlobalData("permalink", "{{ page.fileSlug }}.html");
+  eleventyConfig.addGlobalData("permalink", "{{ permalink | default: (page.filePathStem | replace: '/src/site/notes/', '') | append: '.html' }}");
 
   const wikilinks = makeWikilinks({
     baseURL: "/digital-garden/",
