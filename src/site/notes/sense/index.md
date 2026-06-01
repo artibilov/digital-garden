@@ -1,8 +1,7 @@
 ---
-publish: true
-permalink: /sense/index.html
-title: "Джулиан Барнс: Предчувствие конца (Анализ)"
+{"dg-publish":true,"permalink":"/sense/index/","title":"Джулиан Барнс: Предчувствие конца (Анализ)","tags":["gardenEntry"],"dg-note-properties":{"title":"Джулиан Барнс: Предчувствие конца (Анализ)","tags":["gardenEntry"],"permalink":"/sense/index.html"}}
 ---
+
 
 Сюжет
 
