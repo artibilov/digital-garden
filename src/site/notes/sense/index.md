@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/sense/index/","title":"Джулиан Барнс: Предчувствие конца (Анализ)","tags":["gardenEntry"],"dg-note-properties":{"title":"Джулиан Барнс: Предчувствие конца (Анализ)","tags":["gardenEntry"],"permalink":"/sense/index.html"}}
+{"dg-publish":true,"permalink":"/sense/index/","title":"Джулиан Барнс: Предчувствие конца (Анализ)","tags":["gardenEntry"],"dg-note-properties":{"title":"Джулиан Барнс: Предчувствие конца (Анализ)","tags":["gardenEntry"]}}
 ---
 
 
