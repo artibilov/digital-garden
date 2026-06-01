@@ -1,6 +1,6 @@
 const markdownIt = require("markdown-it");
 
-// Функция перевода кириллицы в латиницу (транслит под Obsidian)
+// Функция перевода кириллицы в латиницу (транслит)
 function transliterate(text) {
   const ru = {
     'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'e', 'ж': 'zh', 
@@ -17,16 +17,16 @@ function transliterate(text) {
 function safeSlug(text) {
   let slug = text.toLowerCase().trim();
   
-  slug = slug.replace(/^sense\//, ""); // убираем префикс папки
-  slug = slug.replace(/_/g, "-");     // ЗАМЕНЯЕМ нижнее подчеркивание на дефис (чтобы 01_вводные стало 01-вводные)
+  slug = slug.replace(/^sense\//, ""); // убираем префикс папки, если он прилетел
+  slug = slug.replace(/_/g, "-");     // заменяем нижнее подчеркивание на дефис
   
-  slug = transliterate(slug);         // Переводим в латиницу
+  slug = transliterate(slug);         // переводим в транслит
   
-  // Вычищаем оставшуюся грязь и знаки препинания, заменяя пробелы на дефисы
+  // Вычищаем знаки препинания и превращаем пробелы в дефисы
   slug = slug
     .replace(/[.,\/#!$%\^&\*;:{}=\_`~()«»"']/g, "")
     .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");             // убираем двойные дефисы, если они появились
+    .replace(/-+/g, "-");             
     
   return slug;
 }
@@ -40,22 +40,23 @@ module.exports = function(eleventyConfig) {
 
   let markdownLib = markdownIt({ html: true });
 
-  // Перехватчик ссылок в готовом HTML
+  // Главный обработчик: превращает сырой текст [[вики-ссылок]] в рабочий HTML
   eleventyConfig.addTransform("fix-obsidian-links", function(content) {
     if (this.page.outputPath && this.page.outputPath.endsWith(".html")) {
       
-      // Обрабатываем ссылки формата href="..."
-      content = content.replace(/href="([^"]+)"/g, (match, p1) => {
-        // Проверяем, что ссылка внутренняя и не ведет на внешние сайты
-        if (p1.includes(".md") || p1.includes("sense/") || (!p1.startsWith("http") && !p1.startsWith("#"))) {
-          const fileName = p1.split("/").pop().replace(".md", "");
-          
-          // Если это главная страница, не трогаем её редирект
-          if (fileName === "index" || fileName === "") return match;
-          
-          return `href="/digital-garden/sense/${safeSlug(fileName)}/"`;
-        }
-        return match;
+      // Ищем конструкции вида [[путь|текст]] или просто [[путь]]
+      content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
+        const parts = p1.split("|");
+        const rawPath = parts[0].trim();              // то, что слева (название файла или путь)
+        const linkText = (parts[1] || parts[0]).trim(); // то, что справа (отображаемый текст)
+        
+        // Вытаскиваем чистое имя файла из хвоста пути (убираем "sense/")
+        const fileName = rawPath.split("/").pop().replace(".md", "");
+        
+        // Собираем идеальную абсолютную ссылку
+        const cleanUrl = `/digital-garden/sense/${safeSlug(fileName)}/`;
+        
+        return `<a href="${cleanUrl}">${linkText}</a>`;
       });
     }
     return content;
