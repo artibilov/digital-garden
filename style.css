@@ -1,0 +1,87 @@
+/* Подключаем современный шрифт Inter для заголовков через Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:ital,wght@0,300;0,400;1,300&display=swap');
+
+:root {
+    --bg-color: #fbfaf7;       /* Мягкий бумажный фон */
+    --text-color: #2c2a29;     /* Глубокий графитовый цвет текста (комфортный для глаз) */
+    --accent-color: #8b263e;   /* Сдержанный бордовый для ссылок */
+    --accent-hover: #1a365d;   /* Полуночный синий при наведении */
+    --font-text: 'Merriweather', Georgia, serif;
+    --font-sans: 'Inter', Helvetica, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-text);
+    font-size: 19px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Центрированная книжная колонка контента */
+.container {
+    max-width: 720px;
+    width: 100%;
+}
+
+/* Стилизация заголовков */
+h1, h2, h3, h4 {
+    font-family: var(--font-sans);
+    color: #111111;
+    line-height: 1.3;
+    margin-top: 1.6em;
+    margin-bottom: 0.6em;
+}
+
+h1 {
+    font-size: 2.2em;
+    font-weight: 700;
+    border-bottom: 1px solid #e3e1da;
+    padding-bottom: 0.3em;
+    margin-top: 0.5em;
+}
+
+h2 { font-size: 1.6em; font-weight: 600; }
+h3 { font-size: 1.25em; font-weight: 600; }
+
+/* Красивые текстовые ссылки */
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px solid #e3e1da;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    color: var(--accent-hover);
+    border-bottom-color: var(--accent-hover);
+}
+
+/* Оформление цитат (очень важно для разборов глав и писем Барнса) */
+blockquote {
+    margin: 2em 0;
+    padding-left: 24px;
+    border-left: 4px solid var(--accent-color);
+    font-style: italic;
+    color: #555351;
+}
+
+/* Списки заметок и элементов */
+ul, ol {
+    padding-left: 24px;
+    margin-bottom: 1.5em;
+}
+
+li {
+    margin-bottom: 0.4em;
+}
+
+/* Адаптивность для мобильных телефонов */
+@media (max-width: 480px) {
+    body { padding: 20px 15px; font-size: 17px; }
+    h1 { font-size: 1.8em; }
+}
