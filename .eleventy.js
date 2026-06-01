@@ -73,6 +73,11 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.setLibrary("md", markdownLib);
 
+  eleventyConfig.on("eleventy.after", async ({ results }) => {
+    console.log("=== СПИСОК ВСЕХ СГЕНЕРИРОВАННЫХ СТРАНИЦ ===");
+    results.forEach(result => console.log("Файл:", result.inputPath, "--> URL:", result.url));
+    console.log("==========================================");
+  });
   return {
     dir: {
       input: "src/site/notes",
