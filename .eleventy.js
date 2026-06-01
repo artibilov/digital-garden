@@ -71,8 +71,15 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
-  eleventyConfig.setLibrary("md", markdownLib);
- 
+ eleventyConfig.setLibrary("md", markdownLib);
+ eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
+    return (data) => {
+      if (data.page.inputPath.endsWith("sense/index.md")) {
+        return "sense/index.html";
+      }
+      return data.permalink;
+    };
+  });
   eleventyConfig.on("eleventy.after", async ({ results }) => {
     console.log("=== СПИСОК ВСЕХ СГЕНЕРИРОВАННЫХ СТРАНИЦ ===");
     results.forEach(result => console.log("Файл:", result.inputPath, "--> URL:", result.url));
