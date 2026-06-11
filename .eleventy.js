@@ -12,7 +12,11 @@ function transliterate(text) {
 
 function safeSlug(text) {
   let slug = text.toLowerCase().trim();
-  // Заменяем подчеркивания на дефисы ДО транслитерации, как это делает плагин Obsidian
+  // Убираем префиксы папок из обработки слага, если они там есть
+  slug = slug.replace(/^(sense|confiteor)\//, "");
+  // Отрезаем римские цифры разделов Кабре на самом старте
+  slug = slug.replace(/^(i|ii|iii|iv)\.\s*/, "");
+  // Заменяем подчеркивания на дефисы ДО транслитерации (критично для 01_Вводные)
   slug = slug.replace(/_/g, "-");
   slug = transliterate(slug);
   slug = slug
@@ -33,34 +37,26 @@ module.exports = function(eleventyConfig) {
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // ГЛАВНЫЙ ТРАНСФОРМЕР ССЫЛОК
+  // ТРАНСФОРМЕР ССЫЛОК
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       
-      // Парсим новые ссылки вида [[folder/Filename|Текст]]
       content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
         const parts = p1.split("|");
-        const rawPath = parts[0].trim(); // Например, "sense/01_Вводные образы и концепт времени"
-        const linkText = (parts[1] || parts[0]).trim(); // То, что кликает пользователь
+        const rawPath = parts[0].trim(); 
+        const linkText = (parts[1] || parts[0]).trim(); 
 
-        // Прямо из пути ссылки вытаскиваем папку (sense или confiteor)
+        // Жестко определяем целевую папку на основе префикса ссылки
         let folder = "sense";
-        if (rawPath.startsWith("confiteor/") || rawPath.toLowerCase().includes("confiteor")) {
+        if (rawPath.toLowerCase().startsWith("confiteor/") || rawPath.toLowerCase().includes("confiteor")) {
           folder = "confiteor";
         }
 
-        // Вытаскиваем чистое имя файла (убираем имя папки и расширение, если оно есть)
-        let fileName = rawPath.split("/").pop().replace(".md", "");
+        // Вытаскиваем имя файла для анализа подразделов
+        const fileName = rawPath.split("/").pop().replace(".md", "");
+        let slugified = safeSlug(rawPath);
 
-        // Если это Кабре, отрезаем римские цифры на старте, так как Eleventy их игнорирует
-        if (folder === "confiteor") {
-          fileName = fileName.replace(/^(i|ii|iii|iv)\.\s*/i, "");
-        }
-
-        // Превращаем имя файла в красивый латинский слаг
-        let slugified = safeSlug(fileName);
-
-        // Дополнительный префикс для подразделов Кабре
+        // Если это подраздел Кабре, вычисляем его числовой префикс (01-, 12-)
         if (folder === "confiteor") {
           const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
           if (numMatch) {
@@ -69,14 +65,9 @@ module.exports = function(eleventyConfig) {
           }
         }
 
-        // Специальный фикс для Обсуждения и Формул, если у них в Obsidian нет префиксов папок, 
-        // но они должны вести в /sense/
-        if (fileName.toLowerCase() === "обсуждение") {
-          slugified = "obsuzhdenie";
-        }
-        if (fileName.toLowerCase().startsWith("формулы адриана")) {
-          slugified = "formuly-adriana";
-        }
+        // Ручные фиксы для исключений
+        if (fileName.toLowerCase() === "обсуждение") slugified = "obsuzhdenie";
+        if (fileName.toLowerCase().startsWith("формулы адриана")) slugified = "formuly-adriana";
 
         const cleanUrl = `/digital-garden/${folder}/${slugified}/`;
         return `<a href="${cleanUrl}">${linkText}</a>`;
