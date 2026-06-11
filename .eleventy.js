@@ -25,65 +25,63 @@ function safeSlug(text) {
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("style.css");
 
-  // Настраиваем парсер
+  // Стандартный парсер Markdown
   let markdownLib = markdownIt({ html: true });
-
-  // Внедряем обработку вики-ссылок на самом глубоком уровне парсера, ДО генерации тегов <p>
-  markdownLib.core.ruler.after("inline", "obsidian-links", function(state) {
-    state.tokens.forEach(token => {
-      if (token.type === "inline" && token.content.includes("[[")) {
-        let text = token.content;
-        
-        // Перехватываем регуляркой чистые скобки из Obsidian
-        text = text.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
-          const parts = p1.split("|");
-          const rawPath = parts[0].trim();
-          const linkText = (parts[1] || parts[0]).trim();
-          const fileName = rawPath.split("/").pop().replace(".md", "");
-
-          // Определяем раздел по пути файла, который сейчас в обработке
-          let folder = "sense";
-          if (state.env.page && state.env.page.inputPath) {
-            const normalizedInput = state.env.page.inputPath.toLowerCase();
-            if (normalizedInput.includes("/confiteor/")) {
-              folder = "confiteor";
-            }
-          }
-
-          let slugified = safeSlug(fileName);
-          
-          // Логика префиксов для Кабре
-          if (folder === "confiteor") {
-            const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
-            if (numMatch) {
-              const num = numMatch[1].padStart(2, '0');
-              slugified = (num === "34") ? `35-palimpsestus-podrazdel-34` : `${num}-${slugified}`;
-            }
-          }
-
-          return `<a href="/digital-garden/${folder}/${slugified}/">${linkText}</a>`;
-        });
-        
-        // Возвращаем измененный текст обратно в токен, чтобы markdown-it его отрендерил
-        token.content = text;
-        
-        // Если внутри были ссылки, подменяем дочерние токены, чтобы они рендерились как чистый HTML
-        if (text.includes("<a href=")) {
-          token.children = [{
-            type: "html_inline",
-            content: text,
-            level: token.level
-          }];
-        }
-      }
-    });
-  });
-
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // Трансформер теперь стерилен и просто оборачивает контент в HTML-каркас
+  // Восстанавливаем поддержку пермалинков
+  eleventyConfig.addGlobalData("permalink", (data) => {
+    if (!data || !data.page) return undefined;
+    return data.permalink || undefined; 
+  });
+
+  // ГЛАВНЫЙ ТРАНСФОРМЕР (Работает с готовым HTML текста)
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
+      
+      // ШАГ 1: Прячем формулы и код, чтобы регулярка ссылок их не повредила
+      const placeholders = [];
+      // Находим блоки кодов и формулы с $$ или $
+      content = content.replace(/(<code[^>]*>[\s\S]*?<\/code>|<pre[^>]*>[\s\S]*?<\/pre>|\$\$[\s\S]*?\$\$|\$[\s\S]*?\$)/g, (match) => {
+        const id = `___PLACEHOLDER_${placeholders.length}___`;
+        placeholders.push({ id, original: match });
+        return id;
+      });
+
+      // ШАГ 2: Спокойно парсим вики-ссылки [[...]] в чистом тексте
+      content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
+        const parts = p1.split("|");
+        const rawPath = parts[0].trim();
+        const linkText = (parts[1] || parts[0]).trim();
+        const fileName = rawPath.split("/").pop().replace(".md", "");
+
+        const normalizedPath = outputPath.replace(/\\/g, "/").toLowerCase();
+        let folder = "sense";
+        
+        if (normalizedPath.includes("/confiteor/")) {
+          folder = "confiteor";
+        }
+
+        let slugified = safeSlug(fileName);
+        
+        if (folder === "confiteor") {
+          const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
+          if (numMatch) {
+            const num = numMatch[1].padStart(2, '0');
+            slugified = (num === "34") ? `35-palimpsestus-podrazdel-34` : `${num}-${slugified}`;
+          }
+        }
+
+        const cleanUrl = `/digital-garden/${folder}/${slugified}/`;
+        return `<a href="${cleanUrl}">${linkText}</a>`;
+      });
+
+      // ШАГ 3: Возвращаем формулы и код обратно на свои места
+      placeholders.forEach(placeholder => {
+        content = content.replace(placeholder.id, placeholder.original);
+      });
+
+      // Заголовок страницы
       const pathParts = outputPath.replace(/\\/g, "/").split("/");
       const pageTitle = pathParts[pathParts.length - 2] || "Цифровой Сад";
 
@@ -105,14 +103,19 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
-  eleventyConfig.addGlobalData("permalink", (data) => {
-    if (!data || !data.page) return undefined;
-    return data.permalink || undefined; 
+  eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
+    return (data) => {
+      if (data.page.inputPath.endsWith("sense/index.md")) {
+        return "sense/index.html";
+      }
+      return data.permalink;
+    };
   });
 
+  // ВОЗВРАЩАЕМ ЖИДКИЙ ДВИЖОК: сайт оживет, 404 пропадет
   return {
-    markdownTemplateEngine: false, 
-    htmlTemplateEngine: false,     
+    markdownTemplateEngine: "liquid",
+    htmlTemplateEngine: "liquid",
     dir: {
       input: "src/site/notes",
       output: "_site"
