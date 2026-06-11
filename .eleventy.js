@@ -7,9 +7,7 @@ function transliterate(text) {
     'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'kh', 'ц': 'ts', 
     'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
   };
-  return text.split('').map(char => {
-    return ru[char] !== undefined ? ru[char] : char;
-  }).join('');
+  return text.split('').map(char => ru[char] !== undefined ? ru[char] : char).join('');
 }
 
 function safeSlug(text) {
@@ -25,61 +23,68 @@ function safeSlug(text) {
 }
 
 module.exports = function(eleventyConfig) {
-  // Инструкция для Eleventy: обязательно копировать файл стилей в итоговый сайт
   eleventyConfig.addPassthroughCopy("style.css");
 
-  eleventyConfig.addGlobalData("permalink", (data) => {
-    if (!data || !data.page) return undefined;
-    if (data.permalink) return data.permalink;
-    return undefined; 
-  });
-
+  // Создаем и настраиваем парсер Markdown
   let markdownLib = markdownIt({ html: true });
-
-// Трансформер: превращает вики-ссылки И оборачивает страницу в красивый HTML-шаблон
-  eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) { // <-- Добавили outputPath в аргументы
-    if (outputPath && outputPath.endsWith(".html")) {
-      
-// 1. Сначала парсим вики-ссылки [[...]]
-content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
-  const parts = p1.split("|");
-  const rawPath = parts[0].trim();
-  const linkText = (parts[1] || parts[0]).trim();
   
-  // Получаем чистое имя файла из ссылки без расширения
-  const targetFileName = rawPath.split("/").pop().replace(".md", "").toLowerCase().trim();
+  // Хак: перехватываем рендер текста для обработки [[вики-ссылок]]
+  const defaultRender = markdownLib.renderer.rules.text || function(tokens, idx, options, env, self) {
+    return self.renderToken(tokens, idx, options);
+  };
 
-  // Достаем из контекста Eleventy список всех страниц проекта
-  const allPages = this.contexts && this.contexts[0] && this.contexts[0].collections ? this.contexts[0].collections.all : [];
-  
-  // Ищем страницу, у которой исходный файл (.md) совпадает с именем в вики-ссылке
-  const foundPage = allPages.find(page => {
-    if (!page.inputPath) return false;
-    const actualFileName = page.inputPath.split("/").pop().replace(".md", "").toLowerCase().trim();
-    // Проверяем, включает ли реальное имя файла (например, "01-I. A capite...") имя из ссылки, или наоборот
-    return actualFileName.includes(targetFileName) || targetFileName.includes(actualFileName);
-  });
-
-  let cleanUrl;
-  if (foundPage && foundPage.url) {
-    // Если страница найдена, берем её ОФИЦИАЛЬНЫЙ и точный URL, который сгенерировал Eleventy
-    // Превращаем "/confiteor/01-a-capite-podrazdel-1/" в "/digital-garden/confiteor/01-a-capite-podrazdel-1/"
-    cleanUrl = `/digital-garden${foundPage.url}`;
-  } else {
-    // Резервный вариант, если вдруг ссылка битая и такой страницы вообще нет
-    let folder = "sense";
-    const cleanOutput = outputPath.replace(/\\/g, "/");
-    if (cleanOutput.includes("/confiteor/")) folder = "confiteor";
+  markdownLib.renderer.rules.text = function(tokens, idx, options, env, self) {
+    let content = tokens[idx].content;
     
-    cleanUrl = `/digital-garden/${folder}/${safeSlug(rawPath)}/`;
-  }
+    if (content.includes("[[")) {
+      content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
+        const parts = p1.split("|");
+        const rawPath = parts[0].trim();
+        const linkText = (parts[1] || parts[0]).trim();
+        const fileName = rawPath.split("/").pop().replace(".md", "");
+        
+        // Определяем текущую папку на основе данных из env (Eleventy передает туда контекст страницы)
+        let folder = "sense";
+        if (env.page && env.page.inputPath) {
+          const pathParts = env.page.inputPath.split("/");
+          if (pathParts.length > 2) {
+            folder = pathParts[pathParts.length - 2].toLowerCase();
+          }
+        }
+        
+        // Магия для префиксов: если мы в confiteor, автоматически добавляем '01-', '02-' и т.д.
+        // на основе структуры, которую мы увидели в логах
+        let slugified = safeSlug(fileName);
+        if (folder === "confiteor") {
+          // Вытаскиваем римскую цифру или номер подраздела, чтобы сопоставить с логикой префиксов
+          const numMatch = fileName.match(/Подраздел\s+(\d+)/);
+          if (numMatch) {
+            const num = numMatch[1].padStart(2, '0');
+            // Особый случай из логов: Подраздел 34 превращается в 35-palimpsestus-podrazdel-34
+            if (num === "34") {
+              slugified = `35-palimpsestus-podrazdel-34`;
+            } else {
+              slugified = `${num}-${slugified}`;
+            }
+          }
+        }
 
-  return `<a href="${cleanUrl}">${linkText}</a>`;
-});
-      // 2. Вытаскиваем заголовок страницы (возьмем имя файла или h1, если найдем)
+        const cleanUrl = `/digital-garden/${folder}/${slugified}/`;
+        return `<a href="${cleanUrl}">${linkText}</a>`;
+      });
+      return content;
+    }
+    
+    return defaultRender(tokens, idx, options, env, self);
+  };
+
+  eleventyConfig.setLibrary("md", markdownLib);
+
+  // Трансформер теперь занимается ТОЛЬКО сборкой каркаса страницы
+  eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
+    if (outputPath && outputPath.endsWith(".html")) {
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
 
-      // 3. Заворачиваем весь этот контент в полноценный HTML-каркас со стилями
       return `<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -87,6 +92,7 @@ content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${pageTitle}</title>
    <link rel="stylesheet" href="https://artibilov.github.io/digital-garden/style.css">
+</head>
 <body>
     <div class="container">
         ${content}
@@ -97,8 +103,13 @@ content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
     return content;
   });
 
- eleventyConfig.setLibrary("md", markdownLib);
- eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
+  eleventyConfig.addGlobalData("permalink", (data) => {
+    if (!data || !data.page) return undefined;
+    if (data.permalink) return data.permalink;
+    return undefined; 
+  });
+
+  eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
     return (data) => {
       if (data.page.inputPath.endsWith("sense/index.md")) {
         return "sense/index.html";
@@ -106,11 +117,7 @@ content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
       return data.permalink;
     };
   });
-  eleventyConfig.on("eleventy.after", async ({ results }) => {
-    console.log("=== СПИСОК ВСЕХ СГЕНЕРИРОВАННЫХ СТРАНИЦ ===");
-    results.forEach(result => console.log("Файл:", result.inputPath, "--> URL:", result.url));
-    console.log("==========================================");
-  });
+
   return {
     dir: {
       input: "src/site/notes",
