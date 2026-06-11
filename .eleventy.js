@@ -25,44 +25,65 @@ function safeSlug(text) {
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("style.css");
 
-  // Стабильный, изолированный парсер Markdown (формулы Адриана будут в полной безопасности)
+  // Настраиваем парсер
   let markdownLib = markdownIt({ html: true });
+
+  // Внедряем обработку вики-ссылок на самом глубоком уровне парсера, ДО генерации тегов <p>
+  markdownLib.core.ruler.after("inline", "obsidian-links", function(state) {
+    state.tokens.forEach(token => {
+      if (token.type === "inline" && token.content.includes("[[")) {
+        let text = token.content;
+        
+        // Перехватываем регуляркой чистые скобки из Obsidian
+        text = text.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
+          const parts = p1.split("|");
+          const rawPath = parts[0].trim();
+          const linkText = (parts[1] || parts[0]).trim();
+          const fileName = rawPath.split("/").pop().replace(".md", "");
+
+          // Определяем раздел по пути файла, который сейчас в обработке
+          let folder = "sense";
+          if (state.env.page && state.env.page.inputPath) {
+            const normalizedInput = state.env.page.inputPath.toLowerCase();
+            if (normalizedInput.includes("/confiteor/")) {
+              folder = "confiteor";
+            }
+          }
+
+          let slugified = safeSlug(fileName);
+          
+          // Логика префиксов для Кабре
+          if (folder === "confiteor") {
+            const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
+            if (numMatch) {
+              const num = numMatch[1].padStart(2, '0');
+              slugified = (num === "34") ? `35-palimpsestus-podrazdel-34` : `${num}-${slugified}`;
+            }
+          }
+
+          return `<a href="/digital-garden/${folder}/${slugified}/">${linkText}</a>`;
+        });
+        
+        // Возвращаем измененный текст обратно в токен, чтобы markdown-it его отрендерил
+        token.content = text;
+        
+        // Если внутри были ссылки, подменяем дочерние токены, чтобы они рендерились как чистый HTML
+        if (text.includes("<a href=")) {
+          token.children = [{
+            type: "html_inline",
+            content: text,
+            level: token.level
+          }];
+        }
+      }
+    });
+  });
+
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // Трансформер готового текста
+  // Трансформер теперь стерилен и просто оборачивает контент в HTML-каркас
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
-      
-      // Жёсткий текстовый поиск и замена вики-ссылок [[...]]
-      content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
-        const parts = p1.split("|");
-        const rawPath = parts[0].trim();
-        const linkText = (parts[1] || parts[0]).trim();
-        const fileName = rawPath.split("/").pop().replace(".md", "");
-
-        const normalizedPath = outputPath.replace(/\\/g, "/").toLowerCase();
-        let folder = "sense";
-        
-        if (normalizedPath.includes("/confiteor/")) {
-          folder = "confiteor";
-        }
-
-        let slugified = safeSlug(fileName);
-        
-        // Префиксы для Кабре
-        if (folder === "confiteor") {
-          const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
-          if (numMatch) {
-            const num = numMatch[1].padStart(2, '0');
-            slugified = (num === "34") ? `35-palimpsestus-podrazdel-34` : `${num}-${slugified}`;
-          }
-        }
-
-        const cleanUrl = `/digital-garden/${folder}/${slugified}/`;
-        return `<a href="${cleanUrl}">${linkText}</a>`;
-      });
-
-      // Безопасное получение имени файла для заголовка
       const pathParts = outputPath.replace(/\\/g, "/").split("/");
       const pageTitle = pathParts[pathParts.length - 2] || "Цифровой Сад";
 
@@ -84,15 +105,14 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
-  // Убираем автоматические плагины, которые могли перехватывать пермалинки
   eleventyConfig.addGlobalData("permalink", (data) => {
     if (!data || !data.page) return undefined;
     return data.permalink || undefined; 
   });
 
   return {
-    markdownTemplateEngine: false, // ВАЖНО: полностью отключаем Liquid для контента заметок!
-    htmlTemplateEngine: false,     // Контент обрабатывается ТОЛЬКО чистым Markdown
+    markdownTemplateEngine: false, 
+    htmlTemplateEngine: false,     
     dir: {
       input: "src/site/notes",
       output: "_site"
