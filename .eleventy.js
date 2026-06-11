@@ -25,20 +25,15 @@ function safeSlug(text) {
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("style.css");
 
-  // Чистый парсер без кастомных правил для текста (чтобы не ломать математические формулы!)
+  // Стабильный, изолированный парсер Markdown (формулы Адриана будут в полной безопасности)
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  eleventyConfig.addGlobalData("permalink", (data) => {
-    if (!data || !data.page) return undefined;
-    return data.permalink || undefined; 
-  });
-
-  // Надежный трансформер готового HTML
+  // Трансформер готового текста
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       
-      // Парсим вики-ссылки
+      // Жёсткий текстовый поиск и замена вики-ссылок [[...]]
       content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
         const parts = p1.split("|");
         const rawPath = parts[0].trim();
@@ -54,6 +49,7 @@ module.exports = function(eleventyConfig) {
 
         let slugified = safeSlug(fileName);
         
+        // Префиксы для Кабре
         if (folder === "confiteor") {
           const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
           if (numMatch) {
@@ -66,7 +62,9 @@ module.exports = function(eleventyConfig) {
         return `<a href="${cleanUrl}">${linkText}</a>`;
       });
 
-      const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
+      // Безопасное получение имени файла для заголовка
+      const pathParts = outputPath.replace(/\\/g, "/").split("/");
+      const pageTitle = pathParts[pathParts.length - 2] || "Цифровой Сад";
 
       return `<!DOCTYPE html>
 <html lang="ru">
@@ -86,18 +84,15 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
-  eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
-    return (data) => {
-      if (data.page.inputPath.endsWith("sense/index.md")) {
-        return "sense/index.html";
-      }
-      return data.permalink;
-    };
+  // Убираем автоматические плагины, которые могли перехватывать пермалинки
+  eleventyConfig.addGlobalData("permalink", (data) => {
+    if (!data || !data.page) return undefined;
+    return data.permalink || undefined; 
   });
 
   return {
-    markdownTemplateEngine: "liquid", // Возвращаем стабильный жидкий движок для логики путей
-    htmlTemplateEngine: "liquid",
+    markdownTemplateEngine: false, // ВАЖНО: полностью отключаем Liquid для контента заметок!
+    htmlTemplateEngine: false,     // Контент обрабатывается ТОЛЬКО чистым Markdown
     dir: {
       input: "src/site/notes",
       output: "_site"
