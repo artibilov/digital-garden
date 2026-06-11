@@ -25,46 +25,46 @@ function safeSlug(text) {
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("style.css");
 
-  // Стандартный парсер Markdown
+  // Стандартный парсер Markdown (формулы Адриана в безопасности)
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // Восстанавливаем поддержку пермалинков
   eleventyConfig.addGlobalData("permalink", (data) => {
     if (!data || !data.page) return undefined;
     return data.permalink || undefined; 
   });
 
-  // ГЛАВНЫЙ ТРАНСФОРМЕР (Работает с готовым HTML текста)
+  // ТРАНСФОРМЕР С ОТНОСИТЕЛЬНЫМИ ПУТЯМИ
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       
-      // ШАГ 1: Прячем формулы и код, чтобы регулярка ссылок их не повредила
+      // 1. Прячем формулы и код
       const placeholders = [];
-      // Находим блоки кодов и формулы с $$ или $
       content = content.replace(/(<code[^>]*>[\s\S]*?<\/code>|<pre[^>]*>[\s\S]*?<\/pre>|\$\$[\s\S]*?\$\$|\$[\s\S]*?\$)/g, (match) => {
         const id = `___PLACEHOLDER_${placeholders.length}___`;
         placeholders.push({ id, original: match });
         return id;
       });
 
-      // ШАГ 2: Спокойно парсим вики-ссылки [[...]] в чистом тексте
+      // Нормализуем текущий путь обрабатываемой страницы
+      const normalizedPath = outputPath.replace(/\\/g, "/").toLowerCase();
+
+      // 2. Парсим вики-ссылки
       content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
         const parts = p1.split("|");
         const rawPath = parts[0].trim();
         const linkText = (parts[1] || parts[0]).trim();
         const fileName = rawPath.split("/").pop().replace(".md", "");
 
-        const normalizedPath = outputPath.replace(/\\/g, "/").toLowerCase();
-        let folder = "sense";
-        
-        if (normalizedPath.includes("/confiteor/")) {
-          folder = "confiteor";
+        // Определяем, в какую папку должна вести ссылка
+        let targetFolder = "sense";
+        if (normalizedPath.includes("/confiteor/") || rawPath.toLowerCase().includes("confiteor")) {
+          targetFolder = "confiteor";
         }
 
         let slugified = safeSlug(fileName);
         
-        if (folder === "confiteor") {
+        if (targetFolder === "confiteor") {
           const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
           if (numMatch) {
             const num = numMatch[1].padStart(2, '0');
@@ -72,16 +72,28 @@ module.exports = function(eleventyConfig) {
           }
         }
 
-        const cleanUrl = `/digital-garden/${folder}/${slugified}/`;
+        // ВЫЧИСЛЯЕМ ОТНОСИТЕЛЬНЫЙ ПУТЬ К КОРНЮ ПРОЕКТА
+        // Считаем, сколько папок нужно пройти вверх от текущего outputPath до папки _site
+        const relativeSegments = normalizedPath.split("/_site/")[1];
+        let pathToRoot = "./";
+        if (relativeSegments) {
+          const depth = relativeSegments.split("/").length - 1;
+          if (depth > 0) {
+            pathToRoot = "../".repeat(depth);
+          }
+        }
+
+        // Собираем железобетонный относительный URL
+        const cleanUrl = `${pathToRoot}${targetFolder}/${slugified}/`;
         return `<a href="${cleanUrl}">${linkText}</a>`;
       });
 
-      // ШАГ 3: Возвращаем формулы и код обратно на свои места
+      // 3. Возвращаем формулы на место
       placeholders.forEach(placeholder => {
         content = content.replace(placeholder.id, placeholder.original);
       });
 
-      // Заголовок страницы
+      // Корректный заголовок
       const pathParts = outputPath.replace(/\\/g, "/").split("/");
       const pageTitle = pathParts[pathParts.length - 2] || "Цифровой Сад";
 
@@ -91,7 +103,7 @@ module.exports = function(eleventyConfig) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${pageTitle}</title>
-    <link rel="stylesheet" href="https://artibilov.github.io/digital-garden/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -112,7 +124,6 @@ module.exports = function(eleventyConfig) {
     };
   });
 
-  // ВОЗВРАЩАЕМ ЖИДКИЙ ДВИЖОК: сайт оживет, 404 пропадет
   return {
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "liquid",
