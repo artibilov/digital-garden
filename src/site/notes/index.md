@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/index/","title":"Цифровой Сад","tags":["gardenEntry"],"dg-note-properties":{"title":"Цифровой Сад","tags":["gardenEntry"]}}
+{"dg-publish":true,"dg-permalink":"/index.html","permalink":"/index.html/","title":"Цифровой Сад","tags":["gardenEntry"],"dg-note-properties":{"title":"Цифровой Сад","tags":["gardenEntry"]}}
 ---
 
 # 🌳 Цифровой Сад 
