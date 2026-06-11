@@ -12,13 +12,11 @@ function transliterate(text) {
 
 function safeSlug(text) {
   let slug = text.toLowerCase().trim();
-  // Убираем префиксы папок из обработки слага, если они там есть
-  slug = slug.replace(/^(sense|confiteor)\//, "");
-  // Отрезаем римские цифры разделов Кабре на самом старте
-  slug = slug.replace(/^(i|ii|iii|iv)\.\s*/, "");
-  // Заменяем подчеркивания на дефисы ДО транслитерации (критично для 01_Вводные)
+  // 1. Сначала превращаем подчеркивания в дефисы (чтобы 01_вводные стало 01-вводные)
   slug = slug.replace(/_/g, "-");
+  // 2. Делаем транслитерацию
   slug = transliterate(slug);
+  // 3. Убираем знаки препинания и кавычки, но сохраняем дефисы и цифры
   slug = slug
     .replace(/[.,\/#!$%\^&\*;:{}=\_`~()«»"']/g, "")
     .replace(/\s+/g, "-")
@@ -46,29 +44,42 @@ module.exports = function(eleventyConfig) {
         const rawPath = parts[0].trim(); 
         const linkText = (parts[1] || parts[0]).trim(); 
 
-        // Жестко определяем целевую папку на основе префикса ссылки
+        // Определение папки книги
         let folder = "sense";
         if (rawPath.toLowerCase().startsWith("confiteor/") || rawPath.toLowerCase().includes("confiteor")) {
           folder = "confiteor";
         }
 
-        // Вытаскиваем имя файла для анализа подразделов
-        const fileName = rawPath.split("/").pop().replace(".md", "");
-        let slugified = safeSlug(rawPath);
+        // Извлекаем только имя файла (без папок и расширения .md)
+        let fileName = rawPath.split("/").pop().replace(".md", "");
 
-        // Если это подраздел Кабре, вычисляем его числовой префикс (01-, 12-)
+        let slugified = "";
+
         if (folder === "confiteor") {
-          const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
+          // Для Кабре: убираем римскую цифру на старте типа "I. "
+          let cleanName = fileName.replace(/^(i|ii|iii|iv)\.\s*/i, "");
+          slugified = safeSlug(cleanName);
+
+          // Ищем номер подраздела для добавления числового префикса (например, "10-de-pueritia...")
+          const numMatch = cleanName.match(/Подраздел\s+(\d+)/i);
           if (numMatch) {
             const num = numMatch[1].padStart(2, '0');
-            slugified = (num === "34") ? `35-palimpsestus-podrazdel-34` : `${num}-${slugified}`;
+            if (num === "34") {
+              slugified = `35-palimpsestus-podrazdel-34`;
+            } else {
+              slugified = `${num}-${slugified}`;
+            }
           }
+        } else {
+          // Для Барнса (папка sense): просто прогоняем имя файла через safeSlug
+          slugified = safeSlug(fileName);
         }
 
-        // Ручные фиксы для исключений
+        // Ручные фиксы для кастомных страниц
         if (fileName.toLowerCase() === "обсуждение") slugified = "obsuzhdenie";
         if (fileName.toLowerCase().startsWith("формулы адриана")) slugified = "formuly-adriana";
 
+        // Собираем итоговый URL
         const cleanUrl = `/digital-garden/${folder}/${slugified}/`;
         return `<a href="${cleanUrl}">${linkText}</a>`;
       });
