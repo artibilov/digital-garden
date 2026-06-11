@@ -23,26 +23,28 @@ function safeSlug(text) {
 }
 
 module.exports = function(eleventyConfig) {
-  // 1. Копируем стили
   eleventyConfig.addPassthroughCopy("style.css");
 
-  // 2. Настраиваем дефолтный Markdown-парсер
+  // Чистый парсер без кастомных правил для текста (чтобы не ломать математические формулы!)
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // 3. ТРАНСФОРМЕР (Работает со строковым контентом на выходе)
+  eleventyConfig.addGlobalData("permalink", (data) => {
+    if (!data || !data.page) return undefined;
+    return data.permalink || undefined; 
+  });
+
+  // Надежный трансформер готового HTML
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
-    // Проверяем, что мы работаем именно с HTML страницей
     if (outputPath && outputPath.endsWith(".html")) {
       
-      // Самый надежный текстовый парсер вики-ссылок
+      // Парсим вики-ссылки
       content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
         const parts = p1.split("|");
         const rawPath = parts[0].trim();
         const linkText = (parts[1] || parts[0]).trim();
         const fileName = rawPath.split("/").pop().replace(".md", "");
 
-        // Проверяем путь итогового файла, чтобы понять, в каком мы разделе
         const normalizedPath = outputPath.replace(/\\/g, "/").toLowerCase();
         let folder = "sense";
         
@@ -50,10 +52,8 @@ module.exports = function(eleventyConfig) {
           folder = "confiteor";
         }
 
-        // Логика формирования ссылки
         let slugified = safeSlug(fileName);
         
-        // Если это Кабре, смотрим на номер подраздела и клеим префикс в ссылку
         if (folder === "confiteor") {
           const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
           if (numMatch) {
@@ -66,10 +66,8 @@ module.exports = function(eleventyConfig) {
         return `<a href="${cleanUrl}">${linkText}</a>`;
       });
 
-      // Базовый заголовок
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
 
-      // Оборачиваем в HTML
       return `<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -88,12 +86,6 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
-  // 4. Глобальные настройки пермалинков
-  eleventyConfig.addGlobalData("permalink", (data) => {
-    if (!data || !data.page) return undefined;
-    return data.permalink || undefined; 
-  });
-
   eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
     return (data) => {
       if (data.page.inputPath.endsWith("sense/index.md")) {
@@ -103,9 +95,8 @@ module.exports = function(eleventyConfig) {
     };
   });
 
-  // ЖЕСТКАЯ ИНСТРУКЦИЯ: обрабатывать Markdown файлы через движок Markdown (а не чистый Liquid)
   return {
-    markdownTemplateEngine: "md",
+    markdownTemplateEngine: "liquid", // Возвращаем стабильный жидкий движок для логики путей
     htmlTemplateEngine: "liquid",
     dir: {
       input: "src/site/notes",
