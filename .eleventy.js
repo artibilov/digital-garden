@@ -12,7 +12,7 @@ function transliterate(text) {
 
 function safeSlug(text) {
   let slug = text.toLowerCase().trim();
-  slug = slug.replace(/^sense\//, "");
+  // Заменяем подчеркивания на дефисы ДО транслитерации, как это делает плагин Obsidian
   slug = slug.replace(/_/g, "-");
   slug = transliterate(slug);
   slug = slug
@@ -23,10 +23,8 @@ function safeSlug(text) {
 }
 
 module.exports = function(eleventyConfig) {
-  // Копируем файл стилей в корень сайта
   eleventyConfig.addPassthroughCopy("style.css");
 
-  // Стандартная поддержка пермалинков
   eleventyConfig.addGlobalData("permalink", (data) => {
     if (!data || !data.page) return undefined;
     return data.permalink || undefined; 
@@ -35,50 +33,57 @@ module.exports = function(eleventyConfig) {
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // ТРАНСФОРМЕР: Находит вики-ссылки и оборачивает в HTML
+  // ГЛАВНЫЙ ТРАНСФОРМЕР ССЫЛОК
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       
-      // Парсим вики-ссылки [[...]]
+      // Парсим новые ссылки вида [[folder/Filename|Текст]]
       content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
         const parts = p1.split("|");
-        const rawPath = parts[0].trim();
-        const linkText = (parts[1] || parts[0]).trim();
-        let fileName = rawPath.split("/").pop().replace(".md", "");
-        
-        // По умолчанию все ссылки ведут в папку Барнса
-        let folder = "sense";
+        const rawPath = parts[0].trim(); // Например, "sense/01_Вводные образы и концепт времени"
+        const linkText = (parts[1] || parts[0]).trim(); // То, что кликает пользователь
 
-        // Проверяем, относится ли ссылка к Кабре (наличие римских цифр на старте)
-        if (/^(i|ii|iii|iv)\b/i.test(fileName) || fileName.toLowerCase().includes("confiteor")) {
+        // Прямо из пути ссылки вытаскиваем папку (sense или confiteor)
+        let folder = "sense";
+        if (rawPath.startsWith("confiteor/") || rawPath.toLowerCase().includes("confiteor")) {
           folder = "confiteor";
-          
-          // Отрезаем ведущую римскую цифру с точкой (например, "I. "),
-          // так как Eleventy при генерации файлов её полностью игнорирует
+        }
+
+        // Вытаскиваем чистое имя файла (убираем имя папки и расширение, если оно есть)
+        let fileName = rawPath.split("/").pop().replace(".md", "");
+
+        // Если это Кабре, отрезаем римские цифры на старте, так как Eleventy их игнорирует
+        if (folder === "confiteor") {
           fileName = fileName.replace(/^(i|ii|iii|iv)\.\s*/i, "");
         }
 
+        // Превращаем имя файла в красивый латинский слаг
         let slugified = safeSlug(fileName);
 
-        // Если это Кабре, вытаскиваем номер подраздела и клеим префикс
+        // Дополнительный префикс для подразделов Кабре
         if (folder === "confiteor") {
           const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
           if (numMatch) {
             const num = numMatch[1].padStart(2, '0');
-            // Учитываем кастомное исключение из логов для 34 подраздела
             slugified = (num === "34") ? `35-palimpsestus-podrazdel-34` : `${num}-${slugified}`;
           }
         }
 
-        // Собираем чистый абсолютный URL от корня проекта
+        // Специальный фикс для Обсуждения и Формул, если у них в Obsidian нет префиксов папок, 
+        // но они должны вести в /sense/
+        if (fileName.toLowerCase() === "обсуждение") {
+          slugified = "obsuzhdenie";
+        }
+        if (fileName.toLowerCase().startsWith("формулы адриана")) {
+          slugified = "formuly-adriana";
+        }
+
         const cleanUrl = `/digital-garden/${folder}/${slugified}/`;
         return `<a href="${cleanUrl}">${linkText}</a>`;
       });
 
-      // Заголовок страницы
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
 
-      // Шаблон страницы
       return `<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -97,7 +102,6 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
-  // Защита для корня сайта
   eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
     return (data) => {
       if (data.page.inputPath.endsWith("index.md")) {
