@@ -1,21 +1,17 @@
 const markdownIt = require("markdown-it");
 
 module.exports = function(eleventyConfig) {
-  // Копируем файл стилей в корень собранного сайта
   eleventyConfig.addPassthroughCopy("style.css");
 
-  // Настраиваем чистый стандартный Markdown-парсер
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // Глобальная поддержка пермалинков (чтобы Eleventy читал св-во permalink из метаданных заметок)
   eleventyConfig.addGlobalData("permalink", (data) => {
     if (!data || !data.page) return undefined;
     return data.permalink || undefined; 
   });
 
-  // Базовый трансформер: сейчас он ТОЛЬКО заворачивает контент в HTML-каркас. 
-  // Никакие ссылки внутри контента мы пока НЕ трогаем и НЕ меняем.
+  // Базовый каркас
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
@@ -38,9 +34,17 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
+  // Жесткий перехват для корня: гарантируем, что index.md попадет в корень _site
+  eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
+    return (data) => {
+      if (data.page.inputPath.endsWith("index.md")) {
+        return "index.html";
+      }
+      return data.permalink;
+    };
+  });
+  
   return {
-    markdownTemplateEngine: "liquid",
-    htmlTemplateEngine: "liquid",
     dir: {
       input: "src/site/notes",
       output: "_site"
