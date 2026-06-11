@@ -23,48 +23,37 @@ function safeSlug(text) {
 }
 
 module.exports = function(eleventyConfig) {
+  // Инструкция для Eleventy: обязательно копировать файл стилей в итоговый сайт
   eleventyConfig.addPassthroughCopy("style.css");
-
-  // Стандартный парсер Markdown (формулы Адриана в безопасности)
-  let markdownLib = markdownIt({ html: true });
-  eleventyConfig.setLibrary("md", markdownLib);
 
   eleventyConfig.addGlobalData("permalink", (data) => {
     if (!data || !data.page) return undefined;
-    return data.permalink || undefined; 
+    if (data.permalink) return data.permalink;
+    return undefined; 
   });
 
-  // ТРАНСФОРМЕР С ОТНОСИТЕЛЬНЫМИ ПУТЯМИ
-  eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
-    if (outputPath && outputPath.endsWith(".html")) {
+  let markdownLib = markdownIt({ html: true });
+
+  // Твой оригинальный трансформер: превращает вики-ссылки И оборачивает страницу в красивый HTML-шаблон
+  eleventyConfig.addTransform("wrap-and-fix-links", function(content) {
+    if (this.page.outputPath && this.page.outputPath.endsWith(".html")) {
       
-      // 1. Прячем формулы и код
-      const placeholders = [];
-      content = content.replace(/(<code[^>]*>[\s\S]*?<\/code>|<pre[^>]*>[\s\S]*?<\/pre>|\$\$[\s\S]*?\$\$|\$[\s\S]*?\$)/g, (match) => {
-        const id = `___PLACEHOLDER_${placeholders.length}___`;
-        placeholders.push({ id, original: match });
-        return id;
-      });
-
-      // Нормализуем текущий путь обрабатываемой страницы
-      const normalizedPath = outputPath.replace(/\\/g, "/").toLowerCase();
-
-      // 2. Парсим вики-ссылки
+      // 1. Сначала парсим вики-ссылки [[...]]
       content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
         const parts = p1.split("|");
         const rawPath = parts[0].trim();
         const linkText = (parts[1] || parts[0]).trim();
         const fileName = rawPath.split("/").pop().replace(".md", "");
-
-        // Определяем, в какую папку должна вести ссылка
-        let targetFolder = "sense";
-        if (normalizedPath.includes("/confiteor/") || rawPath.toLowerCase().includes("confiteor")) {
-          targetFolder = "confiteor";
-        }
-
-        let slugified = safeSlug(fileName);
         
-        if (targetFolder === "confiteor") {
+        // УМНЫЙ ОПРЕДЕЛИТЕЛЬ КНИГИ (Точечная правка)
+        let folder = "sense";
+        let slugified = safeSlug(fileName);
+
+        // Проверяем, ведет ли ссылка на подразделы Кабре
+        if (/^(i|ii|iii|iv)\b/i.test(fileName) || fileName.toLowerCase().includes("кабре") || fileName.toLowerCase().includes("исповедуюсь")) {
+          folder = "confiteor";
+          
+          // Парсим номер подраздела для добавления числового префикса (01-, 12-)
           const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
           if (numMatch) {
             const num = numMatch[1].padStart(2, '0');
@@ -72,39 +61,22 @@ module.exports = function(eleventyConfig) {
           }
         }
 
-        // ВЫЧИСЛЯЕМ ОТНОСИТЕЛЬНЫЙ ПУТЬ К КОРНЮ ПРОЕКТА
-        // Считаем, сколько папок нужно пройти вверх от текущего outputPath до папки _site
-        const relativeSegments = normalizedPath.split("/_site/")[1];
-        let pathToRoot = "./";
-        if (relativeSegments) {
-          const depth = relativeSegments.split("/").length - 1;
-          if (depth > 0) {
-            pathToRoot = "../".repeat(depth);
-          }
-        }
-
-        // Собираем железобетонный относительный URL
-        const cleanUrl = `${pathToRoot}${targetFolder}/${slugified}/`;
+        // Возвращаем абсолютный путь от корня домена, как в твоем исходном коде
+        const cleanUrl = `/digital-garden/${folder}/${slugified}/`;
         return `<a href="${cleanUrl}">${linkText}</a>`;
       });
 
-      // 3. Возвращаем формулы на место
-      placeholders.forEach(placeholder => {
-        content = content.replace(placeholder.id, placeholder.original);
-      });
+      // 2. Вытаскиваем заголовок страницы (имя файла или h1, если найдем)
+      const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
 
-      // Корректный заголовок
-      const pathParts = outputPath.replace(/\\/g, "/").split("/");
-      const pageTitle = pathParts[pathParts.length - 2] || "Цифровой Сад";
-
+      // 3. Заворачиваем весь этот контент в полноценный HTML-каркас со стилями (Абсолютный путь восстановлен)
       return `<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${pageTitle}</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="https://artibilov.github.io/digital-garden/style.css">
 <body>
     <div class="container">
         ${content}
@@ -115,6 +87,7 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
+  eleventyConfig.setLibrary("md", markdownLib);
   eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
     return (data) => {
       if (data.page.inputPath.endsWith("sense/index.md")) {
@@ -123,10 +96,8 @@ module.exports = function(eleventyConfig) {
       return data.permalink;
     };
   });
-
+  
   return {
-    markdownTemplateEngine: "liquid",
-    htmlTemplateEngine: "liquid",
     dir: {
       input: "src/site/notes",
       output: "_site"
