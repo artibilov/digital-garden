@@ -40,28 +40,42 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) { // <-- Добавили outputPath в аргументы
     if (outputPath && outputPath.endsWith(".html")) {
       
-      // 1. Сначала парсим вики-ссылки [[...]]
-      content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
-        const parts = p1.split("|");
-        const rawPath = parts[0].trim();
-        const linkText = (parts[1] || parts[0]).trim();
-        const fileName = rawPath.split("/").pop().replace(".md", "");
+// 1. Сначала парсим вики-ссылки [[...]]
+content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
+  const parts = p1.split("|");
+  const rawPath = parts[0].trim();
+  const linkText = (parts[1] || parts[0]).trim();
+  
+  // Получаем чистое имя файла из ссылки без расширения
+  const targetFileName = rawPath.split("/").pop().replace(".md", "").toLowerCase().trim();
 
-        // Извлекаем папку прямо из пути, куда Eleventy сохраняет итоговый HTML-файл
-        // Из "_site/confiteor/zhaume-kabre.../index.html" вытащит "confiteor"
-        let folder = "sense"; // дефолт
-        const cleanOutput = outputPath.replace(/\\/g, "/"); // Нормализуем слеши для Windows
-        
-        if (cleanOutput.includes("/confiteor/")) {
-          folder = "confiteor";
-        } else if (cleanOutput.includes("/sense/")) {
-          folder = "sense";
-        }
+  // Достаем из контекста Eleventy список всех страниц проекта
+  const allPages = this.contexts && this.contexts[0] && this.contexts[0].collections ? this.contexts[0].collections.all : [];
+  
+  // Ищем страницу, у которой исходный файл (.md) совпадает с именем в вики-ссылке
+  const foundPage = allPages.find(page => {
+    if (!page.inputPath) return false;
+    const actualFileName = page.inputPath.split("/").pop().replace(".md", "").toLowerCase().trim();
+    // Проверяем, включает ли реальное имя файла (например, "01-I. A capite...") имя из ссылки, или наоборот
+    return actualFileName.includes(targetFileName) || targetFileName.includes(actualFileName);
+  });
 
-        // Собираем URL динамически
-        const cleanUrl = `/digital-garden/${folder}/${safeSlug(fileName)}/`;
-        return `<a href="${cleanUrl}">${linkText}</a>`;
-      });
+  let cleanUrl;
+  if (foundPage && foundPage.url) {
+    // Если страница найдена, берем её ОФИЦИАЛЬНЫЙ и точный URL, который сгенерировал Eleventy
+    // Превращаем "/confiteor/01-a-capite-podrazdel-1/" в "/digital-garden/confiteor/01-a-capite-podrazdel-1/"
+    cleanUrl = `/digital-garden${foundPage.url}`;
+  } else {
+    // Резервный вариант, если вдруг ссылка битая и такой страницы вообще нет
+    let folder = "sense";
+    const cleanOutput = outputPath.replace(/\\/g, "/");
+    if (cleanOutput.includes("/confiteor/")) folder = "confiteor";
+    
+    cleanUrl = `/digital-garden/${folder}/${safeSlug(rawPath)}/`;
+  }
+
+  return `<a href="${cleanUrl}">${linkText}</a>`;
+});
       // 2. Вытаскиваем заголовок страницы (возьмем имя файла или h1, если найдем)
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
 
