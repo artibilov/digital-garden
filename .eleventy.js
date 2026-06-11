@@ -1,10 +1,46 @@
 const markdownIt = require("markdown-it");
 
+// Честный транслитератор без "умных" библиотек
+function transliterate(text) {
+  const ru = {
+    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'e', 'ж': 'zh', 
+    'з': 'z', 'и': 'i', 'й': 'j', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 
+    'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'kh', 'ц': 'ts', 
+    'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
+  };
+  return text.split('').map(char => ru[char] !== undefined ? ru[char] : char).join('');
+}
+
+// Наш кастомный, строгий генератор слагов, который полностью повторяет логику твоего Obsidian-билдера
+function safeSlug(text) {
+  let slug = text.toLowerCase().trim();
+  
+  // Если это длинное название Барнса со знаком "и" (например, "01_Вводные образы и концепт времени"),
+  // твой плагин обрезает его ровно до союза "и". Повторяем это поведение:
+  if (slug.includes(" и ")) {
+    slug = slug.split(" и ")[0].trim();
+  }
+  
+  // Убираем римские цифры на старте разделов Кабре (они отсекаются сервером)
+  slug = slug.replace(/^(i|ii|iii|iv)\.\s*/, "");
+  
+  // Заменяем подчеркивания на дефисы
+  slug = slug.replace(/_/g, "-");
+  
+  // Прогоняем через транслит
+  slug = transliterate(slug);
+  
+  // Вычищаем все паразитные символы, кавычки, точки
+  slug = slug
+    .replace(/[.,\/#!$%\^&\*;:{}=\_`~()«»"']/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");             
+  return slug;
+}
+
 module.exports = function(eleventyConfig) {
-  // Копируем файл стилей в корень сайта
   eleventyConfig.addPassthroughCopy("style.css");
 
-  // Стандартная поддержка пермалинков
   eleventyConfig.addGlobalData("permalink", (data) => {
     if (!data || !data.page) return undefined;
     return data.permalink || undefined; 
@@ -13,47 +49,44 @@ module.exports = function(eleventyConfig) {
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // УМНЫЙ ТРАНСФОРМЕР ССЫЛОК (Ищет реальные URL внутри Eleventy)
+  // ТРАНСФОРМЕР ТЕКСТА ССЫЛОК
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       
-      // Находим все вики-ссылки [[...]]
       content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
         const parts = p1.split("|");
         const rawPath = parts[0].trim(); 
         const linkText = (parts[1] || parts[0]).trim(); 
 
-        // Вытаскиваем чистое имя файла из ссылки (например, "01_Вводные образы и концепт времени")
-        const targetFileName = rawPath.split("/").pop().replace(".md", "").toLowerCase().trim();
-
-        // Достаем внутреннюю коллекцию всех страниц, которые Eleventy УЖЕ собрал
-        const allPages = (this.contexts && this.contexts[0] && this.contexts[0].collections) 
-          ? this.contexts[0].collections.all 
-          : [];
-
-        // Ищем страницу в базе данных, у которой имя исходного файла совпадает с нашей ссылкой
-        const foundPage = allPages.find(page => {
-          if (!page.inputPath) return false;
-          const actualFileName = page.inputPath.split("/").pop().replace(".md", "").toLowerCase().trim();
-          return actualFileName === targetFileName;
-        });
-
-        // Если страница найдена в базе Eleventy, берем её настоящий, сгенерированный сервером URL!
-        if (foundPage && foundPage.url) {
-          return `<a href="/digital-garden${foundPage.url}">${linkText}</a>`;
+        // Вычисляем целевую папку книги
+        let folder = "sense";
+        if (rawPath.toLowerCase().startsWith("confiteor/") || rawPath.toLowerCase().includes("confiteor")) {
+          folder = "confiteor";
         }
 
-        // Резервный технический фикс для кастомных страниц, если они не заведены в коллекции
-        let folder = rawPath.toLowerCase().includes("confiteor") ? "confiteor" : "sense";
-        let fallbackSlug = targetFileName
-          .replace(/^(i|ii|iii|iv)\.\s*/i, "")
-          .replace(/_/g, "-")
-          .replace(/\s+/g, "-");
-          
-        if (targetFileName === "обсуждение") fallbackSlug = "obsuzhdenie";
-        if (targetFileName.startsWith("формулы адриана")) fallbackSlug = "formuly-adriana";
+        // Вытаскиваем чистое имя файла из ссылки Obsidian
+        const fileName = rawPath.split("/").pop().replace(".md", "");
+        
+        // Генерируем базовый слаг
+        let slugified = safeSlug(fileName);
 
-        return `<a href="/digital-garden/${folder}/${fallbackSlug}/">${linkText}</a>`;
+        // Специфический префикс для подразделов Жауме Кабре (01-, 10-, 12-)
+        if (folder === "confiteor") {
+          const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
+          if (numMatch) {
+            const num = numMatch[1].padStart(2, '0');
+            slugified = (num === "34") ? `35-palimpsestus-podrazdel-34` : `${num}-${slugified}`;
+          }
+        }
+
+        // Жесткие алиасы для кастомных страниц, чтобы исключить любые сбои
+        const lowerName = fileName.toLowerCase();
+        if (lowerName === "обсуждение") slugified = "obsuzhdenie";
+        if (lowerName.startsWith("формулы адриана")) slugified = "formuly-adriana";
+
+        // Собираем финальный рабочий URL от корня домена
+        const cleanUrl = `/digital-garden/${folder}/${slugified}/`;
+        return `<a href="${cleanUrl}">${linkText}</a>`;
       });
 
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
@@ -76,7 +109,6 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
-  // Гарантируем правильное имя для главной страницы
   eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
     return (data) => {
       if (data.page.inputPath.endsWith("index.md")) {
