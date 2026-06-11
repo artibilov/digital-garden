@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/05-de-pueritia-podrazdel-5","permalink":"/confiteor/05-de-pueritia-podrazdel-5/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"II. De pueritia. Подраздел 5","часть":2,"персонажи":["[[adria_ardevol.md]]","[[feliks_ardevol.md]]","[[eloy_muntells.md]]","[[brat_zhulia_de_sau.md]]","[[nikolau_eymerik.md]]","[[ramon_de_nolya.md]]","[[gerr_romeu.md]]"],"артефакты":["акт об основании монастыря Сан-Пере дел Бургал","дарохранительница","мешочек с семенами ели и клена","обугленное пятно","шкатулка слоновой кости"],"ключевые_темы":["теодицея","наследственный_грех","трансляция_вины","репрессивные_институты","личная_ответственность","эстетический_фетишизм"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

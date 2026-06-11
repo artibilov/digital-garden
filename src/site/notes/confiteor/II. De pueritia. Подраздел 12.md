@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/12-de-pueritia-podrazdel-12","permalink":"/confiteor/12-de-pueritia-podrazdel-12/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"II. De pueritia. Подраздел 12","часть":2,"персонажи":["[[adria_ardevol.md]]","[[bernat_plensa.md]]","[[lola_malenkaya.md]]","[[senyora_trulyols.md]]","[[feliks_ardevol.md]]","[[aribert_voigt.md]]","[[zhan_mari_lekler.md]]","[[giyom_fransua_vial.md]]"],"артефакты":["скрипка Сториони (Виал)","разбитая ученическая скрипка","кочерга","футляр со следами крови"],"ключевые_темы":["суррогаты_любви","наследственный_грех","эстетический_фетишизм","насилие_в_семейных_отношениях","банальность_зла","цикличность_насилия"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

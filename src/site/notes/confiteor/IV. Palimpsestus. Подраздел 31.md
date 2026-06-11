@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/31-palimpsestus-podrazdel-31","permalink":"/confiteor/31-palimpsestus-podrazdel-31/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"IV. Palimpsestus. Подраздел 31","часть":4,"персонажи":["[[adria_ardevol.md]]","[[sara_voltes_epstein.md]]","[[laura_baylina.md]]","[[konrad_budden.md]]","[[mattias_alpaerts.md]]","[[elm_gonzaga.md]]","[[rudolf_hess.md]]"],"артефакты":["проклятое письмо","телевизор","пистолет Стар","автомат Калашникова","грязная тряпица в бело-голубую клетку"],"ключевые_темы":["одиночество","экзистенциальный_кризис","суррогаты_любви","трансляция_вины","субъективность_памяти","банальность_зла","теодицея","личная_ответственность"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

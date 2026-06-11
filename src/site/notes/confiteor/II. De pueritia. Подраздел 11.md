@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/11-de-pueritia-podrazdel-11","permalink":"/confiteor/11-de-pueritia-podrazdel-11/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"II. De pueritia. Подраздел 11","часть":2,"персонажи":["[[adria_ardevol.md]]","[[karme_bosk.md]]","[[lola_malenkaya.md]]","[[senyor_berenger.md]]","[[komissar_plasencia.md]]","[[feliks_ardevol.md]]"],"артефакты":["золотая авторучка","зеленая коробочка","медальон Пардакской Девы","бухгалтерские книги","письмо Карме Боск"],"ключевые_темы":["социальное_лицемерие","репрессивные_институты","семейная_дисфункция","экономическая_эксплуатация","инструментализация_личности"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

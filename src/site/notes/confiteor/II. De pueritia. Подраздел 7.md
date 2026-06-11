@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/07-de-pueritia-podrazdel-7","permalink":"/confiteor/07-de-pueritia-podrazdel-7/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"II. De pueritia. Подраздел 7","часть":2,"персонажи":["[[adria_ardevol.md]]","[[bernat_plensa.md]]","[[senyora_trulyols.md]]","[[feliks_ardevol.md]]","[[iakim_mureda.md]]","[[brat_gabriel.md]]"],"артефакты":["скрипка Сториони (Виал)","виола да гамба","медальон Девы Марии","скрипка Берната (мадам д'Ангулем)"],"ключевые_темы":["эстетический_фетишизм","суррогаты_любви","поющее_дерево","детская_мифология","родовая_травма"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

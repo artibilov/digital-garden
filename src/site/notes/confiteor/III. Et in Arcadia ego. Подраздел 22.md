@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/22-et-in-arcadia-ego-podrazdel-22","permalink":"/confiteor/22-et-in-arcadia-ego-podrazdel-22/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"III. Et in Arcadia ego. Подраздел 22","часть":3,"персонажи":["[[adria_ardevol.md]]","[[sara_voltes_epstein.md]]","[[bernat_plensa.md]]","[[maestro_castells.md]]","[[rachel_epstein.md]]","[[pau_voltes.md]]"],"артефакты":["программка концерта","телефонная трубка"],"ключевые_темы":["одиночество","экзистенциальный_кризис","эрозия_памяти","наследственный_грех"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

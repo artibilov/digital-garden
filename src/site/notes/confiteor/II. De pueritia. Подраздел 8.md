@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/08-de-pueritia-podrazdel-8","permalink":"/confiteor/08-de-pueritia-podrazdel-8/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"II. De pueritia. Подраздел 8","часть":2,"персонажи":["[[adria_ardevol.md]]","[[bernat_plensa.md]]","[[feliks_ardevol.md]]","[[iakim_mureda.md]]","[[blond_de_kazilyak.md]]"],"артефакты":["скрипка Сториони (Виал)","срубленный клен","человеческий скелет","рукопись зелеными чернилами","трактат Проблема зла"],"ключевые_темы":["эстетический_фетишизм","цикличность_насилия","наследственный_грех","теодицея","распад_идентичности","субъективность_памяти"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

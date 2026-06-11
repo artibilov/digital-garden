@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/24-palimpsestus-podrazdel-24","permalink":"/confiteor/24-palimpsestus-podrazdel-24/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"IV. Palimpsestus. Подраздел 24","часть":4,"персонажи":["[[nikolau_eymerik.md]]","[[fra_miquel_de_suskeda.md]]","[[zhuzep_shcharom.md]]","[[rudolf_hess.md]]","[[aribert_voigt.md]]","[[elizabeta_meyreva.md]]"],"артефакты":["приговор инквизиции","дыба","скрипка Сториони (Виал)","бутылка вина","записная книжка"],"ключевые_темы":["теодицея","репрессивные_институты","институциональное_насилие","банальность_зла","эстетический_фетишизм","наследственный_грех"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

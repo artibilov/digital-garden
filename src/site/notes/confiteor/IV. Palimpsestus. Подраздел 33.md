@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/33-palimpsestus-podrazdel-33","permalink":"/confiteor/33-palimpsestus-podrazdel-33/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"IV. Palimpsestus. Подраздел 33","часть":4,"персонажи":["[[adria_ardevol.md]]","[[bernat_plensa.md]]","[[tito_karbonel.md]]"],"артефакты":["скрипка Сториони (Виал)"],"ключевые_темы":["суррогаты_любви","эстетический_фетишизм","наследственный_грех","одиночество"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

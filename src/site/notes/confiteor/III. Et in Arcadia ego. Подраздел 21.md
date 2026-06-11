@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/21-et-in-arcadia-ego-podrazdel-21","permalink":"/confiteor/21-et-in-arcadia-ego-podrazdel-21/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"III. Et in Arcadia ego. Подраздел 21","часть":3,"персонажи":["[[adria_ardevol.md]]","[[bernat_plensa.md]]","[[sara_voltes_epstein.md]]","[[zhensana.md]]"],"артефакты":["книги"],"ключевые_темы":["экзистенциальный_кризис","одиночество","детская_мифология","инструментализация_личности","суррогаты_любви"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

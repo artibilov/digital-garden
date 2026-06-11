@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/19-et-in-arcadia-ego-podrazdel-19","permalink":"/confiteor/19-et-in-arcadia-ego-podrazdel-19/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"III. Et in Arcadia ego. Подраздел 19","часть":3,"персонажи":["[[adria_ardevol.md]]","[[daniela_amato.md]]","[[feliks_ardevol.md]]","[[feliks_morlen.md]]","[[sinto_ardevol.md]]","[[iakim_mureda.md]]","[[yuvelir.md]]","[[blond_de_kazilyak.md]]"],"артефакты":["медальон Пардакской Девы","альт Гальяно","мебель Чиппендейла","картины Фрагонара"],"ключевые_темы":["наследственный_грех","трансляция_вины","детская_мифология","семейная_дисфункция","репрессивные_институты","эстетический_фетишизм"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

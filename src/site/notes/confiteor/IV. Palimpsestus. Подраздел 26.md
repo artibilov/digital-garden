@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/26-palimpsestus-podrazdel-26","permalink":"/confiteor/26-palimpsestus-podrazdel-26/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"IV. Palimpsestus. Подраздел 26","часть":4,"персонажи":["[[adria_ardevol.md]]","[[eugenio_coseriu.md]]","[[karme_bosk.md]]","[[lola_malenkaya.md]]","[[senyor_berenger.md]]","[[nikolau_eymerik.md]]","[[ramon_de_nolya.md]]","[[komissar_plasencia.md]]","[[fra_miquel_de_suskeda.md]]","[[feliks_ardevol.md]]"],"артефакты":["завещание Карме Боск","картина Уржеля (Санта-Мария де Жерри)","письмо матери","приговор инквизиции","шкатулка слоновой кости"],"ключевые_темы":["семейная_дисфункция","трансляция_вины","личная_ответственность","суррогаты_любви","репрессивные_институты","социальное_лицемерие"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

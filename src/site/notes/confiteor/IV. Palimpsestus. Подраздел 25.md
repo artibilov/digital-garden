@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/25-palimpsestus-podrazdel-25","permalink":"/confiteor/25-palimpsestus-podrazdel-25/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"IV. Palimpsestus. Подраздел 25","часть":4,"персонажи":["[[adria_ardevol.md]]","[[bernat_plensa.md]]","[[drago_gradnik.md]]","[[aribert_voigt.md]]","[[elm_gonzaga.md]]","[[franz_grubbe.md]]","[[korneliya_brendel.md]]"],"артефакты":["рукопись рассказа Берната","пистолет Стар","медальон Франца Грюббе","газета Frankfurter allgemeine"],"ключевые_темы":["суррогаты_любви","одиночество","теодицея","банальность_зла","личная_ответственность","наследственный_грех","субъективность_памяти"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

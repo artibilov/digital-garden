@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/16-et-in-arcadia-ego-podrazdel-16","permalink":"/confiteor/16-et-in-arcadia-ego-podrazdel-16/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"III. Et in Arcadia ego. Подраздел 16","часть":3,"персонажи":["[[adria_ardevol.md]]","[[karme_bosk.md]]","[[maestro_manleu.md]]","[[sara_voltes_epstein.md]]","[[maestro_castells.md]]"],"артефакты":["партитура","скрипка (Парамон)"],"ключевые_темы":["суррогаты_любви","отцовский_авторитаризм","детская_мифология","экзистенциальный_кризис"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

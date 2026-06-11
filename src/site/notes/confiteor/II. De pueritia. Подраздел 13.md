@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/13-de-pueritia-podrazdel-13","permalink":"/confiteor/13-de-pueritia-podrazdel-13/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"II. De pueritia. Подраздел 13","часть":2,"персонажи":["[[adria_ardevol.md]]","[[daniela_amato.md]]","[[karme_bosk.md]]","[[lola_malenkaya.md]]","[[feliks_ardevol.md]]"],"артефакты":["зеленая коробочка","медальон Пардакской Девы","дарственная на усадьбу Казик"],"ключевые_темы":["детская_мифология","суррогаты_любви","трансляция_вины","семейная_дисфункция"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

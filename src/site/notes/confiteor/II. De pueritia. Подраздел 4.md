@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/04-de-pueritia-podrazdel-4","permalink":"/confiteor/04-de-pueritia-podrazdel-4/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"II. De pueritia. Подраздел 4","часть":2,"персонажи":["[[adria_ardevol.md]]","[[feliks_ardevol.md]]","[[karme_bosk.md]]","[[adria_bosk.md]]","[[eloy_muntells.md]]","[[komissar_plasencia.md]]","[[lola_malenkaya.md]]","[[otez_levinsky.md]]"],"артефакты":["доносы","Британская энциклопедия","стеклянный стакан","пенсне дедушки"],"ключевые_темы":["отцовский_авторитаризм","суррогаты_любви","насилие_в_семейных_отношениях","инструментализация_личности","трансляция_вины","репрессивные_институты","социальное_лицемерие"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  
