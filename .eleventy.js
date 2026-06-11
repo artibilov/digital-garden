@@ -23,77 +23,53 @@ function safeSlug(text) {
 }
 
 module.exports = function(eleventyConfig) {
-  // Копируем стили
+  // 1. Копируем стили
   eleventyConfig.addPassthroughCopy("style.css");
 
-  // Стандартный, чистый Markdown-парсер (не ломает формулы)
+  // 2. Настраиваем дефолтный Markdown-парсер
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // Глобальные данные для поддержки кастомных пермалинков
-  eleventyConfig.addGlobalData("permalink", (data) => {
-    if (!data || !data.page) return undefined;
-    return data.permalink || undefined; 
-  });
-
-  // ГЛАВНЫЙ ТРАНСФОРМЕР: Обрабатывает готовый HTML
+  // 3. ТРАНСФОРМЕР (Работает со строковым контентом на выходе)
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
+    // Проверяем, что мы работаем именно с HTML страницей
     if (outputPath && outputPath.endsWith(".html")) {
       
-      // 1. Умный парсинг вики-ссылок [[...]]
+      // Самый надежный текстовый парсер вики-ссылок
       content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
         const parts = p1.split("|");
         const rawPath = parts[0].trim();
         const linkText = (parts[1] || parts[0]).trim();
+        const fileName = rawPath.split("/").pop().replace(".md", "");
+
+        // Проверяем путь итогового файла, чтобы понять, в каком мы разделе
+        const normalizedPath = outputPath.replace(/\\/g, "/").toLowerCase();
+        let folder = "sense";
         
-        // Получаем чистое имя целевого файла (например, "I. A capite. Подраздел 1")
-        const targetName = rawPath.split("/").pop().replace(".md", "").toLowerCase().trim();
-
-        // Определяем, в какой папке мы находимся сейчас
-        const cleanOutput = outputPath.replace(/\\/g, "/");
-        let currentFolder = "sense";
-        if (cleanOutput.includes("/confiteor/")) {
-          currentFolder = "confiteor";
+        if (normalizedPath.includes("/confiteor/")) {
+          folder = "confiteor";
         }
 
-        // Проверяем внутреннюю коллекцию Eleventy, чтобы найти точный URL сгенерированного файла
-        const allPages = (this.contexts && this.contexts[0] && this.contexts[0].collections) 
-          ? this.contexts[0].collections.all 
-          : [];
-
-        const foundPage = allPages.find(page => {
-          if (!page.inputPath) return false;
-          const actualFileName = page.inputPath.split("/").pop().replace(".md", "").toLowerCase().trim();
-          // Проверяем строгое совпадение имен файлов
-          return actualFileName === targetName;
-        });
-
-        let cleanUrl;
-        if (foundPage && foundPage.url) {
-          // Если Eleventy уже знает эту страницу, берем её реальный URL (например, /confiteor/01-a-capite-podrazdel-1/)
-          cleanUrl = `/digital-garden${foundPage.url}`;
-        } else {
-          // Если страница новая или еще не попала в индекс, собираем резервный URL вручную
-          let slugified = safeSlug(targetName);
-          
-          // Костыль для префиксов в confiteor, если страница еще не проиндексирована
-          if (currentFolder === "confiteor") {
-            const numMatch = targetName.match(/подраздел\s+(\d+)/);
-            if (numMatch) {
-              const num = numMatch[1].padStart(2, '0');
-              slugified = (num === "34") ? `35-palimpsestus-podrazdel-34` : `${num}-${slugified}`;
-            }
+        // Логика формирования ссылки
+        let slugified = safeSlug(fileName);
+        
+        // Если это Кабре, смотрим на номер подраздела и клеим префикс в ссылку
+        if (folder === "confiteor") {
+          const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
+          if (numMatch) {
+            const num = numMatch[1].padStart(2, '0');
+            slugified = (num === "34") ? `35-palimpsestus-podrazdel-34` : `${num}-${slugified}`;
           }
-          cleanUrl = `/digital-garden/${currentFolder}/${slugified}/`;
         }
 
+        const cleanUrl = `/digital-garden/${folder}/${slugified}/`;
         return `<a href="${cleanUrl}">${linkText}</a>`;
       });
 
-      // 2. Вытаскиваем заголовок страницы
+      // Базовый заголовок
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
 
-      // 3. Возвращаем чистый HTML-каркас
+      // Оборачиваем в HTML
       return `<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -112,6 +88,12 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
+  // 4. Глобальные настройки пермалинков
+  eleventyConfig.addGlobalData("permalink", (data) => {
+    if (!data || !data.page) return undefined;
+    return data.permalink || undefined; 
+  });
+
   eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
     return (data) => {
       if (data.page.inputPath.endsWith("sense/index.md")) {
@@ -121,7 +103,10 @@ module.exports = function(eleventyConfig) {
     };
   });
 
+  // ЖЕСТКАЯ ИНСТРУКЦИЯ: обрабатывать Markdown файлы через движок Markdown (а не чистый Liquid)
   return {
+    markdownTemplateEngine: "md",
+    htmlTemplateEngine: "liquid",
     dir: {
       input: "src/site/notes",
       output: "_site"
