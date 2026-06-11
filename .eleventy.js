@@ -34,7 +34,7 @@ module.exports = function(eleventyConfig) {
 
   let markdownLib = markdownIt({ html: true });
 
-  // Твой оригинальный трансформер: превращает вики-ссылки И оборачивает страницу в красивый HTML-шаблон
+  // Трансформер: превращает вики-ссылки И оборачивает страницу в красивый HTML-шаблон
   eleventyConfig.addTransform("wrap-and-fix-links", function(content) {
     if (this.page.outputPath && this.page.outputPath.endsWith(".html")) {
       
@@ -43,17 +43,23 @@ module.exports = function(eleventyConfig) {
         const parts = p1.split("|");
         const rawPath = parts[0].trim();
         const linkText = (parts[1] || parts[0]).trim();
-        const fileName = rawPath.split("/").pop().replace(".md", "");
+        let fileName = rawPath.split("/").pop().replace(".md", "");
         
-        // УМНЫЙ ОПРЕДЕЛИТЕЛЬ КНИГИ (Точечная правка)
         let folder = "sense";
-        let slugified = safeSlug(fileName);
-
-        // Проверяем, ведет ли ссылка на подразделы Кабре
+        
+        // Проверяем, относится ли ссылка к Кабре
         if (/^(i|ii|iii|iv)\b/i.test(fileName) || fileName.toLowerCase().includes("кабре") || fileName.toLowerCase().includes("исповедуюсь")) {
           folder = "confiteor";
           
-          // Парсим номер подраздела для добавления числового префикса (01-, 12-)
+          // КРИТИЧЕСКИЙ СДВИГ: Отрезаем ведущие римские цифры с точкой и пробелом (например, "I. ")
+          // чтобы ссылка совпала с файловой структурой Eleventy
+          fileName = fileName.replace(/^(i|ii|iii|iv)\.\s*/i, "");
+        }
+
+        let slugified = safeSlug(fileName);
+
+        // Если мы в разделе Кабре, вытаскиваем номер подраздела и приклеиваем префикс
+        if (folder === "confiteor") {
           const numMatch = fileName.match(/Подраздел\s+(\d+)/i);
           if (numMatch) {
             const num = numMatch[1].padStart(2, '0');
@@ -61,22 +67,21 @@ module.exports = function(eleventyConfig) {
           }
         }
 
-        // Возвращаем абсолютный путь от корня домена, как в твоем исходном коде
         const cleanUrl = `/digital-garden/${folder}/${slugified}/`;
         return `<a href="${cleanUrl}">${linkText}</a>`;
       });
 
-      // 2. Вытаскиваем заголовок страницы (имя файла или h1, если найдем)
+      // 2. Вытаскиваем заголовок страницы
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
 
-      // 3. Заворачиваем весь этот контент в полноценный HTML-каркас со стилями (Абсолютный путь восстановлен)
+      // 3. Заворачиваем контент в HTML каркас
       return `<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${pageTitle}</title>
-    <link rel="stylesheet" href="https://artibilov.github.io/digital-garden/style.css">
+    <link rel="stylesheet" href="[https://artibilov.github.io/digital-garden/style.css](https://artibilov.github.io/digital-garden/style.css)">
 <body>
     <div class="container">
         ${content}
