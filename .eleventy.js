@@ -40,16 +40,28 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addTransform("wrap-and-fix-links", function(content) {
     if (this.page.outputPath && this.page.outputPath.endsWith(".html")) {
       
-      // 1. Сначала парсим вики-ссылки [[...]]
-      content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
-        const parts = p1.split("|");
-        const rawPath = parts[0].trim();
-        const linkText = (parts[1] || parts[0]).trim();
-        const fileName = rawPath.split("/").pop().replace(".md", "");
-        const cleanUrl = `/digital-garden/sense/${safeSlug(fileName)}/`;
-        return `<a href="${cleanUrl}">${linkText}</a>`;
-      });
+// 1. Сначала парсим вики-ссылки [[...]]
+  content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
+  const parts = p1.split("|");
+  const rawPath = parts[0].trim();
+  const linkText = (parts[1] || parts[0]).trim();
+  const fileName = rawPath.split("/").pop().replace(".md", "");
 
+  // Определяем текущий раздел (папку) на основе inputPath файла
+  // Например, из "src/site/notes/confiteor/file.md" вытащит "confiteor"
+  let folder = "sense"; // дефолтное значение
+  if (this.page.inputPath) {
+    const pathParts = this.page.inputPath.split("/");
+    // Находим имя папки, которая идет прямо перед именем файла
+    if (pathParts.length > 2) {
+      folder = pathParts[pathParts.length - 2].toLowerCase();
+    }
+  }
+
+  // Собираем URL динамически с учетом нужной папки
+  const cleanUrl = `/digital-garden/${folder}/${safeSlug(fileName)}/`;
+  return `<a href="${cleanUrl}">${linkText}</a>`;
+});
       // 2. Вытаскиваем заголовок страницы (возьмем имя файла или h1, если найдем)
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
 
