@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/01-a-capite-podrazdel-1","permalink":"/confiteor/01-a-capite-podrazdel-1/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"I. A capite. Подраздел 1","часть":1,"персонажи":["[[adria_ardevol.md]]","[[feliks_ardevol.md]]","[[neizvestny_adresat.md]]","[[senyora_trulyols.md]]","[[sesiliya.md]]","[[iakim_mureda.md]]","[[bulhani_brocha.md]]","[[bettina_mureda.md]]","[[senyor_berenger.md]]","[[ramon_koll.md]]"],"артефакты":["рукопись Стефана Цвейга (Der begrabene Leuchter)","скрипка","упражнение XXIII","медальон Девы Марии Пардакской","нож","игрушка Черный Орел","игрушка Шериф Карсон"],"ключевые_темы":["экзистенциальный_кризис","субъективность_памяти","одиночество","отцовский_авторитаризм","родовая_травма","суррогаты_любви","теодицея"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  

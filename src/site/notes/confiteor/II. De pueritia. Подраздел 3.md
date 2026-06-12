@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/03-de-pueritia-podrazdel-3","permalink":"/confiteor/03-de-pueritia-podrazdel-3/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"II. De pueritia. Подраздел 3","часть":1,"персонажи":["[[adria_ardevol.md]]","[[feliks_ardevol.md]]","[[karme_bosk.md]]","[[senyor_berenger.md]]","[[lola_malenkaya.md]]","[[senyora_anzheleta.md]]"],"артефакты":["гравюры Рембрандта","игрушки (Черный Орел и Шериф Карсон)","школьная форма","мыло"],"ключевые_темы":["семейная_дисфункция","эмоциональная_депривация","экономическая_эксплуатация","репрессивные_институты","детская_мифология"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  
