@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/felix_ardevol","permalink":"/confiteor/felix_ardevol/","dg-note-properties":{"category":"character","name":"Феликс Ардевол-и-Гитерес (Fèlix Ardèvol i Guiteres)","birth_place":"Каталония, усадьба Жес близ г. Тона (Tona, Gès)","death_date":"1958-01-07","death_place":"Барселона, шоссе Аррабассада (Arrabassada)","profession":"Антиквар, коллекционер, бывший семинарист","status":"Убит (обезглавлен) в результате мести и вымогательства"}}
+{"dg-publish":true,"dg-permalink":"confiteor/feliks_ardevol","permalink":"/confiteor/feliks_ardevol/","dg-note-properties":{"category":"character","name":"Феликс Ардевол-и-Гитерес (Fèlix Ardèvol i Guiteres)","birth_place":"Каталония, усадьба Жес близ г. Тона (Tona, Gès)","death_date":"1958-01-07","death_place":"Барселона, шоссе Аррабассада (Arrabassada)","profession":"Антиквар, коллекционер, бывший семинарист","status":"Убит (обезглавлен) в результате мести и вымогательства"}}
 ---
 
 

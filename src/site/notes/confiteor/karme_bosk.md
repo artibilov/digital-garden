@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/carme_bosch","permalink":"/confiteor/carme_bosch/","dg-note-properties":{"category":"character","name":"Карме Боск д'Ардевол (Carme Bosch i d'Ardèvol)","birth_place":"Барселона, Испания (улица Делс-Анжелс)","death_date":"1975 (Начало года, вскоре после 20 января)","death_place":"Барселона, Испания","profession":"Бывший библиотекарь, владелица антикварного магазина"}}
+{"dg-publish":true,"dg-permalink":"confiteor/karme_bosk","permalink":"/confiteor/karme_bosk/","dg-note-properties":{"category":"character","name":"Карме Боск д'Ардевол (Carme Bosch i d'Ardèvol)","birth_place":"Барселона, Испания (улица Делс-Анжелс)","death_date":"1975 (Начало года, вскоре после 20 января)","death_place":"Барселона, Испания","profession":"Бывший библиотекарь, владелица антикварного магазина"}}
 ---
 
 
