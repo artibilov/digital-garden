@@ -8,7 +8,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("confiteor", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/site/notes/confiteor/**/*.md")
       .sort((a, b) => {
-        // Сортируем с учётом чисел в названиях (чтобы Подраздел 2 шёл перед 10)
         return a.fileSlug.localeCompare(b.fileSlug, 'ru', { numeric: true });
       });
   });
@@ -22,7 +21,7 @@ module.exports = function(eleventyConfig) {
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // УМНЫЙ ТРАНСФОРМЕР ССЫЛОК (Ищет реальные URL внутри Eleventy)
+  // УМНЫЙ ТРАНСФОРМЕР ССЫЛОК И ВЕРСТКИ
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       
@@ -32,44 +31,33 @@ module.exports = function(eleventyConfig) {
         const rawPath = parts[0].trim(); 
         const linkText = (parts[1] || parts[0]).trim(); 
 
-        // Вытаскиваем чистое имя файла из ссылки Obsidian (например, "01_Вводные образы и концепт времени")
         const targetFileName = rawPath.split("/").pop().replace(".md", "").toLowerCase().trim();
-
-        // Достаем внутреннюю коллекцию всех страниц, которые Eleventy собрал
         const allPages = this.page.collection ? this.page.collection.all : [];
-        
-        // Перестраховка: если через текущую страницу коллекция недоступна, используем глобальный контекст сборки
         const pagesSource = (allPages.length > 0) ? allPages : (global.eleventyCollectionsAll || []);
 
-        // Ищем страницу в базе данных по имени исходного файла на диске
         const foundPage = pagesSource.find(page => {
           if (!page.inputPath) return false;
           const actualFileName = page.inputPath.split("/").pop().replace(".md", "").toLowerCase().trim();
           return actualFileName === targetFileName;
         });
 
-        // Если страница найдена в базе Eleventy, берем её настоящий, сгенерированный сервером URL!
         if (foundPage && foundPage.url) {
           return `<a href="/digital-garden${foundPage.url}">${linkText}</a>`;
         }
 
-        // РЕЗЕРВНЫЙ ВАРИАНТ (Если коллекция еще не успела инициализироваться)
-        // Делаем базовую замену, чтобы ссылки не превращались в решетки
+        // РЕЗЕРВНЫЙ ВАРИАНТ
         let folder = rawPath.toLowerCase().includes("confiteor") ? "confiteor" : "sense";
         let cleanName = targetFileName.replace(/^(i|ii|iii|iv)\.\s*/i, "").replace(/_/g, "-");
         
-        // Обрезка длинных названий до двух слов для Барнса, чтобы подыграть твоему плагину
         if (folder === "sense" && cleanName.includes(" и ")) {
           cleanName = cleanName.split(" и ")[0].trim();
         }
         
         let fallbackSlug = cleanName.replace(/\s+/g, "-");
         
-        // Ручные фиксы для кастомных страниц
         if (targetFileName === "обсуждение") fallbackSlug = "obsuzhdenie";
         if (targetFileName.startsWith("формулы адриана")) fallbackSlug = "formuly-adriana";
 
-        // Если в резервном варианте для Кабре нужен числовой префикс
         if (folder === "confiteor") {
           const numMatch = targetFileName.match(/Подраздел\s+(\d+)/i);
           if (numMatch) {
@@ -81,8 +69,42 @@ module.exports = function(eleventyConfig) {
         return `<a href="/digital-garden/${folder}/${fallbackSlug}/">${linkText}</a>`;
       });
 
+      // === УНИВЕРСАЛЬНЫЙ СБОРЩИК БОКОВОГО МЕНЮ ===
+      // 1. Автоматически определяем текущую папку книги (confiteor, sense или будущие книги)
+      const currentFolder = this.page.inputPath.split("/").reverse()[1]; 
+
+      // Переводим техническое имя папки в красивое название для заголовка меню
+      const bookTitles = {
+        "confiteor": "Я исповедуюсь",
+        "sense": "Предчувствие конца",
+        "covenant": "Завет воды"
+      };
+      const currentBookTitle = bookTitles[currentFolder] || currentFolder.toUpperCase();
+
+      // 2. Достаем из глобальной базы ТОЛЬКО те файлы, которые лежат в этой же папке
+      const currentBookCollection = global.eleventyCollectionsAll ? 
+        global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(`/${currentFolder}/`)) : [];
+
+      // Сортируем файлы по имени
+      currentBookCollection.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru', { numeric: true }));
+
+      // 3. Собираем HTML меню
+      let sidebarHtml = `<nav class="sidebar-nav">
+        <h3>${currentBookTitle}</h3>
+        <ul>`;
+
+      currentBookCollection.forEach(note => {
+        const isActive = (note.url === this.page.url) ? 'class="active-node"' : '';
+        const displayTitle = note.data.title || note.fileSlug.replace(/[-_]/g, ' ');
+        sidebarHtml += `<li ${isActive}><a href="/digital-garden${note.url}">${displayTitle}</a></li>`;
+      });
+
+      sidebarHtml += `</ul></nav>`;
+
+      // ВЫЧИСЛЯЕМ ЗАГОЛОВОК СТРАНИЦЫ (Исправление ошибки)
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
 
+      // === ШАГ 3: ОБНОВЛЕННЫЙ ДВУХКОЛОНОЧНЫЙ HTML ШАБЛОН ===
       return `<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -92,8 +114,13 @@ module.exports = function(eleventyConfig) {
     <link rel="stylesheet" href="/digital-garden/style.css">
 </head>
 <body>
-    <div class="container">
-        ${content}
+    <div class="layout-wrapper">
+        ${sidebarHtml}
+        <main class="content-container">
+            <div class="container">
+                ${content}
+            </div>
+        </main>
     </div>
 </body>
 </html>`;
@@ -101,7 +128,7 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
-  // Сохраняем коллекцию в глобальную видимость на этапе сборки (чтобы трансформер её точно увидел)
+  // Сохраняем коллекцию в глобальную видимость
   eleventyConfig.addCollection("allPagesGlobal", function(collectionApi) {
     global.eleventyCollectionsAll = collectionApi.getAll();
     return global.eleventyCollectionsAll;
