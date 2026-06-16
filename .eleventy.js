@@ -101,8 +101,13 @@ module.exports = function(eleventyConfig) {
 
       sidebarHtml += `</ul></nav>`;
 
-      // ВЫЧИСЛЯЕМ ЗАГОЛОВОК СТРАНИЦЫ (Исправление ошибки)
+     // ВЫЧИСЛЯЕМ ЗАГОЛОВОК СТРАНИЦЫ
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
+
+      // ПРОВЕРКА: Если это главная страница, скрываем сайдбар и убираем левый отступ
+      const isMainPage = (this.page.url === "/" || this.page.url === "/index.html");
+      const bodyClass = isMainPage ? "main-page-layout" : "";
+      const renderSidebar = isMainPage ? "" : sidebarHtml;
 
       // === ШАГ 3: ОБНОВЛЕННЫЙ ДВУХКОЛОНОЧНЫЙ HTML ШАБЛОН ===
       return `<!DOCTYPE html>
@@ -113,9 +118,9 @@ module.exports = function(eleventyConfig) {
     <title>${pageTitle}</title>
     <link rel="stylesheet" href="/digital-garden/style.css">
 </head>
-<body>
+<body class="${bodyClass}">
     <div class="layout-wrapper">
-        ${sidebarHtml}
+        ${renderSidebar}
         <main class="content-container">
             <div class="container">
                 ${content}
@@ -124,32 +129,3 @@ module.exports = function(eleventyConfig) {
     </div>
 </body>
 </html>`;
-    }
-    return content;
-  });
-
-  // Сохраняем коллекцию в глобальную видимость
-  eleventyConfig.addCollection("allPagesGlobal", function(collectionApi) {
-    global.eleventyCollectionsAll = collectionApi.getAll();
-    return global.eleventyCollectionsAll;
-  });
-
-  // Гарантируем правильное имя для главной страницы
-  eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
-    return (data) => {
-      if (data.page.inputPath.endsWith("index.md")) {
-        return "index.html";
-      }
-      return data.permalink;
-    };
-  });
-  
-  return {
-    markdownTemplateEngine: "liquid",
-    htmlTemplateEngine: "liquid",
-    dir: {
-      input: "src/site/notes",
-      output: "_site"
-    }
-  };
-};
