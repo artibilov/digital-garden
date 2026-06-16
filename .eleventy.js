@@ -157,13 +157,16 @@ module.exports = function(eleventyConfig) {
         graphComponentHtml = `<div class="block-graph" id="graph-container"></div>`;
       }
 
-      return `<!DOCTYPE html>
+return `<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${pageTitle}</title>
     <link rel="stylesheet" href="/digital-garden/style.css">
+    
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    
     <style>
         .graph-section-wrapper {
             margin-top: 50px;
@@ -203,10 +206,8 @@ module.exports = function(eleventyConfig) {
         </main>
     </div>
 
-    <!-- Подключаем родные скрипты инициализации плагина Digital Garden -->
     ${pluginScriptsHtml}
 
-    <!-- Наш кастомный скрипт сайдбара -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var sidebar = document.querySelector(".sidebar-nav");
