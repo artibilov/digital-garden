@@ -89,68 +89,49 @@ li {
 .layout-wrapper {
   display: flex;
   min-height: 100vh;
+  width: 100%;
 }
 
 /* Настройки бокового меню */
 .sidebar-nav {
   width: 300px;
+  min-width: 300px; /* Чтобы меню не сжималось */
   background: #f7fafc;
   border-right: 1px solid #e2e8f0;
   padding: 30px 20px;
   position: fixed;
   height: 100vh;
-  overflow-y: auto; /* Меню скроллится само, если подразделы не влезают */
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
-.sidebar-nav h3 {
-  margin-top: 0;
-  font-size: 1.2rem;
-  color: #2d3748;
-  border-bottom: 2px solid #edf2f7;
-  padding-bottom: 10px;
-}
-
-.sidebar-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar-nav li {
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-}
-
-.sidebar-nav a {
-  color: #4a5568;
-  text-decoration: none;
-  display: block;
-  padding: 4px 8px;
-  border-radius: 4px;
-}
-
-.sidebar-nav a:hover {
-  background: #edf2f7;
-  color: #2b6cb0;
-}
-
-/* Подсветка активного подраздела, на котором сидит читатель */
-.sidebar-nav li.active-node a {
-  background: #ebf8ff;
-  color: #2b6cb0;
-  font-weight: bold;
-}
-
-/* Контейнер для основного текста, сдвинутый вправо на ширину меню */
+/* Контейнер для основного текста (по умолчанию с отступом под меню) */
 .content-container {
   flex: 1;
-  margin-left: 300px;
-  padding: 40px;
+  margin-left: 300px; /* Оставляем место под сайдбар */
+  padding: 60px 50px; /* Щедрые отступы сверху и сбоку */
   background: #ffffff;
+  display: flex;
+  justify-content: center; /* Центрируем текст по горизонтали */
 }
 
-/* Адаптивность: на мобилках прячем сайдбар вниз или отключаем фиксацию */
-@media (max-width: 768px) {
+/* Ограничитель ширины текста, чтобы строки не были слишком длинными */
+.content-container .container {
+  width: 100%;
+  max-width: 800px; /* Идеальная ширина для чтения текста */
+}
+
+/* СПЕЦИАЛЬНЫЙ РЕЖИМ ДЛЯ ГЛАВНОЙ СТРАНИЦЫ (Сайдбар скрыт) */
+.main-page-layout .content-container {
+  margin-left: 0; /* Убираем пустой отступ слева */
+  padding: 60px 20px;
+}
+.main-page-layout .sidebar-nav {
+  display: none; /* Полностью прячем меню */
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 900px) {
   .layout-wrapper {
     flex-direction: column;
   }
@@ -160,9 +141,10 @@ li {
     height: auto;
     border-right: none;
     border-bottom: 1px solid #e2e8f0;
-  }
-  .content-container {
-    margin-left: 0;
     padding: 20px;
+  }
+  .content-container, .main-page-layout .content-container {
+    margin-left: 0;
+    padding: 40px 20px;
   }
 }
