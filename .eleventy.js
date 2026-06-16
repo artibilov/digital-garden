@@ -44,8 +44,8 @@ module.exports = function(eleventyConfig) {
       const currentBookCollection = global.eleventyCollectionsAll ? 
         global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(`/${currentFolder}/`)) : [];
 
-      // Жесткий поиск: ищем файл конфигурации, в системном пути которого есть "sidebar-config.md"
-      const configPage = currentBookCollection.find(p => p.inputPath && p.inputPath.toLowerCase().includes("sidebar-config.md"));
+    // Жесткий поиск: теперь ищем легальный файл навигации заметки
+      const configPage = currentBookCollection.find(p => p.inputPath && p.inputPath.toLowerCase().includes("navigation.md"));
 
       // Ищем главную страницу книги для красивого заголовка
       const indexPage = currentBookCollection.find(p => p.data && (p.data.type === "index" || p.data.type === "main"));
@@ -110,8 +110,8 @@ module.exports = function(eleventyConfig) {
         sidebarHtml += menuContentHtml;
         sidebarHtml = sidebarHtml.replace(/<hr class="menu-divider"><\/nav>$/, "</nav>");
       } else {
-        // Если configPage не найден или пуст — выводим системное предупреждение вместо старой каши
-        sidebarHtml += `<p style="padding: 10px; color: #e53e3e; font-size: 0.9rem;">⚠️ Файл sidebar-config.md не найден в памяти сборщика или пуст.</p>`;
+      // Если configPage не найден или пуст — выводим системное предупреждение
+        sidebarHtml += `<p style="padding: 10px; color: #e53e3e; font-size: 0.9rem;">⚠️ Файл navigation.md не найден в памяти сборщика или пуст.</p>`;
       }
 
       sidebarHtml += `</nav>`;
