@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"confiteor/39-vita-condita-podrazdel-39","permalink":"/confiteor/39-vita-condita-podrazdel-39/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"V. Vita condita. Подраздел 39","часть":5,"персонажи":["[[adria_ardevol]]","[[bernat_plensa.md]]","[[sara_voltes_epstein.md]]","tekla","llorens_plensa","romen_ginzburg","katerina","tito_karbonel","isajya_berlin"],"артефакты":["скрипка Сториони (Виал)","письмо Исайи Берлина","фотоаппарат Поляроид","пачка денег","книга в подарок"],"ключевые_темы":["суррогаты_любви","семейная_дисфункция","инструментализация_личности","эстетический_фетишизм","субъективность_памяти","одиночество"]}}
 ---
 
-
 ### Аналитический разбор эпизода
 
 **Суть события:**  
