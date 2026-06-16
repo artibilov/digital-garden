@@ -70,7 +70,6 @@ module.exports = function(eleventyConfig) {
       });
 
       // === ШАГ 2: УНИВЕРСАЛЬНЫЙ СБОРЩИК БОКОВОГО МЕНЮ С ГРУППИРОВКОЙ ===
-      // Автоматически определяем текущую папку книги (например, "confiteor" или "sense")
       const currentFolder = this.page.inputPath.split("/").reverse()[1]; 
 
       // Достаем из глобальной базы ВСЕ файлы этой конкретной книги
@@ -87,14 +86,13 @@ module.exports = function(eleventyConfig) {
         mainPageOfBook.data.title : 
         currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1).replace(/[-_]/g, ' ');
 
-      // Распределяем файлы текущей папки по категориям на основе твоих свойств type
+      // Распределяем файлы текущей папки по категориям
       let mainLinks = [];
       let characterLinks = [];
       let objectLinks = [];
       let textLinks = [];
 
-        currentBookCollection.forEach(note => {
-        // Сверхглубокий поиск свойства type во всех возможных слоях данных Eleventy
+      currentBookCollection.forEach(note => {
         let rawType = "";
         if (note.data) {
           rawType = note.data.type || note.data.Type || (note.data.data ? note.data.data.type : "");
@@ -104,22 +102,15 @@ module.exports = function(eleventyConfig) {
         const noteType = String(rawType || "").toLowerCase().trim();
         const fileName = note.fileSlug.toLowerCase();
 
-        // Проверка: является ли файл хронологическим подразделом книги
-        // (ищет слово "подраздел" или стартовые римские цифры вроде "i.", "ii.", "vi.")
         const isChronologicalSubdivision = fileName.includes("подраздел") || fileName.match(/^[i|v|x]+\./);
 
         if (noteType === "index" || noteType === "main" || fileName.includes("сюжет")) {
-          // 1. Оглавление / Карта книги
           mainLinks.push(note);
         } else if (noteType === "character" || noteType === "movement" || (!isChronologicalSubdivision && !noteType)) {
-          // 2. Сюжет и персонажи (если тип явно character/movement ИЛИ если это не подраздел книги)
-          // Сюда гарантированно попадет Лаура Байлина, даже если Eleventy закапризничает со свойствами
           characterLinks.push(note);
         } else if (noteType === "object") {
-          // 3. Предметы
           objectLinks.push(note);
         } else {
-          // 4. Все остальное (хронологический текст глав)
           textLinks.push(note);
         }
       });
