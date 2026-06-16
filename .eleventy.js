@@ -102,17 +102,14 @@ module.exports = function(eleventyConfig) {
           // Разрезаем контент на блоки по открывающему тегу параграфа с жирным текстом
           const blocks = indexHtmlContent.split(/<p>\s*<strong[^>]*>/i);
 
-          // Пропускаем самый первый пустой кусок до первого тега
           for (let i = 1; i < blocks.length; i++) {
             const block = blocks[i];
 
-            // 1. Находим, где заканчивается заголовок секции
             const closeStrongIndex = block.toLowerCase().indexOf("</strong>");
             if (closeStrongIndex === -1) continue;
 
             const sectionTitle = block.substring(0, closeStrongIndex).replace(/<[^>]*>/g, "").trim();
 
-            // 2. Ищем список <ul> внутри оставшейся части этого блока
             const ulStartIndex = block.toLowerCase().indexOf("<ul");
             const ulEndIndex = block.toLowerCase().indexOf("</ul>");
 
@@ -142,18 +139,19 @@ module.exports = function(eleventyConfig) {
       
       // ЖЕЛЕЗОБЕТОННО ВШИВАЕМ ССЫЛКУ НА ОГЛАВЛЕНИЕ НА САМЫЙ ВЕРХ СУПЕР-ПУНКТОМ
       if (indexPage) {
-        const isIndexActive = (indexPage.url === this.page.url) ? 'class="active-node"' : '';
+        const isIndexActive = (indexPage.url === indexPage.url && this.page.url === indexPage.url) ? 'class="active-node"' : '';
         sidebarHtml += `<ul class="menu-section-main">
           <li ${isIndexActive}><a href="/digital-garden${indexPage.url}">📌 Главная страница книги</a></li>
         </ul><hr class="menu-divider">`;
       }
 
-      // Выводим структурированные блоги, если парсер успешно их собрал
+      // Выводим структурированные блоги
       if (menuContentHtml) {
         sidebarHtml += menuContentHtml;
+        // Срезаем последний лишний разделитель
         sidebarHtml = sidebarHtml.replace(/<hr class="menu-divider"><\/nav>$/, "</nav>");
       } else {
-        // Аварийный случай (не должен сработать, так как строки режутся железно)
+        // Аварийный случай
         sidebarHtml += `<ul class="menu-section-list">`;
         currentBookCollection.forEach(note => {
           if (note.url !== (indexPage ? indexPage.url : "")) {
