@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/confiteor/sidebar-config/","title":"Конфигурация меню","dg-note-properties":{"title":"Конфигурация меню","permalink":"/confiteor/sidebar-config/"}}
+{"dg-publish":true,"permalink":"/confiteor/sidebar-config/","title":"Конфигурация меню","dg-note-properties":{"title":"Конфигурация меню","permalink":"/confiteor/sidebar-config"}}
 ---
 
 
