@@ -84,7 +84,12 @@ module.exports = function(eleventyConfig) {
 
       currentBookCollection.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru', { numeric: true }));
 
+      // 3. Собираем HTML меню
       let sidebarHtml = `<nav class="sidebar-nav">
+        <div class="sidebar-back-link">
+          <a href="/digital-garden/">← На главную</a>
+        </div>
+        
         <h3>${currentBookTitle}</h3>
         <ul>`;
 
