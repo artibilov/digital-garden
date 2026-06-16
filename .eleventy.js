@@ -78,19 +78,22 @@ module.exports = function(eleventyConfig) {
 
       // Динамический поиск красивого названия книги на основе файла оглавления
       const mainPageOfBook = currentBookCollection.find(p => {
-        const pType = p.data.type ? p.data.type.toLowerCase().trim() : "";
-        return pType === "index" || pType === "main" || p.fileSlug.toLowerCase().includes("сюжет");
+        let pType = "";
+        if (p.data) {
+          pType = p.data.type || (p.data.data ? p.data.data.type : "");
+        }
+        return String(pType).toLowerCase().trim() === "index";
       });
 
       const currentBookTitle = mainPageOfBook && mainPageOfBook.data.title ? 
         mainPageOfBook.data.title : 
         currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1).replace(/[-_]/g, ' ');
 
-      // Распределяем файлы текущей папки по категориям
-      let mainLinks = [];
-      let characterLinks = [];
-      let objectLinks = [];
-      let textLinks = [];
+      // Инициализируем четыре чистых массива под твои задачи
+      let mainLinks = [];      // Оглавление (type: index)
+      let movementLinks = [];  // Разделы книги (type: movement)
+      let characterLinks = []; // Персонажи (type: character)
+      let objectLinks = [];    // Предметы (type: object)
 
       currentBookCollection.forEach(note => {
         let rawType = "";
@@ -102,24 +105,26 @@ module.exports = function(eleventyConfig) {
         const noteType = String(rawType || "").toLowerCase().trim();
         const fileName = note.fileSlug.toLowerCase();
 
-        const isChronologicalSubdivision = fileName.includes("подраздел") || fileName.match(/^[i|v|x]+\./);
-
-        if (noteType === "index" || noteType === "main" || fileName.includes("Оглавление")) {
+        // Распределяем строго по твоим типам из Frontmatter
+        if (noteType === "index" || fileName.includes("сюжет")) {
           mainLinks.push(note);
-        } else if (noteType === "character" || noteType === "movement" || (!isChronologicalSubdivision && !noteType)) {
+        } else if (noteType === "movement") {
+          movementLinks.push(note);
+        } else if (noteType === "character") {
           characterLinks.push(note);
         } else if (noteType === "object") {
           objectLinks.push(note);
         } else {
-          textLinks.push(note);
+          // Резервный случай: если тип забыл указать, но это подраздел — кидаем к разделам
+          movementLinks.push(note);
         }
       });
 
-      // Индивидуальная сортировка каждой группы
+      // Сортировка (для глав используем числовую {numeric: true}, для сущностей — алфавитную)
       mainLinks.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru'));
+      movementLinks.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru', { numeric: true }));
       characterLinks.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru'));
       objectLinks.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru'));
-      textLinks.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru', { numeric: true }));
 
       // Вспомогательная функция для сборки списков ссылок
       const generateListHtml = (collection) => {
@@ -132,7 +137,7 @@ module.exports = function(eleventyConfig) {
         return html;
       };
 
-      // Сборка структурированного HTML для сайдбара
+      // Сборка структурированного HTML для сайдбара в твоем порядке
       let sidebarHtml = `<nav class="sidebar-nav">
         <div class="sidebar-back-link">
           <a href="/digital-garden/">← На главную</a>
@@ -140,21 +145,29 @@ module.exports = function(eleventyConfig) {
         
         <h3>${currentBookTitle}</h3>`;
 
+      // Блок 1: Оглавление
       if (mainLinks.length > 0) {
         sidebarHtml += `<ul class="menu-section-main">${generateListHtml(mainLinks)}</ul><hr class="menu-divider">`;
       }
+      
+      // Блок 2: Разделы книги
+      if (movementLinks.length > 0) {
+        sidebarHtml += `<span class="menu-section-title">Разделы книги</span>`;
+        sidebarHtml += `<ul class="menu-section-text">${generateListHtml(movementLinks)}</ul><hr class="menu-divider">`;
+      }
+
+      // Блок 3: Персонажи
       if (characterLinks.length > 0) {
         sidebarHtml += `<span class="menu-section-title">Персонажи</span>`;
         sidebarHtml += `<ul class="menu-section-characters">${generateListHtml(characterLinks)}</ul><hr class="menu-divider">`;
       }
+
+      // Блок 4: Предметы
       if (objectLinks.length > 0) {
         sidebarHtml += `<span class="menu-section-title">Артефакты и предметы</span>`;
-        sidebarHtml += `<ul class="menu-section-objects">${generateListHtml(objectLinks)}</ul><hr class="menu-divider">`;
+        sidebarHtml += `<ul class="menu-section-objects">${generateListHtml(objectLinks)}</ul>`;
       }
-      if (textLinks.length > 0) {
-        sidebarHtml += `<span class="menu-section-title">Подразделы книги</span>`;
-        sidebarHtml += `<ul class="menu-section-text">${generateListHtml(textLinks)}</ul>`;
-      }
+      
       sidebarHtml += `</nav>`;
 
       // ВЫЧИСЛЯЕМ ЗАГОЛОВОК СТРАНИЦЫ ДЛЯ ТЕГА TITLE
