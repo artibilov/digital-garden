@@ -50,10 +50,7 @@ module.exports = function(eleventyConfig) {
       const currentBookCollection = global.eleventyCollectionsAll ? 
         global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(`/${currentFolder}/`)) : [];
 
-      // Ищем технический файл конфигурации по имени navigation.md
       const configPage = currentBookCollection.find(p => p.inputPath && p.inputPath.toLowerCase().includes("navigation.md"));
-
-      // Ищем главную страницу книги для красивого заголовка
       const indexPage = currentBookCollection.find(p => p.data && (p.data.type === "index" || p.data.type === "main"));
 
       let currentBookTitle = currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1);
@@ -67,7 +64,6 @@ module.exports = function(eleventyConfig) {
         </div>
         <h3>${currentBookTitle}</h3>`;
 
-      // Ссылка на Оглавление книги — всегда на самый верх
       if (indexPage) {
         const isIndexActive = (indexPage.url === this.page.url) ? 'class="active-node"' : '';
         sidebarHtml += `<ul class="menu-section-main">
@@ -75,7 +71,6 @@ module.exports = function(eleventyConfig) {
         </ul><hr class="menu-divider">`;
       }
 
-      // Парсим контент конфигурационного файла
       let menuContentHtml = "";
       if (configPage) {
         const rawConfigContent = configPage.content || "";
@@ -131,18 +126,35 @@ module.exports = function(eleventyConfig) {
       const bodyClass = isMainPage ? "main-page-layout" : "";
       const renderSidebar = isMainPage ? "" : sidebarHtml;
 
-      // 3. СИСТЕМНОЕ ВЫДЕЛЕНИЕ ГРАФА ИЗ КОНТЕНТА
-      // Вырезаем блоки графа, которые плагин генерирует в виде скриптов и контейнеров
+      // 3. СИСТЕМНОЕ ВЫДЕЛЕНИЕ ГРАФА И ВСЕХ СКРИПТОВ ПЛАГИНА
       let mainTextContent = content;
       let graphComponentHtml = "";
+      let pluginScriptsHtml = "";
 
-      // Регулярное выражение ищет контейнер локального графа плагина Digital Garden
+      // Вырезаем сам контейнер графа
       const graphRegex = /(<div[^>]*id="graph-container"[^>]*>[\s\S]*<\/div>|<div[^>]*class="block-graph"[^>]*>[\s\S]*<\/div>)/i;
       const matchGraph = content.match(graphRegex);
       
       if (matchGraph) {
         graphComponentHtml = matchGraph[0];
-        mainTextContent = content.replace(graphRegex, ""); // Очищаем основной текст от сырого блока графа
+        mainTextContent = mainTextContent.replace(graphRegex, "");
+      }
+
+      // Собираем ВСЕ скрипты, которые плагин добавил в конец контента (они нужны для работы графа)
+      const scriptRegex = /(<script[\s\S]*?<\/script>)/gi;
+      let matchScript;
+      while ((matchScript = scriptRegex.exec(content)) !== null) {
+        // Пропускаем наш собственный скрипт сайдбара, забираем только скрипты плагина
+        if (!matchScript[0].includes("sidebar-scroll")) {
+          pluginScriptsHtml += matchScript[0] + "\n";
+          mainTextContent = mainTextContent.replace(matchScript[0], "");
+        }
+      }
+
+      // Если плагин не создал контейнер, но это страница разбора — делаем коробку-приемник принудительно
+      const forceGraph = this.page.inputPath && !this.page.inputPath.includes("navigation.md") && !isMainPage;
+      if (!graphComponentHtml && forceGraph) {
+        graphComponentHtml = `<div class="block-graph" id="graph-container"></div>`;
       }
 
       return `<!DOCTYPE html>
@@ -152,7 +164,6 @@ module.exports = function(eleventyConfig) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${pageTitle}</title>
     <link rel="stylesheet" href="/digital-garden/style.css">
-    <!-- Стили для красивой изоляции графа -->
     <style>
         .graph-section-wrapper {
             margin-top: 50px;
@@ -165,13 +176,14 @@ module.exports = function(eleventyConfig) {
             color: #2d3748;
             margin-bottom: 15px;
         }
-        /* Гарантируем, что холст графа плагина не сожмется в ноль */
         #graph-container, .block-graph {
             width: 100% !important;
-            height: 400px !important;
-            background: #f7fafc;
-            border-radius: 8px;
+            height: 450px !important;
+            background: #f8fafc;
+            border-radius: 12px;
             border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -180,10 +192,8 @@ module.exports = function(eleventyConfig) {
         ${renderSidebar}
         <main class="content-container">
             <div class="container">
-                <!-- Основной аналитический текст -->
                 ${mainTextContent}
                 
-                <!-- Интерактивный блок локального графа (выведен вниз) -->
                 ${graphComponentHtml ? `
                 <div class="graph-section-wrapper">
                     <div class="graph-section-title">Визуальная сеть связей заметки</div>
@@ -192,6 +202,11 @@ module.exports = function(eleventyConfig) {
             </div>
         </main>
     </div>
+
+    <!-- Подключаем родные скрипты инициализации плагина Digital Garden -->
+    ${pluginScriptsHtml}
+
+    <!-- Наш кастомный скрипт сайдбара -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var sidebar = document.querySelector(".sidebar-nav");
