@@ -12,39 +12,45 @@ module.exports = function(eleventyConfig) {
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // ТРАНСФОРМЕР ССЫЛОК И СБОРКА МЕНЮ
+  // ФУНКЦИЯ ПРЕВРАЩЕНИЯ ВИКИ-ССЫЛКИ В HTML (вынесена в общую логику)
+  function resolveWikiLink(wikiContent, allPages) {
+    const parts = wikiContent.split("|");
+    const rawPath = parts[0].trim(); 
+    const linkText = (parts[1] || parts[0]).trim(); 
+
+    const targetFileName = rawPath.split("/").pop().replace(".md", "").toLowerCase().trim();
+    const pagesSource = (allPages.length > 0) ? allPages : (global.eleventyCollectionsAll || []);
+
+    const foundPage = pagesSource.find(page => {
+      if (!page.inputPath) return false;
+      const actualFileName = page.inputPath.split("/").pop().replace(".md", "").toLowerCase().trim();
+      return actualFileName === targetFileName;
+    });
+
+    if (foundPage && foundPage.url) {
+      return `<a href="/digital-garden${foundPage.url}">${linkText}</a>`;
+    }
+    return `<a href="#">${linkText}</a>`;
+  }
+
+  // УМНЫЙ ТРАНСФОРМЕР ССЫЛОК И СБОРКА МЕНЮ
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       
-      // 1. Исправление вики-ссылок [[...]] во всех статьях контента
+      const allPages = this.page.collection ? this.page.collection.all : [];
+
+      // 1. Исправление вики-ссылок [[...]] в основном ТЕКСТЕ текущей статьи
       content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
-        const parts = p1.split("|");
-        const rawPath = parts[0].trim(); 
-        const linkText = (parts[1] || parts[0]).trim(); 
-
-        const targetFileName = rawPath.split("/").pop().replace(".md", "").toLowerCase().trim();
-        const allPages = this.page.collection ? this.page.collection.all : [];
-        const pagesSource = (allPages.length > 0) ? allPages : (global.eleventyCollectionsAll || []);
-
-        const foundPage = pagesSource.find(page => {
-          if (!page.inputPath) return false;
-          const actualFileName = page.inputPath.split("/").pop().replace(".md", "").toLowerCase().trim();
-          return actualFileName === targetFileName;
-        });
-
-        if (foundPage && foundPage.url) {
-          return `<a href="/digital-garden${foundPage.url}">${linkText}</a>`;
-        }
-        return `<a href="#">${linkText}</a>`;
+        return resolveWikiLink(p1, allPages);
       });
 
-      // 2. СБОРКА САЙДБАРА СТРОГО ИЗ СКОМПИЛИРОВАННОГО HTML ФАЙЛА КОНФИГУРАЦИИ
+      // 2. СБОРКА САЙДБАРА ИЗ СЛУЖЕБНОГО ФАЙЛА НАВИГАЦИИ
       const currentFolder = this.page.inputPath.split("/").reverse()[1]; 
 
       const currentBookCollection = global.eleventyCollectionsAll ? 
         global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(`/${currentFolder}/`)) : [];
 
-    // Жесткий поиск: теперь ищем легальный файл навигации заметки
+      // Ищем технический файл конфигурации по имени navigation.md
       const configPage = currentBookCollection.find(p => p.inputPath && p.inputPath.toLowerCase().includes("navigation.md"));
 
       // Ищем главную страницу книги для красивого заголовка
@@ -69,48 +75,57 @@ module.exports = function(eleventyConfig) {
         </ul><hr class="menu-divider">`;
       }
 
-      // Парсим HTML конфигурационного файла, который Eleventy обязан выдать нам в память
+      // Парсим контент конфигурационного файла
       let menuContentHtml = "";
-      if (configPage && configPage.content) {
-        // Режем отрендеренный контент по заголовкам h3 (наши ### в Obsidian)
-        const blocks = configPage.content.split(/<h3[^>]*>/i);
+      if (configPage) {
+        // Берем сырой контент страницы (там еще могут оставаться [[...]], если Eleventy не отрендерил её первой)
+        const rawConfigContent = configPage.content || "";
 
-        for (let i = 1; i < blocks.length; i++) {
-          const block = blocks[i];
-          
-          const closeH3Index = block.toLowerCase().indexOf("</h3>");
-          if (closeH3Index === -1) continue;
+        if (rawConfigContent) {
+          // Режем контент по заголовкам h3
+          const blocks = rawConfigContent.split(/<h3[^>]*>/i);
 
-          const sectionTitle = block.substring(0, closeH3Index).trim();
+          for (let i = 1; i < blocks.length; i++) {
+            const block = blocks[i];
+            
+            const closeH3Index = block.toLowerCase().indexOf("</h3>");
+            if (closeH3Index === -1) continue;
 
-          const ulStartIndex = block.toLowerCase().indexOf("<ul");
-          const ulEndIndex = block.toLowerCase().indexOf("</ul>");
+            const sectionTitle = block.substring(0, closeH3Index).trim();
 
-          if (ulStartIndex !== -1 && ulEndIndex !== -1 && ulStartIndex < ulEndIndex) {
-            let ulBlock = block.substring(ulStartIndex, ulEndIndex + 5);
+            const ulStartIndex = block.toLowerCase().indexOf("<ul");
+            const ulEndIndex = block.toLowerCase().indexOf("</ul>");
 
-            // Подсвечиваем активную страницу, если читатель сидит на ней
-            const currentUrlChunk = this.page.url;
-            if (currentUrlChunk) {
-              const escapedUrl = currentUrlChunk.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-              const activeLiRegex = new RegExp(`(<li[^>]*>\\s*<a\\s+href="[^"]*${escapedUrl}"[^>]*>)`, "i");
-              ulBlock = ulBlock.replace(activeLiRegex, '<li class="active-node">$1');
+            if (ulStartIndex !== -1 && ulEndIndex !== -1 && ulStartIndex < ulEndIndex) {
+              let ulBlock = block.substring(ulStartIndex, ulEndIndex + 5);
+
+              // МЫ ТУТ: Принудительно прогоняем регулярку вики-ссылок внутри вырезанного списка сайдбара
+              ulBlock = ulBlock.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
+                return resolveWikiLink(p1, allPages);
+              });
+
+              // Подсвечиваем активную страницу, если читатель сидит на ней
+              const currentUrlChunk = this.page.url;
+              if (currentUrlChunk) {
+                const escapedUrl = currentUrlChunk.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                const activeLiRegex = new RegExp(`(<li[^>]*>\\s*<a\\s+href="[^"]*${escapedUrl}"[^>]*>)`, "i");
+                ulBlock = ulBlock.replace(activeLiRegex, '<li class="active-node">$1');
+              }
+
+              menuContentHtml += `<div class="sidebar-menu-section">`;
+              menuContentHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
+              menuContentHtml += `${ulBlock}`;
+              menuContentHtml += `</div><hr class="menu-divider">`;
             }
-
-            menuContentHtml += `<div class="sidebar-menu-section">`;
-            menuContentHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
-            menuContentHtml += `${ulBlock}`;
-            menuContentHtml += `</div><hr class="menu-divider">`;
           }
         }
       }
 
-      // Если контент-менеджер собрал пункты, выводим их
+      // Если меню собрано — выводим его
       if (menuContentHtml) {
         sidebarHtml += menuContentHtml;
         sidebarHtml = sidebarHtml.replace(/<hr class="menu-divider"><\/nav>$/, "</nav>");
       } else {
-      // Если configPage не найден или пуст — выводим системное предупреждение
         sidebarHtml += `<p style="padding: 10px; color: #e53e3e; font-size: 0.9rem;">⚠️ Файл navigation.md не найден в памяти сборщика или пуст.</p>`;
       }
 
