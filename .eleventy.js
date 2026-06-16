@@ -1,20 +1,9 @@
 const markdownIt = require("markdown-it");
-const fs = require("fs");
-const path = require("path");
 
 module.exports = function(eleventyConfig) {
-  // Копируем файл стилей в корень сайта
   eleventyConfig.addPassthroughCopy("style.css");
 
-  // === ШАГ 1: АВТОМАТИЧЕСКАЯ СОРТИРОВАННАЯ КОЛЛЕКЦИЯ ДЛЯ МЕНЮ ===
-  eleventyConfig.addCollection("confiteor", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/site/notes/confiteor/**/*.md")
-      .sort((a, b) => {
-        return a.fileSlug.localeCompare(b.fileSlug, 'ru', { numeric: true });
-      });
-  });
-
-  // Стандартная поддержка пермалинков
+  // Поддержка пермалинков
   eleventyConfig.addGlobalData("permalink", (data) => {
     if (!data || !data.page) return undefined;
     return data.permalink || undefined; 
@@ -23,11 +12,11 @@ module.exports = function(eleventyConfig) {
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // УМНЫЙ ТРАНСФОРМЕР ССЫЛОК И ВЕРСТКИ
+  // ТРАНСФОРМЕР ССЫЛОК И СБОРКА МЕНЮ
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       
-      // Находим все вики-ссылки [[...]] в тексте статьи
+      // 1. Исправление вики-ссылок [[...]]
       content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
         const parts = p1.split("|");
         const rawPath = parts[0].trim(); 
@@ -46,127 +35,33 @@ module.exports = function(eleventyConfig) {
         if (foundPage && foundPage.url) {
           return `<a href="/digital-garden${foundPage.url}">${linkText}</a>`;
         }
-
-        // РЕЗЕРВНЫЙ ВАРИАНТ
-        let folder = rawPath.toLowerCase().includes("confiteor") ? "confiteor" : "sense";
-        let cleanName = targetFileName.replace(/^(i|ii|iii|iv)\.\s*/i, "").replace(/_/g, "-");
-        
-        if (folder === "sense" && cleanName.includes(" и ")) {
-          cleanName = cleanName.split(" и ")[0].trim();
-        }
-        
-        let fallbackSlug = cleanName.replace(/\s+/g, "-");
-        
-        if (targetFileName === "обсуждение") fallbackSlug = "obsuzhdenie";
-        if (targetFileName.startsWith("формулы адриана")) fallbackSlug = "formuly-adriana";
-
-        if (folder === "confiteor") {
-          const numMatch = targetFileName.match(/Подраздел\s+(\d+)/i);
-          if (numMatch) {
-            const num = numMatch[1].padStart(2, '0');
-            fallbackSlug = (num === "34") ? `35-palimpsestus-podrazdel-34` : `${num}-${fallbackSlug}`;
-          }
-        }
-
-        return `<a href="/digital-garden/${folder}/${fallbackSlug}/">${linkText}</a>`;
+        return `<a href="#">${linkText}</a>`;
       });
 
-      // === ШАГ 2: СБОРКА САЙДБАРА ИЗ СЫРОГО MARKDOWN ОГЛАВЛЕНИЯ ===
+      // 2. Сборка сайдбара из технического файла конфигурации
       const currentFolder = this.page.inputPath.split("/").reverse()[1]; 
 
-      // База всех страниц текущей книги
       const currentBookCollection = global.eleventyCollectionsAll ? 
         global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(`/${currentFolder}/`)) : [];
 
-      // Находим файл оглавления книги строго по типу index
-      const indexPage = currentBookCollection.find(p => {
-        if (!p.data) return false;
-        const pType = p.data.type || (p.data.data ? p.data.data.type : "");
-        return String(pType).toLowerCase().trim() === "index";
-      });
+      // Ищем файл конфигурации навигации
+      const configPage = currentBookCollection.find(p => p.data && p.data.type === "sidebar-config");
+
+      // Ищем главную страницу книги для красивого заголовка в шапке
+      const indexPage = currentBookCollection.find(p => p.data && (p.data.type === "index" || p.data.type === "main"));
+
+      let currentBookTitle = currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1);
+      if (indexPage && indexPage.data && indexPage.data.title) {
+        currentBookTitle = indexPage.data.title;
+      }
 
       let sidebarHtml = `<nav class="sidebar-nav">
         <div class="sidebar-back-link">
           <a href="/digital-garden/">← На главную</a>
-        </div>`;
+        </div>
+        <h3>${currentBookTitle}</h3>`;
 
-      let currentBookTitle = currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1);
-      let menuContentHtml = "";
-
-      if (indexPage && indexPage.inputPath) {
-        if (indexPage.data && indexPage.data.title) {
-          currentBookTitle = indexPage.data.title;
-        }
-
-        // Вычисляем абсолютный железный путь к файлу на сервере Гитхаба
-        const absoluteIndexPath = path.resolve(process.cwd(), indexPage.inputPath.replace(/^\.\//, ""));
-
-        if (fs.existsSync(absoluteIndexPath)) {
-          try {
-            const rawMarkdown = fs.readFileSync(absoluteIndexPath, "utf8");
-            
-            // Очищаем frontmatter, оставляем только тело
-            const markdownBody = rawMarkdown.replace(/^---[\s\S]+?---/i, "");
-
-            // Режем markdown на блоки по заголовкам типа **Название**
-            const sections = markdownBody.split(/(?=\*\*([^*]+)\*\*)/g);
-
-            // Обрабатываем куски (шаг 2, так как split создает пары заголовок-текст)
-            for (let k = 1; k < sections.length; k += 2) {
-              const sectionTitle = sections[k].trim();
-              const sectionContent = sections[k + 1] || "";
-
-              // Вытаскиваем все строки списков "- [[...]]" из текущего блока
-              const lines = sectionContent.split("\n").filter(l => l.trim().startsWith("-"));
-
-              if (lines.length > 0) {
-                let sectionLiHtml = "";
-
-                lines.forEach(line => {
-                  const matchWiki = line.match(/\[\[([^\]]+)\]\]/);
-                  if (matchWiki) {
-                    const parts = matchWiki[1].split("|");
-                    const rawTarget = parts[0].trim();
-                    const defaultLabel = parts[1] ? parts[1].trim() : rawTarget;
-
-                    // Получаем чистое имя файла для сопоставления
-                    const targetFileName = rawTarget.split("/").pop().replace(".md", "").toLowerCase().trim();
-
-                    // Ищем страницу в скомпилированной коллекции Eleventy
-                    const foundPage = currentBookCollection.find(page => {
-                      if (!page.inputPath) return false;
-                      const actualName = page.inputPath.split("/").pop().replace(".md", "").toLowerCase().trim();
-                      return actualName === targetFileName;
-                    });
-
-                    if (foundPage && foundPage.url) {
-                      const isActive = (foundPage.url === this.page.url) ? 'class="active-node"' : '';
-                      const displayTitle = foundPage.data && foundPage.data.title ? foundPage.data.title : defaultLabel;
-                      sectionLiHtml += `<li ${isActive}><a href="/digital-garden${foundPage.url}">${displayTitle}</a></li>`;
-                    } else {
-                      sectionLiHtml += `<li class="broken-link">${defaultLabel}</li>`;
-                    }
-                  }
-                });
-
-                if (sectionLiHtml) {
-                  menuContentHtml += `<div class="sidebar-menu-section">`;
-                  menuContentHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
-                  menuContentHtml += `<ul>${sectionLiHtml}</ul>`;
-                  menuContentHtml += `</div><hr class="menu-divider">`;
-                }
-              }
-            }
-          } catch (e) {
-            console.error("Ошибка чтения markdown-оглавления:", e);
-          }
-        }
-      }
-
-      // Собираем каркас сайдбара воедино
-      sidebarHtml += `<h3>${currentBookTitle}</h3>`;
-      
-      // ЖЕЛЕЗОБЕТОННО ВШИВАЕМ ССЫЛКУ НА ОГЛАВЛЕНИЕ НА САМЫЙ ВЕРХ
+      // Ссылка на Оглавление железно наверх
       if (indexPage) {
         const isIndexActive = (indexPage.url === this.page.url) ? 'class="active-node"' : '';
         sidebarHtml += `<ul class="menu-section-main">
@@ -174,15 +69,50 @@ module.exports = function(eleventyConfig) {
         </ul><hr class="menu-divider">`;
       }
 
-      // Выводим структурированное меню, если исходный markdown успешно распарсился
-      if (menuContentHtml) {
-        sidebarHtml += menuContentHtml;
+      // Рендерим секции, если нашли sidebar-config
+      if (configPage && configPage.data && Array.isArray(configPage.data.sections)) {
+        configPage.data.sections.forEach(section => {
+          const sectionTitle = section.title;
+          const fileList = section.files || [];
+
+          if (fileList.length > 0) {
+            let sectionLiHtml = "";
+
+            fileList.forEach(slugName => {
+              const cleanSlug = String(slugName).toLowerCase().trim();
+
+              // Ищем страницу в коллекции Eleventy по имени файла
+              const foundPage = currentBookCollection.find(page => {
+                if (!page.inputPath) return false;
+                const actualName = page.inputPath.split("/").pop().replace(".md", "").toLowerCase().trim();
+                return actualName === cleanSlug;
+              });
+
+              if (foundPage && foundPage.url) {
+                const isActive = (foundPage.url === this.page.url) ? 'class="active-node"' : '';
+                
+                // ВОТ ЗДЕСЬ МАГИЯ: берем русский title из frontmatter файла, если он там есть!
+                const displayTitle = foundPage.data && foundPage.data.title ? foundPage.data.title : foundPage.fileSlug.replace(/[-_]/g, ' ');
+                
+                sectionLiHtml += `<li ${isActive}><a href="/digital-garden${foundPage.url}">${displayTitle}</a></li>`;
+              }
+            });
+
+            if (sectionLiHtml) {
+              sidebarHtml += `<div class="sidebar-menu-section">`;
+              sidebarHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
+              sidebarHtml += `<ul>${sectionLiHtml}</ul>`;
+              sidebarHtml += `</div><hr class="menu-divider">`;
+            }
+          }
+        });
+
         sidebarHtml = sidebarHtml.replace(/<hr class="menu-divider"><\/nav>$/, "</nav>");
       } else {
-        // Если файла оглавления физически нет на диске, выводим базовый плоский список папки
+        // Фолбэк на случай отсутствия конфига
         sidebarHtml += `<ul class="menu-section-list">`;
         currentBookCollection.forEach(note => {
-          if (note.url !== (indexPage ? indexPage.url : "")) {
+          if (note.data && note.data.type !== "sidebar-config" && note.url !== (indexPage ? indexPage.url : "")) {
             const isActive = (note.url === this.page.url) ? 'class="active-node"' : '';
             const displayTitle = note.data && note.data.title ? note.data.title : note.fileSlug.replace(/[-_]/g, ' ');
             sidebarHtml += `<li ${isActive}><a href="/digital-garden${note.url}">${displayTitle}</a></li>`;
@@ -193,14 +123,11 @@ module.exports = function(eleventyConfig) {
 
       sidebarHtml += `</nav>`;
 
-      // Тег TITLE страницы
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
-
       const isMainPage = (this.page.url === "/" || this.page.url === "/index.html");
       const bodyClass = isMainPage ? "main-page-layout" : "";
       const renderSidebar = isMainPage ? "" : sidebarHtml;
 
-      // === ШАГ 3: ДВУХКОЛОНОЧНЫЙ HTML ШАБЛОН ===
       return `<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -218,18 +145,12 @@ module.exports = function(eleventyConfig) {
             </div>
         </main>
     </div>
-
-    <!-- СКРИПТ СОХРАНЕНИЯ ПОЗИЦИИ СКРОЛЛА МЕНЮ -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var sidebar = document.querySelector(".sidebar-nav");
             if (!sidebar) return;
-
             var scrollTop = sessionStorage.getItem("sidebar-scroll");
-            if (scrollTop) {
-                sidebar.scrollTop = parseInt(scrollTop, 10);
-            }
-
+            if (scrollTop) { sidebar.scrollTop = parseInt(scrollTop, 10); }
             window.addEventListener("beforeunload", function() {
                 sessionStorage.setItem("sidebar-scroll", sidebar.scrollTop);
             });
@@ -241,18 +162,14 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
-  // Сохраняем коллекцию в глобальную видимость на этапе сборки
   eleventyConfig.addCollection("allPagesGlobal", function(collectionApi) {
     global.eleventyCollectionsAll = collectionApi.getAll();
     return global.eleventyCollectionsAll;
   });
 
-  // Гарантируем правильное имя для главной страницы
   eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
     return (data) => {
-      if (data.page.inputPath.endsWith("index.md")) {
-        return "index.html";
-      }
+      if (data.page.inputPath.endsWith("index.md")) return "index.html";
       return data.permalink;
     };
   });
@@ -260,9 +177,6 @@ module.exports = function(eleventyConfig) {
   return {
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "liquid",
-    dir: {
-      input: "src/site/notes",
-      output: "_site"
-    }
+    dir: { input: "src/site/notes", output: "_site" }
   };
 };
