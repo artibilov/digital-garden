@@ -12,11 +12,11 @@ module.exports = function(eleventyConfig) {
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // ТРАНСФОРМЕР ССЫЛОК И СБОРКА МЕНЮ
+  // УМНЫЙ ТРАНСФОРМЕР ССЫЛОК И СБОРКА МЕНЮ
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       
-      // 1. Исправление вики-ссылок [[...]]
+      // ШАГ 1: Исправление вики-ссылок [[...]] во ВСЕХ файлах контента
       content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
         const parts = p1.split("|");
         const rawPath = parts[0].trim(); 
@@ -38,16 +38,16 @@ module.exports = function(eleventyConfig) {
         return `<a href="#">${linkText}</a>`;
       });
 
-      // 2. Сборка сайдбара из технического файла конфигурации
+      // ШАГ 2: СБОРКА САЙДБАРА ИЗ ТЕКСТОВОГО ФАЙЛА КОНФИГУРАЦИИ
       const currentFolder = this.page.inputPath.split("/").reverse()[1]; 
 
       const currentBookCollection = global.eleventyCollectionsAll ? 
         global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(`/${currentFolder}/`)) : [];
 
-      // Ищем файл конфигурации навигации
-      const configPage = currentBookCollection.find(p => p.data && p.data.type === "sidebar-config");
+      // Ищем технический файл конфигурации
+      const configPage = currentBookCollection.find(p => p.inputPath && p.inputPath.toLowerCase().includes("sidebar-config.md"));
 
-      // Ищем главную страницу книги для красивого заголовка в шапке
+      // Ищем главную страницу книги для красивого заголовка
       const indexPage = currentBookCollection.find(p => p.data && (p.data.type === "index" || p.data.type === "main"));
 
       let currentBookTitle = currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1);
@@ -61,7 +61,7 @@ module.exports = function(eleventyConfig) {
         </div>
         <h3>${currentBookTitle}</h3>`;
 
-      // Ссылка на Оглавление железно наверх
+      // Помещаем ссылку на Главную страницу книги на самый верх
       if (indexPage) {
         const isIndexActive = (indexPage.url === this.page.url) ? 'class="active-node"' : '';
         sidebarHtml += `<ul class="menu-section-main">
@@ -69,50 +69,50 @@ module.exports = function(eleventyConfig) {
         </ul><hr class="menu-divider">`;
       }
 
-      // Рендерим секции, если нашли sidebar-config
-      if (configPage && configPage.data && Array.isArray(configPage.data.sections)) {
-        configPage.data.sections.forEach(section => {
-          const sectionTitle = section.title;
-          const fileList = section.files || [];
+      // Вытаскиваем структуру меню из уже готового HTML конфигуратора
+      let menuContentHtml = "";
+      if (configPage && configPage.content) {
+        // Режем отрендеренный HTML технического файла по заголовкам h3
+        const blocks = configPage.content.split(/<h3[^>]*>/i);
 
-          if (fileList.length > 0) {
-            let sectionLiHtml = "";
+        for (let i = 1; i < blocks.length; i++) {
+          const block = blocks[i];
+          
+          const closeH3Index = block.toLowerCase().indexOf("</h3>");
+          if (closeH3Index === -1) continue;
 
-            fileList.forEach(slugName => {
-              const cleanSlug = String(slugName).toLowerCase().trim();
+          const sectionTitle = block.substring(0, closeH3Index).trim();
 
-              // Ищем страницу в коллекции Eleventy по имени файла
-              const foundPage = currentBookCollection.find(page => {
-                if (!page.inputPath) return false;
-                const actualName = page.inputPath.split("/").pop().replace(".md", "").toLowerCase().trim();
-                return actualName === cleanSlug;
-              });
+          const ulStartIndex = block.toLowerCase().indexOf("<ul");
+          const ulEndIndex = block.toLowerCase().indexOf("</ul>");
 
-              if (foundPage && foundPage.url) {
-                const isActive = (foundPage.url === this.page.url) ? 'class="active-node"' : '';
-                
-                // ВОТ ЗДЕСЬ МАГИЯ: берем русский title из frontmatter файла, если он там есть!
-                const displayTitle = foundPage.data && foundPage.data.title ? foundPage.data.title : foundPage.fileSlug.replace(/[-_]/g, ' ');
-                
-                sectionLiHtml += `<li ${isActive}><a href="/digital-garden${foundPage.url}">${displayTitle}</a></li>`;
-              }
-            });
+          if (ulStartIndex !== -1 && ulEndIndex !== -1 && ulStartIndex < ulEndIndex) {
+            let ulBlock = block.substring(ulStartIndex, ulEndIndex + 5);
 
-            if (sectionLiHtml) {
-              sidebarHtml += `<div class="sidebar-menu-section">`;
-              sidebarHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
-              sidebarHtml += `<ul>${sectionLiHtml}</ul>`;
-              sidebarHtml += `</div><hr class="menu-divider">`;
+            // Подсвечиваем активный пункт, если мы на нем находимся
+            const currentUrlChunk = this.page.url;
+            if (currentUrlChunk) {
+              const escapedUrl = currentUrlChunk.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+              const activeLiRegex = new RegExp(`(<li[^>]*>\\s*<a\\s+href="[^"]*${escapedUrl}"[^>]*>)`, "i");
+              ulBlock = ulBlock.replace(activeLiRegex, '<li class="active-node">$1');
             }
-          }
-        });
 
+            menuContentHtml += `<div class="sidebar-menu-section">`;
+            menuContentHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
+            menuContentHtml += `${ulBlock}`;
+            menuContentHtml += `</div><hr class="menu-divider">`;
+          }
+        }
+      }
+
+      if (menuContentHtml) {
+        sidebarHtml += menuContentHtml;
         sidebarHtml = sidebarHtml.replace(/<hr class="menu-divider"><\/nav>$/, "</nav>");
       } else {
-        // Фолбэк на случай отсутствия конфига
+        // Аварийный фолбэк на случай отсутствия конфига
         sidebarHtml += `<ul class="menu-section-list">`;
         currentBookCollection.forEach(note => {
-          if (note.data && note.data.type !== "sidebar-config" && note.url !== (indexPage ? indexPage.url : "")) {
+          if (note.inputPath && !note.inputPath.toLowerCase().includes("sidebar-config.md") && note.url !== (indexPage ? indexPage.url : "")) {
             const isActive = (note.url === this.page.url) ? 'class="active-node"' : '';
             const displayTitle = note.data && note.data.title ? note.data.title : note.fileSlug.replace(/[-_]/g, ' ');
             sidebarHtml += `<li ${isActive}><a href="/digital-garden${note.url}">${displayTitle}</a></li>`;
