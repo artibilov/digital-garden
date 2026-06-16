@@ -12,7 +12,7 @@ module.exports = function(eleventyConfig) {
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // ФУНКЦИЯ ПРЕВРАЩЕНИЯ ВИКИ-ССЫЛКИ В HTML (вынесена в общую логику)
+  // ФУНКЦИЯ ПРЕВРАЩЕНИЯ ВИКИ-ССЫЛКИ В HTML
   function resolveWikiLink(wikiContent, allPages) {
     const parts = wikiContent.split("|");
     const rawPath = parts[0].trim(); 
@@ -78,11 +78,9 @@ module.exports = function(eleventyConfig) {
       // Парсим контент конфигурационного файла
       let menuContentHtml = "";
       if (configPage) {
-        // Берем сырой контент страницы (там еще могут оставаться [[...]], если Eleventy не отрендерил её первой)
         const rawConfigContent = configPage.content || "";
 
         if (rawConfigContent) {
-          // Режем контент по заголовкам h3
           const blocks = rawConfigContent.split(/<h3[^>]*>/i);
 
           for (let i = 1; i < blocks.length; i++) {
@@ -99,12 +97,10 @@ module.exports = function(eleventyConfig) {
             if (ulStartIndex !== -1 && ulEndIndex !== -1 && ulStartIndex < ulEndIndex) {
               let ulBlock = block.substring(ulStartIndex, ulEndIndex + 5);
 
-              // МЫ ТУТ: Принудительно прогоняем регулярку вики-ссылок внутри вырезанного списка сайдбара
               ulBlock = ulBlock.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
                 return resolveWikiLink(p1, allPages);
               });
 
-              // Подсвечиваем активную страницу, если читатель сидит на ней
               const currentUrlChunk = this.page.url;
               if (currentUrlChunk) {
                 const escapedUrl = currentUrlChunk.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -121,7 +117,6 @@ module.exports = function(eleventyConfig) {
         }
       }
 
-      // Если меню собрано — выводим его
       if (menuContentHtml) {
         sidebarHtml += menuContentHtml;
         sidebarHtml = sidebarHtml.replace(/<hr class="menu-divider"><\/nav>$/, "</nav>");
@@ -136,6 +131,20 @@ module.exports = function(eleventyConfig) {
       const bodyClass = isMainPage ? "main-page-layout" : "";
       const renderSidebar = isMainPage ? "" : sidebarHtml;
 
+      // 3. СИСТЕМНОЕ ВЫДЕЛЕНИЕ ГРАФА ИЗ КОНТЕНТА
+      // Вырезаем блоки графа, которые плагин генерирует в виде скриптов и контейнеров
+      let mainTextContent = content;
+      let graphComponentHtml = "";
+
+      // Регулярное выражение ищет контейнер локального графа плагина Digital Garden
+      const graphRegex = /(<div[^>]*id="graph-container"[^>]*>[\s\S]*<\/div>|<div[^>]*class="block-graph"[^>]*>[\s\S]*<\/div>)/i;
+      const matchGraph = content.match(graphRegex);
+      
+      if (matchGraph) {
+        graphComponentHtml = matchGraph[0];
+        mainTextContent = content.replace(graphRegex, ""); // Очищаем основной текст от сырого блока графа
+      }
+
       return `<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -143,13 +152,43 @@ module.exports = function(eleventyConfig) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${pageTitle}</title>
     <link rel="stylesheet" href="/digital-garden/style.css">
+    <!-- Стили для красивой изоляции графа -->
+    <style>
+        .graph-section-wrapper {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px dashed #e2e8f0;
+        }
+        .graph-section-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        /* Гарантируем, что холст графа плагина не сожмется в ноль */
+        #graph-container, .block-graph {
+            width: 100% !important;
+            height: 400px !important;
+            background: #f7fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+    </style>
 </head>
 <body class="${bodyClass}">
     <div class="layout-wrapper">
         ${renderSidebar}
         <main class="content-container">
             <div class="container">
-                ${content}
+                <!-- Основной аналитический текст -->
+                ${mainTextContent}
+                
+                <!-- Интерактивный блок локального графа (выведен вниз) -->
+                ${graphComponentHtml ? `
+                <div class="graph-section-wrapper">
+                    <div class="graph-section-title">Визуальная сеть связей заметки</div>
+                    ${graphComponentHtml}
+                </div>` : ''}
             </div>
         </main>
     </div>
