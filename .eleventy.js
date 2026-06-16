@@ -93,7 +93,7 @@ module.exports = function(eleventyConfig) {
       let objectLinks = [];
       let textLinks = [];
 
-      currentBookCollection.forEach(note => {
+        currentBookCollection.forEach(note => {
         // Сверхглубокий поиск свойства type во всех возможных слоях данных Eleventy
         let rawType = "";
         if (note.data) {
