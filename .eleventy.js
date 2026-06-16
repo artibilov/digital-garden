@@ -69,14 +69,14 @@ module.exports = function(eleventyConfig) {
         return `<a href="/digital-garden/${folder}/${fallbackSlug}/">${linkText}</a>`;
       });
 
-      // === ШАГ 2: ДИНАМИЧЕСКИЙ ПАРСЕР САЙДБАРА ИЗ ОПЕРАТИВНОЙ ПАМЯТИ ===
+      // === ШАГ 2: СБОРКА САЙДБАРА ИЗ ГОТОВОГО HTML ОГЛАВЛЕНИЯ ===
       const currentFolder = this.page.inputPath.split("/").reverse()[1]; 
 
       // База всех страниц текущей книги
       const currentBookCollection = global.eleventyCollectionsAll ? 
         global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(`/${currentFolder}/`)) : [];
 
-      // Находим файл оглавления книги (у которого во frontmatter стоит type: index)
+      // Находим файл оглавления книги строго по типу index
       const indexPage = currentBookCollection.find(p => {
         if (!p.data) return false;
         const pType = p.data.type || (p.data.data ? p.data.data.type : "");
@@ -89,86 +89,70 @@ module.exports = function(eleventyConfig) {
         </div>`;
 
       let currentBookTitle = currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1);
+      let menuContentHtml = "";
 
-      // Достаем исходный текст оглавления напрямую из объекта Eleventy (двойная страховка)
-      let bodyContent = "";
       if (indexPage) {
-        if (indexPage.template && indexPage.template.frontMatter && indexPage.template.frontMatter.content) {
-          bodyContent = indexPage.template.frontMatter.content;
-        } else if (indexPage.rawInput) {
-          bodyContent = indexPage.rawInput.replace(/^---[\s\S]+?---/i, "");
-        }
-      }
-
-      if (indexPage && bodyContent) {
         if (indexPage.data && indexPage.data.title) {
           currentBookTitle = indexPage.data.title;
         }
-        sidebarHtml += `<h3>${currentBookTitle}</h3>`;
 
-        // Ссылка на само Оглавление всегда идет первым пунктом
-        const isIndexActive = (indexPage.url === this.page.url) ? 'class="active-node"' : '';
-        sidebarHtml += `<ul class="menu-section-main"><li ${isIndexActive}><a href="/digital-garden${indexPage.url}">Главная страница книги</a></li></ul><hr class="menu-divider">`;
+        // Берем уже готовый, отрендеренный HTML-контент страницы оглавления
+        const indexHtmlContent = indexPage.content || "";
 
-        // Разбиваем текст оглавления на блоки по заголовкам типа **Название блока**
-        const sections = bodyContent.split(/(?=\*\*[^*]+\*\*)/g);
+        if (indexHtmlContent) {
+          // Паттерн: ищем заголовки типа <strong>Название</strong> или <b>Название</b>,
+          // а за ними — весь блок списка <ul>...</ul> до следующего элемента
+          const blockRegex = /(?:<p>)?\s*<(strong|b)>([\s\S]*?)<\/\1>(?:\s*<\/p>)?[\s\S]*?(<ul[\s\S]*?<\/ul>)/gi;
+          let match;
 
-        sections.forEach(section => {
-          // Извлекаем имя секции (то, что внутри звездочек)
-          const headerMatch = section.match(/\*\*([^*]+)\*\*/);
-          if (!headerMatch) return;
-          const sectionTitle = headerMatch[1].trim();
+          while ((match = blockRegex.exec(indexHtmlContent)) !== null) {
+            const sectionTitle = match[2].replace(/<[^>]*>/g, "").trim(); // Чистим теги из заголовка
+            let ulBlock = match[3];
 
-          // Собираем все строки со ссылками внутри текущего блока
-          const linkLines = section.split("\n").filter(line => line.trim().startsWith("-"));
-          
-          if (linkLines.length > 0) {
-            sidebarHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
-            sidebarHtml += `<ul class="menu-section-list">`;
+            // Проставляем класс активной ссылки active-node, если читатель сидит на этой странице
+            const currentUrlChunk = this.page.url;
+            if (currentUrlChunk) {
+              // Ищем ссылку на текущую страницу внутри блока ul и внедряем класс активности в тег <li>
+              const escapedUrl = currentUrlChunk.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+              const activeLiRegex = new RegExp(`(<li[^>]*>\\s*<a\\s+href="[^"]*${escapedUrl}"[^>]*>)`, "i");
+              ulBlock = ulBlock.replace(activeLiRegex, '<li class="active-node">$1');
+            }
 
-            linkLines.forEach(line => {
-              // Извлекаем то, что внутри [[...]]
-              const wikiMatch = line.match(/\[\[([^\]]+)\]\]/);
-              if (wikiMatch) {
-                const parts = wikiMatch[1].split("|");
-                const rawTarget = parts[0].trim();
-                const defaultLabel = parts[1] ? parts[1].trim() : rawTarget;
-
-                // Отрезаем пути, оставляя чистое имя md-файла
-                const targetFileName = rawTarget.split("/").pop().replace(".md", "").toLowerCase().trim();
-
-                // Ищем страницу в коллекции по имени файла
-                const foundPage = currentBookCollection.find(page => {
-                  if (!page.inputPath) return false;
-                  const actualName = page.inputPath.split("/").pop().replace(".md", "").toLowerCase().trim();
-                  return actualName === targetFileName;
-                });
-
-                // Генерируем пункт меню
-                if (foundPage && foundPage.url) {
-                  const isActive = (foundPage.url === this.page.url) ? 'class="active-node"' : '';
-                  const displayTitle = foundPage.data && foundPage.data.title ? foundPage.data.title : defaultLabel;
-                  sidebarHtml += `<li ${isActive}><a href="/digital-garden${foundPage.url}">${displayTitle}</a></li>`;
-                } else {
-                  // Если страница еще не создана или это внешняя ссылка
-                  sidebarHtml += `<li class="broken-link">${defaultLabel}</li>`;
-                }
-              }
-            });
-
-            sidebarHtml += `</ul><hr class="menu-divider">`;
+            // Добавляем красивую разметку секции в общее меню
+            menuContentHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
+            menuContentHtml += `<div class="menu-section-block">${ulBlock}</div><hr class="menu-divider">`;
           }
-        });
-      } else {
-        // Запасной пустой сайдбар на случай, если файл с type: index отсутствует
-        sidebarHtml += `<h3>${currentBookTitle}</h3>`;
+        }
       }
 
-      // Очищаем лишний последний разделитель перед закрытием тега
-      sidebarHtml = sidebarHtml.replace(/<hr class="menu-divider"><\/nav>$/, "</nav>");
+      // Собираем сайдбар воедино
+      sidebarHtml += `<h3>${currentBookTitle}</h3>`;
+      
+      if (indexPage) {
+        const isIndexActive = (indexPage.url === this.page.url) ? 'class="active-node"' : '';
+        sidebarHtml += `<ul class="menu-section-main"><li ${isIndexActive}><a href="/digital-garden${indexPage.url}">Главная страница книги</a></li></ul><hr class="menu-divider">`;
+      }
+
+      if (menuContentHtml) {
+        sidebarHtml += menuContentHtml;
+        // Удаляем последний лишний разделитель
+        sidebarHtml = sidebarHtml.replace(/<hr class="menu-divider"><\/nav>$/, "</nav>");
+      } else {
+        // Если регулярка не смогла распарсить HTML, выводим ссылки простым списком (наш бронебойный fallback)
+        sidebarHtml += `<ul class="menu-section-list">`;
+        currentBookCollection.forEach(note => {
+          if (note.url !== (indexPage ? indexPage.url : "")) {
+            const isActive = (note.url === this.page.url) ? 'class="active-node"' : '';
+            const displayTitle = note.data && note.data.title ? note.data.title : note.fileSlug.replace(/[-_]/g, ' ');
+            sidebarHtml += `<li ${isActive}><a href="/digital-garden${note.url}">${displayTitle}</a></li>`;
+          }
+        });
+        sidebarHtml += `</ul>`;
+      }
+
       sidebarHtml += `</nav>`;
 
-      // Глобальный тег title
+      // Тег TITLE страницы
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
 
       const isMainPage = (this.page.url === "/" || this.page.url === "/index.html");
@@ -194,7 +178,6 @@ module.exports = function(eleventyConfig) {
         </main>
     </div>
 
-    <!-- СКРИПТ СОХРАНЕНИЯ ПОЗИЦИИ СКРОЛЛА МЕНЮ -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var sidebar = document.querySelector(".sidebar-nav");
