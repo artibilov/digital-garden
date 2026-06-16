@@ -126,69 +126,23 @@ module.exports = function(eleventyConfig) {
       const bodyClass = isMainPage ? "main-page-layout" : "";
       const renderSidebar = isMainPage ? "" : sidebarHtml;
 
-      // 3. СИСТЕМНОЕ ВЫДЕЛЕНИЕ ГРАФА И ВСЕХ СКРИПТОВ ПЛАГИНА
+      // ОЧИСТКА ТЕКСТА ОТ ОСТАТКОВ СКРИПТОВ ПЛАГИНА
       let mainTextContent = content;
-      let graphComponentHtml = "";
-      let pluginScriptsHtml = "";
-
-      // Вырезаем сам контейнер графа
-      const graphRegex = /(<div[^>]*id="graph-container"[^>]*>[\s\S]*<\/div>|<div[^>]*class="block-graph"[^>]*>[\s\S]*<\/div>)/i;
-      const matchGraph = content.match(graphRegex);
-      
-      if (matchGraph) {
-        graphComponentHtml = matchGraph[0];
-        mainTextContent = mainTextContent.replace(graphRegex, "");
-      }
-
-      // Собираем ВСЕ скрипты, которые плагин добавил в конец контента (они нужны для работы графа)
       const scriptRegex = /(<script[\s\S]*?<\/script>)/gi;
       let matchScript;
       while ((matchScript = scriptRegex.exec(content)) !== null) {
-        // Пропускаем наш собственный скрипт сайдбара, забираем только скрипты плагина
         if (!matchScript[0].includes("sidebar-scroll")) {
-          pluginScriptsHtml += matchScript[0] + "\n";
           mainTextContent = mainTextContent.replace(matchScript[0], "");
         }
       }
 
-      // Если плагин не создал контейнер, но это страница разбора — делаем коробку-приемник принудительно
-      const forceGraph = this.page.inputPath && !this.page.inputPath.includes("navigation.md") && !isMainPage;
-      if (!graphComponentHtml && forceGraph) {
-        graphComponentHtml = `<div class="block-graph" id="graph-container"></div>`;
-      }
-
-return `<!DOCTYPE html>
+      return `<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${pageTitle}</title>
     <link rel="stylesheet" href="/digital-garden/style.css">
-    
-    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
-    
-    <style>
-        .graph-section-wrapper {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px dashed #e2e8f0;
-        }
-        .graph-section-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #2d3748;
-            margin-bottom: 15px;
-        }
-        #graph-container, .block-graph {
-            width: 100% !important;
-            height: 450px !important;
-            background: #f8fafc;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            position: relative;
-            overflow: hidden;
-        }
-    </style>
 </head>
 <body class="${bodyClass}">
     <div class="layout-wrapper">
@@ -196,18 +150,9 @@ return `<!DOCTYPE html>
         <main class="content-container">
             <div class="container">
                 ${mainTextContent}
-                
-                ${graphComponentHtml ? `
-                <div class="graph-section-wrapper">
-                    <div class="graph-section-title">Визуальная сеть связей заметки</div>
-                    ${graphComponentHtml}
-                </div>` : ''}
             </div>
         </main>
     </div>
-
-    ${pluginScriptsHtml}
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var sidebar = document.querySelector(".sidebar-nav");
