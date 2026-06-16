@@ -99,48 +99,36 @@ module.exports = function(eleventyConfig) {
         const indexHtmlContent = indexPage.content || "";
 
         if (indexHtmlContent) {
-          // БРОНЕБОЙНЫЙ ПАРСЕР: Разбиваем HTML на куски по открывающим тегам списков <ul>
-          const rawSections = indexHtmlContent.split(/<ul[^>]*>/i);
-          
-          // Первый кусок — это текст до самого первого списка, пропускаем его
-          for (let i = 1; i < rawSections.length; i++) {
-            const previousChunk = rawSections[i - 1];
-            const currentChunk = rawSections[i];
+          // Точечная регулярка под твой HTML: ищет <p><strong>Название</strong></p>, 
+          // за которым сразу (через пробелы/переносы) идет список <ul>...</ul>
+          const blockRegex = /<p>\s*<strong[^>]*>([\s\S]*?)<\/strong>\s*<\/p>\s*(<ul[\s\S]*?<\/ul>)/gi;
+          let match;
 
-            // Из куска ДО списка вытаскиваем текст последнего жирного тега (заголовок секции)
-            const strongMatches = [...previousChunk.matchAll(/<(strong|b)>([\s\S]*?)<\/\1>/gi)];
-            let sectionTitle = "Раздел";
-            if (strongMatches.length > 0) {
-              sectionTitle = strongMatches[strongMatches.length - 1][2].replace(/<[^>]*>/g, "").trim();
+          while ((match = blockRegex.exec(indexHtmlContent)) !== null) {
+            const sectionTitle = match[1].replace(/<[^>]*>/g, "").trim();
+            let ulBlock = match[2];
+
+            // Проставляем класс активного узла для подсветки текущей страницы в сайдбаре
+            const currentUrlChunk = this.page.url;
+            if (currentUrlChunk) {
+              const escapedUrl = currentUrlChunk.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+              const activeLiRegex = new RegExp(`(<li[^>]*>\\s*<a\\s+href="[^"]*${escapedUrl}"[^>]*>)`, "i");
+              ulBlock = ulBlock.replace(activeLiRegex, '<li class="active-node">$1');
             }
 
-            // Из текущего куска забираем только внутренности текущего списка до закрывающего </ul>
-            const ulEndIndex = currentChunk.toLowerCase().indexOf("</ul>");
-            if (ulEndIndex !== -1) {
-              let ulInner = currentChunk.substring(0, ulEndIndex);
-
-              // Подсвечиваем активный элемент, если читатель находится на этой странице
-              const currentUrlChunk = this.page.url;
-              if (currentUrlChunk) {
-                const escapedUrl = currentUrlChunk.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-                const activeLiRegex = new RegExp(`(<li[^>]*>\\s*<a\\s+href="[^"]*${escapedUrl}"[^>]*>)`, "i");
-                ulInner = ulInner.replace(activeLiRegex, '<li class="active-node">$1');
-              }
-
-              // Собираем чистый HTML блок для сайдбара
-              menuContentHtml += `<div class="sidebar-menu-section">`;
-              menuContentHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
-              menuContentHtml += `<ul>${ulInner}</ul>`;
-              menuContentHtml += `</div><hr class="menu-divider">`;
-            }
+            // Формируем красивую секцию меню
+            menuContentHtml += `<div class="sidebar-menu-section">`;
+            menuContentHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
+            menuContentHtml += `${ulBlock}`;
+            menuContentHtml += `</div><hr class="menu-divider">`;
           }
         }
       }
 
-      // Собираем заголовок книги
+      // Начинаем сборку каркаса меню
       sidebarHtml += `<h3>${currentBookTitle}</h3>`;
       
-      // ГАРАНТИРОВАННО ВШИВАЕМ ССЫЛКУ НА ОГЛАВЛЕНИЕ НА САМЫЙ ВЕРХ
+      // ЖЕЛЕЗОБЕТОННО ВШИВАЕМ ССЫЛКУ НА ОГЛАВЛЕНИЕ НА САМЫЙ ВЕРХ СУПЕР-ПУНКТОМ
       if (indexPage) {
         const isIndexActive = (indexPage.url === this.page.url) ? 'class="active-node"' : '';
         sidebarHtml += `<ul class="menu-section-main">
@@ -148,12 +136,12 @@ module.exports = function(eleventyConfig) {
         </ul><hr class="menu-divider">`;
       }
 
-      // Если наш новый построчный парсер собрал меню — выводим его
+      // Выводим структурированные блоги, если регулярка их распарсила
       if (menuContentHtml) {
         sidebarHtml += menuContentHtml;
         sidebarHtml = sidebarHtml.replace(/<hr class="menu-divider"><\/nav>$/, "</nav>");
       } else {
-        // Если даже это не сработало — выводим базовый плоский список как крайний аварийный случай
+        // Если это служебная страница без Оглавления, выводим базовый плоский список
         sidebarHtml += `<ul class="menu-section-list">`;
         currentBookCollection.forEach(note => {
           if (note.url !== (indexPage ? indexPage.url : "")) {
@@ -193,6 +181,7 @@ module.exports = function(eleventyConfig) {
         </main>
     </div>
 
+    <!-- СКРИПТ СОХРАНЕНИЯ ПОЗИЦИИ СКРОЛЛА МЕНЮ -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var sidebar = document.querySelector(".sidebar-nav");
