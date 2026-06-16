@@ -1,4 +1,6 @@
 const markdownIt = require("markdown-it");
+const fs = require("fs");
+const path = require("path");
 
 module.exports = function(eleventyConfig) {
   // Копируем файл стилей в корень сайта
@@ -69,7 +71,7 @@ module.exports = function(eleventyConfig) {
         return `<a href="/digital-garden/${folder}/${fallbackSlug}/">${linkText}</a>`;
       });
 
-      // === ШАГ 2: СБОРКА САЙДБАРА ИЗ ГОТОВОГО HTML ОГЛАВЛЕНИЯ ===
+      // === ШАГ 2: СБОРКА САЙДБАРА ИЗ СЫРОГО MARKDOWN ОГЛАВЛЕНИЯ ===
       const currentFolder = this.page.inputPath.split("/").reverse()[1]; 
 
       // База всех страниц текущей книги
@@ -91,67 +93,93 @@ module.exports = function(eleventyConfig) {
       let currentBookTitle = currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1);
       let menuContentHtml = "";
 
-      if (indexPage) {
+      if (indexPage && indexPage.inputPath) {
         if (indexPage.data && indexPage.data.title) {
           currentBookTitle = indexPage.data.title;
         }
 
-        const indexHtmlContent = indexPage.content || "";
+        // Вычисляем абсолютный железный путь к файлу на сервере Гитхаба
+        const absoluteIndexPath = path.resolve(process.cwd(), indexPage.inputPath.replace(/^\.\//, ""));
 
-        if (indexHtmlContent) {
-          // Разрезаем контент на блоки по открывающему тегу параграфа с жирным текстом
-          const blocks = indexHtmlContent.split(/<p>\s*<strong[^>]*>/i);
+        if (fs.existsSync(absoluteIndexPath)) {
+          try {
+            const rawMarkdown = fs.readFileSync(absoluteIndexPath, "utf8");
+            
+            // Очищаем frontmatter, оставляем только тело
+            const markdownBody = rawMarkdown.replace(/^---[\s\S]+?---/i, "");
 
-          for (let i = 1; i < blocks.length; i++) {
-            const block = blocks[i];
+            // Режем markdown на блоки по заголовкам типа **Название**
+            const sections = markdownBody.split(/(?=\*\*([^*]+)\*\*)/g);
 
-            const closeStrongIndex = block.toLowerCase().indexOf("</strong>");
-            if (closeStrongIndex === -1) continue;
+            // Обрабатываем куски (шаг 2, так как split создает пары заголовок-текст)
+            for (let k = 1; k < sections.length; k += 2) {
+              const sectionTitle = sections[k].trim();
+              const sectionContent = sections[k + 1] || "";
 
-            const sectionTitle = block.substring(0, closeStrongIndex).replace(/<[^>]*>/g, "").trim();
+              // Вытаскиваем все строки списков "- [[...]]" из текущего блока
+              const lines = sectionContent.split("\n").filter(l => l.trim().startsWith("-"));
 
-            const ulStartIndex = block.toLowerCase().indexOf("<ul");
-            const ulEndIndex = block.toLowerCase().indexOf("</ul>");
+              if (lines.length > 0) {
+                let sectionLiHtml = "";
 
-            if (ulStartIndex !== -1 && ulEndIndex !== -1 && ulStartIndex < ulEndIndex) {
-              let ulBlock = block.substring(ulStartIndex, ulEndIndex + 5);
+                lines.forEach(line => {
+                  const matchWiki = line.match(/\[\[([^\]]+)\]\]/);
+                  if (matchWiki) {
+                    const parts = matchWiki[1].split("|");
+                    const rawTarget = parts[0].trim();
+                    const defaultLabel = parts[1] ? parts[1].trim() : rawTarget;
 
-              // Подсвечиваем активный элемент меню для текущей страницы
-              const currentUrlChunk = this.page.url;
-              if (currentUrlChunk) {
-                const escapedUrl = currentUrlChunk.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-                const activeLiRegex = new RegExp(`(<li[^>]*>\\s*<a\\s+href="[^"]*${escapedUrl}"[^>]*>)`, "i");
-                ulBlock = ulBlock.replace(activeLiRegex, '<li class="active-node">$1');
+                    // Получаем чистое имя файла для сопоставления
+                    const targetFileName = rawTarget.split("/").pop().replace(".md", "").toLowerCase().trim();
+
+                    // Ищем страницу в скомпилированной коллекции Eleventy
+                    const foundPage = currentBookCollection.find(page => {
+                      if (!page.inputPath) return false;
+                      const actualName = page.inputPath.split("/").pop().replace(".md", "").toLowerCase().trim();
+                      return actualName === targetFileName;
+                    });
+
+                    if (foundPage && foundPage.url) {
+                      const isActive = (foundPage.url === this.page.url) ? 'class="active-node"' : '';
+                      const displayTitle = foundPage.data && foundPage.data.title ? foundPage.data.title : defaultLabel;
+                      sectionLiHtml += `<li ${isActive}><a href="/digital-garden${foundPage.url}">${displayTitle}</a></li>`;
+                    } else {
+                      sectionLiHtml += `<li class="broken-link">${defaultLabel}</li>`;
+                    }
+                  }
+                });
+
+                if (sectionLiHtml) {
+                  menuContentHtml += `<div class="sidebar-menu-section">`;
+                  menuContentHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
+                  menuContentHtml += `<ul>${sectionLiHtml}</ul>`;
+                  menuContentHtml += `</div><hr class="menu-divider">`;
+                }
               }
-
-              // Собираем HTML блока в меню
-              menuContentHtml += `<div class="sidebar-menu-section">`;
-              menuContentHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
-              menuContentHtml += `${ulBlock}`;
-              menuContentHtml += `</div><hr class="menu-divider">`;
             }
+          } catch (e) {
+            console.error("Ошибка чтения markdown-оглавления:", e);
           }
         }
       }
 
-      // Начинаем сборку каркаса меню
+      // Собираем каркас сайдбара воедино
       sidebarHtml += `<h3>${currentBookTitle}</h3>`;
       
-      // ЖЕЛЕЗОБЕТОННО ВШИВАЕМ ССЫЛКУ НА ОГЛАВЛЕНИЕ НА САМЫЙ ВЕРХ СУПЕР-ПУНКТОМ
+      // ЖЕЛЕЗОБЕТОННО ВШИВАЕМ ССЫЛКУ НА ОГЛАВЛЕНИЕ НА САМЫЙ ВЕРХ
       if (indexPage) {
-        const isIndexActive = (indexPage.url === indexPage.url && this.page.url === indexPage.url) ? 'class="active-node"' : '';
+        const isIndexActive = (indexPage.url === this.page.url) ? 'class="active-node"' : '';
         sidebarHtml += `<ul class="menu-section-main">
           <li ${isIndexActive}><a href="/digital-garden${indexPage.url}">📌 Главная страница книги</a></li>
         </ul><hr class="menu-divider">`;
       }
 
-      // Выводим структурированные блоги
+      // Выводим структурированное меню, если исходный markdown успешно распарсился
       if (menuContentHtml) {
         sidebarHtml += menuContentHtml;
-        // Срезаем последний лишний разделитель
         sidebarHtml = sidebarHtml.replace(/<hr class="menu-divider"><\/nav>$/, "</nav>");
       } else {
-        // Аварийный случай
+        // Если файла оглавления физически нет на диске, выводим базовый плоский список папки
         sidebarHtml += `<ul class="menu-section-list">`;
         currentBookCollection.forEach(note => {
           if (note.url !== (indexPage ? indexPage.url : "")) {
