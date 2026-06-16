@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/iakim_mureda","permalink":"/confiteor/iakim_mureda/","dg-note-properties":{"category":"character","name":"Иаким Муреда (Joachim Mureda / Иаким из Пардака)","birth_date":"~1670 (в 1690 году ему было 20 лет)","birth_place":"Тирольские Альпы, Пардак (ныне Предаццо, Италия)","death_place":"Моэна (Италия)","profession":"Лесоруб, знаток резонансной («поющей») древесины, ювелир (в изгнании)"}}
+{"dg-publish":true,"dg-permalink":"confiteor/iakim_mureda","permalink":"/confiteor/iakim_mureda/","dg-note-properties":{"type":"character","name":"Иаким Муреда (Joachim Mureda / Иаким из Пардака)","birth_date":"~1670 (в 1690 году ему было 20 лет)","birth_place":"Тирольские Альпы, Пардак (ныне Предаццо, Италия)","death_place":"Моэна (Италия)","profession":"Лесоруб, знаток резонансной («поющей») древесины, ювелир (в изгнании)"}}
 ---
 
 

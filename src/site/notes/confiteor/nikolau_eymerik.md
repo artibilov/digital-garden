@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/nicolau_eymerich","permalink":"/confiteor/nicolau_eymerich/","dg-note-properties":{"category":"character","name":"Николау Эймерик (Nicolau Eymerich / фра Николау)","birth_date":"1320 (в Жироне) / в галлюцинаторном совмещении — 1900-11-25 (в Баден-Бадене)","death_date":"1399 (в Жироне)","profession":"Великий инквизитор Арагона, Валенсии, Майорки и княжества Каталония, доминиканец","status":"Умер от лихорадки в Жироне"}}
+{"dg-publish":true,"dg-permalink":"confiteor/nicolau_eymerich","permalink":"/confiteor/nicolau_eymerich/","dg-note-properties":{"type":"character","name":"Николау Эймерик (Nicolau Eymerich / фра Николау)","birth_date":"1320 (в Жироне) / в галлюцинаторном совмещении — 1900-11-25 (в Баден-Бадене)","death_date":"1399 (в Жироне)","profession":"Великий инквизитор Арагона, Валенсии, Майорки и княжества Каталония, доминиканец","status":"Умер от лихорадки в Жироне"}}
 ---
 
 

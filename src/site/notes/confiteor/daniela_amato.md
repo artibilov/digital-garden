@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/daniela_amato","permalink":"/confiteor/daniela_amato/","dg-note-properties":{"category":"character","name":"Даниэла Амато (Daniela Amato / Даниэла Карбонель)","birth_date":"1919-12-25","birth_place":"Рим, Италия","death_date":"~1990/1991 (в возрасте 71 года)","death_place":"Барселона, Испания","profession":"Владелица антикварного магазина (после покупки бизнеса у Адриа)"}}
+{"dg-publish":true,"dg-permalink":"confiteor/daniela_amato","permalink":"/confiteor/daniela_amato/","dg-note-properties":{"type":"character","name":"Даниэла Амато (Daniela Amato / Даниэла Карбонель)","birth_date":"1919-12-25","birth_place":"Рим, Италия","death_date":"~1990/1991 (в возрасте 71 года)","death_place":"Барселона, Испания","profession":"Владелица антикварного магазина (после покупки бизнеса у Адриа)"}}
 ---
 
 

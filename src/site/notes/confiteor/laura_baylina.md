@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/laura_baylina","permalink":"/confiteor/laura_baylina/","dg-note-properties":{"category":"character","name":"Лаура Байлина (Laura Baylina)","birth_date":"~1959","birth_place":"Барселона, Испания","profession":"Филолог, лингвист, преподавательница Барселонского университета"}}
+{"dg-publish":true,"dg-permalink":"confiteor/laura_baylina","permalink":"/confiteor/laura_baylina/","dg-note-properties":{"type":"character","name":"Лаура Байлина (Laura Baylina)","birth_date":"~1959","birth_place":"Барселона, Испания","profession":"Филолог, лингвист, преподавательница Барселонского университета"}}
 ---
 
 # Лаура Байлина

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/senyor_berenguer","permalink":"/confiteor/senyor_berenguer/","dg-note-properties":{"category":"character","name":"Сеньор Беренгер (Senyor Berenguer)","birth_place":"Испания (вероятно, Барселона)","profession":"Оценщик, управляющий антикварным магазином Феликса Ардевола"}}
+{"dg-publish":true,"dg-permalink":"confiteor/senyor_berenguer","permalink":"/confiteor/senyor_berenguer/","dg-note-properties":{"type":"character","name":"Сеньор Беренгер (Senyor Berenguer)","birth_place":"Испания (вероятно, Барселона)","profession":"Оценщик, управляющий антикварным магазином Феликса Ардевола"}}
 ---
 
 

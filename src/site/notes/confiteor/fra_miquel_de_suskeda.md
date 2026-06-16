@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/fra_miquel_de_suskeda","permalink":"/confiteor/fra_miquel_de_suskeda/","dg-note-properties":{"category":"character","name":"Микел де Сускеда / Брат Жулиа де Сау (Miquel de Susqueda / Fra Julià de Sau)","birth_place":"Каталония, Сускеда","death_date":"Рождество (XV век)","death_place":"Каталония, ущелье Барраонзе, ворота монастыря Сан-Пере дел Бургал","profession":"Секретарь инквизитора (ранее), монах-бенедиктинец, привратник"}}
+{"dg-publish":true,"dg-permalink":"confiteor/fra_miquel_de_suskeda","permalink":"/confiteor/fra_miquel_de_suskeda/","dg-note-properties":{"type":"character","name":"Микел де Сускеда / Брат Жулиа де Сау (Miquel de Susqueda / Fra Julià de Sau)","birth_place":"Каталония, Сускеда","death_date":"Рождество (XV век)","death_place":"Каталония, ущелье Барраонзе, ворота монастыря Сан-Пере дел Бургал","profession":"Секретарь инквизитора (ранее), монах-бенедиктинец, привратник"}}
 ---
 
 

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/konrad_budden","permalink":"/confiteor/konrad_budden/","dg-note-properties":{"category":"character","name":"Конрад Будден (Konrad Budden / оберштурмфюрер Будден)","aliases":"Тильберт Хенш (Tilbert Hensch), Ойген Мюсс (Eugen Müss), брат Роберт (Robert), брат Арнольд (Arnold)","birth_place":"Германия (деревушка на балтийском берегу)","death_date":"~1979-1980","death_place":"Конго, Бебенбелеке","profession":"Хирург, пианист, оберштурмфюрер СС, монах-цистерцианец (ранее), директор миссионерского диспансера"}}
+{"dg-publish":true,"dg-permalink":"confiteor/konrad_budden","permalink":"/confiteor/konrad_budden/","dg-note-properties":{"type":"character","name":"Конрад Будден (Konrad Budden / оберштурмфюрер Будден)","aliases":"Тильберт Хенш (Tilbert Hensch), Ойген Мюсс (Eugen Müss), брат Роберт (Robert), брат Арнольд (Arnold)","birth_place":"Германия (деревушка на балтийском берегу)","death_date":"~1979-1980","death_place":"Конго, Бебенбелеке","profession":"Хирург, пианист, оберштурмфюрер СС, монах-цистерцианец (ранее), директор миссионерского диспансера"}}
 ---
 
 

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/pardac_medallion","permalink":"/confiteor/pardac_medallion/","dg-note-properties":{"category":"object","name":"Медальон Пресвятой Девы Пардакской (Pardac Medallion)","origin":"Пардак (ныне Предаццо, Италия)","status":"Украден сиделкой-медсестрой у беспамятного Адриа"}}
+{"dg-publish":true,"dg-permalink":"confiteor/pardac_medallion","permalink":"/confiteor/pardac_medallion/","dg-note-properties":{"type":"object","name":"Медальон Пресвятой Девы Пардакской (Pardac Medallion)","origin":"Пардак (ныне Предаццо, Италия)","status":"Украден сиделкой-медсестрой у беспамятного Адриа"}}
 ---
 
 

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/lola_malenkaya","permalink":"/confiteor/lola_malenkaya/","dg-note-properties":{"category":"character","name":"Лола Маленькая (Lola la Petita / Дулорс Каррьо-и-Солежибер)","birth_date":1910,"birth_place":"Барселона, район Барселонета, Испания","death_date":1982,"death_place":"Барселона, район Барселонета, Испания","profession":"Экономка, няня, доверенное лицо семьи Ардевол-Боск"}}
+{"dg-publish":true,"dg-permalink":"confiteor/lola_malenkaya","permalink":"/confiteor/lola_malenkaya/","dg-note-properties":{"type":"character","name":"Лола Маленькая (Lola la Petita / Дулорс Каррьо-и-Солежибер)","birth_date":1910,"birth_place":"Барселона, район Барселонета, Испания","death_date":1982,"death_place":"Барселона, район Барселонета, Испания","profession":"Экономка, няня, доверенное лицо семьи Ардевол-Боск"}}
 ---
 
 

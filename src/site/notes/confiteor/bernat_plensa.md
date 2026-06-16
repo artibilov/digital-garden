@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/bernat_plensa","permalink":"/confiteor/bernat_plensa/","dg-note-properties":{"category":"character","name":"Бернат Пленса-и-Пунсода (Bernat Plensa i Punsoda)","birth_date":"~1945","birth_place":"Барселона, Испания (вырос в районе Борн)","profession":"Скрипач Барселонского симфонического оркестра (БСО), писатель","instruments":"Скрипка Тувенель (Touvenel) из Мирекура"}}
+{"dg-publish":true,"dg-permalink":"confiteor/bernat_plensa","permalink":"/confiteor/bernat_plensa/","dg-note-properties":{"type":"character","name":"Бернат Пленса-и-Пунсода (Bernat Plensa i Punsoda)","birth_date":"~1945","birth_place":"Барселона, Испания (вырос в районе Борн)","profession":"Скрипач Барселонского симфонического оркестра (БСО), писатель","instruments":"Скрипка Тувенель (Touvenel) из Мирекура"}}
 ---
 
 

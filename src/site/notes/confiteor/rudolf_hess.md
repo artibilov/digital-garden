@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/rudolf_hess","permalink":"/confiteor/rudolf_hess/","dg-note-properties":{"category":"character","name":"Рудольф Хёсс (Rudolf Höss / оберштурмбаннфюрер Хёсс)","birth_date":"1900-11-25 (в Баден-Бадене) / в галлюцинаторном совмещении — 1320 (в Жироне)","profession":"Оберштурмбаннфюрер СС, комендант концентрационного лагеря Аушвиц-Биркенау"}}
+{"dg-publish":true,"dg-permalink":"confiteor/rudolf_hess","permalink":"/confiteor/rudolf_hess/","dg-note-properties":{"type":"character","name":"Рудольф Хёсс (Rudolf Höss / оберштурмбаннфюрер Хёсс)","birth_date":"1900-11-25 (в Баден-Бадене) / в галлюцинаторном совмещении — 1320 (в Жироне)","profession":"Оберштурмбаннфюрер СС, комендант концентрационного лагеря Аушвиц-Биркенау"}}
 ---
 
 ---

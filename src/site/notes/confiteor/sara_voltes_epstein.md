@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confineor/sara_voltes_epstein","permalink":"/confineor/sara_voltes_epstein/","dg-note-properties":{"category":"character","name":"Сара Волтес-Эпштейн (Sara Voltes-Epstein)","birth_date":1950,"birth_place":"Париж, Франция (Huitième Arrondissement, 48 rue Laborde)","death_date":"1996 (Осень)","death_place":"Барселона, Испания","profession":"Художница, иллюстратор детских книг","style":"Графика (уголь, карандаш, черно-белые тона)"}}
+{"dg-publish":true,"dg-permalink":"confineor/sara_voltes_epstein","permalink":"/confineor/sara_voltes_epstein/","dg-note-properties":{"type":"character","name":"Сара Волтес-Эпштейн (Sara Voltes-Epstein)","birth_date":1950,"birth_place":"Париж, Франция (Huitième Arrondissement, 48 rue Laborde)","death_date":"1996 (Осень)","death_place":"Барселона, Испания","profession":"Художница, иллюстратор детских книг","style":"Графика (уголь, карандаш, черно-белые тона)"}}
 ---
 
 

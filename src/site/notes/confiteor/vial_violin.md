@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/vial_violin","permalink":"/confiteor/vial_violin/","dg-note-properties":{"category":"object","name":"Скрипка Виал (The Vial Violin / Storioni 1764)","maker":"Лоренцо Сториони (Cremona, 1764)","materials":"Резонансная ель и клен из ущелья Барраонзе (могила Микела де Сускеды)","status":"Продана коллекционеру Джошуа Маку"}}
+{"dg-publish":true,"dg-permalink":"confiteor/vial_violin","permalink":"/confiteor/vial_violin/","dg-note-properties":{"type":"object","name":"Скрипка Виал (The Vial Violin / Storioni 1764)","maker":"Лоренцо Сториони (Cremona, 1764)","materials":"Резонансная ель и клен из ущелья Барраонзе (могила Микела де Сускеды)","status":"Продана коллекционеру Джошуа Маку"}}
 ---
 
 

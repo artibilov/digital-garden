@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/aribert_voigt","permalink":"/confiteor/aribert_voigt/","dg-note-properties":{"category":"character","name":"Ариберт Фойгт (Aribert Voigt / штурмбаннфюрер Фойгт)","aliases":"Саверио Фаленьями (Saverio Falegnami), герр Циммерманн (Zimmermann)","profession":"Штурмбаннфюрер СС, врач-психиатр, военный преступник","death_date":"~1972-1973","death_place":"Бавария, Бамберг, Германия"}}
+{"dg-publish":true,"dg-permalink":"confiteor/aribert_voigt","permalink":"/confiteor/aribert_voigt/","dg-note-properties":{"type":"character","name":"Ариберт Фойгт (Aribert Voigt / штурмбаннфюрер Фойгт)","aliases":"Саверио Фаленьями (Saverio Falegnami), герр Циммерманн (Zimmermann)","profession":"Штурмбаннфюрер СС, врач-психиатр, военный преступник","death_date":"~1972-1973","death_place":"Бавария, Бамберг, Германия"}}
 ---
 
 
