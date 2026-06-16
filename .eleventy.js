@@ -94,16 +94,32 @@ module.exports = function(eleventyConfig) {
       let textLinks = [];
 
       currentBookCollection.forEach(note => {
-        const noteType = note.data.type ? note.data.type.toLowerCase().trim() : "";
+        // Сверхглубокий поиск свойства type во всех возможных слоях данных Eleventy
+        let rawType = "";
+        if (note.data) {
+          rawType = note.data.type || note.data.Type || (note.data.data ? note.data.data.type : "");
+        }
+        
+        if (Array.isArray(rawType)) rawType = rawType[0];
+        const noteType = String(rawType || "").toLowerCase().trim();
         const fileName = note.fileSlug.toLowerCase();
 
+        // Проверка: является ли файл хронологическим подразделом книги
+        // (ищет слово "подраздел" или стартовые римские цифры вроде "i.", "ii.", "vi.")
+        const isChronologicalSubdivision = fileName.includes("подраздел") || fileName.match(/^[i|v|x]+\./);
+
         if (noteType === "index" || noteType === "main" || fileName.includes("сюжет")) {
+          // 1. Оглавление / Карта книги
           mainLinks.push(note);
-        } else if (noteType === "character" || noteType === "movement") {
+        } else if (noteType === "character" || noteType === "movement" || (!isChronologicalSubdivision && !noteType)) {
+          // 2. Сюжет и персонажи (если тип явно character/movement ИЛИ если это не подраздел книги)
+          // Сюда гарантированно попадет Лаура Байлина, даже если Eleventy закапризничает со свойствами
           characterLinks.push(note);
         } else if (noteType === "object") {
+          // 3. Предметы
           objectLinks.push(note);
         } else {
+          // 4. Все остальное (хронологический текст глав)
           textLinks.push(note);
         }
       });
