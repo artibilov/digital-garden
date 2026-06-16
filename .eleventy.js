@@ -104,7 +104,7 @@ module.exports = function(eleventyConfig) {
 
         const isChronologicalSubdivision = fileName.includes("подраздел") || fileName.match(/^[i|v|x]+\./);
 
-        if (noteType === "index" || noteType === "main" || fileName.includes("сюжет")) {
+        if (noteType === "index" || noteType === "main" || fileName.includes("Оглавление")) {
           mainLinks.push(note);
         } else if (noteType === "character" || noteType === "movement" || (!isChronologicalSubdivision && !noteType)) {
           characterLinks.push(note);
@@ -144,7 +144,7 @@ module.exports = function(eleventyConfig) {
         sidebarHtml += `<ul class="menu-section-main">${generateListHtml(mainLinks)}</ul><hr class="menu-divider">`;
       }
       if (characterLinks.length > 0) {
-        sidebarHtml += `<span class="menu-section-title">Сюжет и персонажи</span>`;
+        sidebarHtml += `<span class="menu-section-title">Персонажи</span>`;
         sidebarHtml += `<ul class="menu-section-characters">${generateListHtml(characterLinks)}</ul><hr class="menu-divider">`;
       }
       if (objectLinks.length > 0) {
