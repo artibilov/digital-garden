@@ -188,3 +188,44 @@ li {
   border-top: 1px solid #edf2f7;
   margin: 20px 0;
 }
+/* Основной контейнер сайдбара */
+.sidebar-nav {
+  width: 380px; /* Увеличиваем ширину (было около 250-300px), чтобы вместить длинные заголовки */
+  min-width: 380px;
+  max-width: 420px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto; /* Оставляем прокрутку */
+  padding: 25px;
+  background-color: #f7fafc;
+  border-right: 1px solid #e2e8f0;
+  box-sizing: border-box;
+}
+
+/* Ссылки внутри сайдбара */
+.sidebar-nav a {
+  display: block;
+  white-space: nowrap; /* Полный запрет на перенос строк внутри текста ссылки! */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Если название шире 380px, оно аккуратно скроется троеточием на конце */
+  padding: 6px 8px;
+  text-decoration: none;
+  color: #2d3748;
+  border-radius: 4px;
+}
+
+/* Ограничиваем общую верстку двух колонок, чтобы контент не съезжал */
+.layout-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.content-container {
+  flex-grow: 1;
+  padding: 40px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
