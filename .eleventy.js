@@ -1,5 +1,4 @@
 const markdownIt = require("markdown-it");
-const fs = require("fs"); // Модуль для чтения файлов с диска
 
 module.exports = function(eleventyConfig) {
   // Копируем файл стилей в корень сайта
@@ -70,66 +69,67 @@ module.exports = function(eleventyConfig) {
         return `<a href="/digital-garden/${folder}/${fallbackSlug}/">${linkText}</a>`;
       });
 
-      // === ШАГ 2: УНИВЕРСАЛЬНЫЙ СБОРЩИК БОКОВОГО МЕНЮ С ИСТИННЫМ ПАРСИНГОМ МЕТАДАННЫХ ===
+      // === ШАГ 2: УНИВЕРСАЛЬНЫЙ СБОРЩИК БОКОВОГО МЕНЮ ===
       const currentFolder = this.page.inputPath.split("/").reverse()[1]; 
 
       // Достаем из глобальной базы ВСЕ файлы этой конкретной книги
       const currentBookCollection = global.eleventyCollectionsAll ? 
         global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(`/${currentFolder}/`)) : [];
 
-      // Четыре чистых массива строго под твои задачи
+      // Динамический поиск оглавления книги
+      const mainPageOfBook = currentBookCollection.find(p => {
+        const fileLow = p.fileSlug.toLowerCase();
+        const pType = p.data ? (p.data.type || (p.data.data ? p.data.data.type : "")) : "";
+        return String(pType).toLowerCase().trim() === "index" || fileLow.includes("сюжет") || fileLow === "оглавление";
+      });
+
+      const currentBookTitle = mainPageOfBook && mainPageOfBook.data && mainPageOfBook.data.title ? 
+        mainPageOfBook.data.title : "Я исповедуюсь";
+
+      // Четыре чистых массива под твои задачи
       let mainLinks = [];      // 1. Оглавление (type: index)
       let movementLinks = [];  // 2. Разделы книги (type: movement)
       let characterLinks = []; // 3. Персонажи (type: character)
       let objectLinks = [];    // 4. Предметы (type: object)
 
-      // Хранилище для заголовка книги
-      let currentBookTitle = currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1).replace(/[-_]/g, ' ');
-
       currentBookCollection.forEach(note => {
-        let noteType = "";
+        // Достаем тип из всех возможных слоев, куда его мог положить Eleventy
+        let rawType = "";
+        if (note.data) {
+          rawType = note.data.type || note.data.Type || (note.data.data ? note.data.data.type : "");
+        }
+        if (Array.isArray(rawType)) rawType = rawType[0];
         
-        // Надежно читаем исходный файл с диска, чтобы вытащить тип напрямую из метаданных Obsidian
-        if (note.inputPath && fs.existsSync(note.inputPath)) {
-          try {
-            const fileContent = fs.readFileSync(note.inputPath, "utf8");
-            // Ищем строку "type: что-то" внутри блока параметров
-            const typeMatch = fileContent.match(/^type:\s*["']?([a-z0-9_\-]+)["']?/im);
-            if (typeMatch) {
-              noteType = typeMatch[1].toLowerCase().trim();
-            }
-          } catch (e) {
-            console.error("Ошибка чтения метаданных для файла:", note.inputPath, e);
-          }
-        }
+        const noteType = String(rawType || "").toLowerCase().trim();
+        const fileNameLow = note.fileSlug.toLowerCase();
 
-        // Если нашли файл оглавления книги, забираем его красивый title для шапки сайдбара
-        if (noteType === "index" && note.data && note.data.title) {
-          currentBookTitle = note.data.title;
-        }
+        // Проверка: это хронологическая глава книги?
+        const isChapter = fileNameLow.includes("подраздел") || fileNameLow.match(/^[i|v|x]+\./);
 
-        // Распределяем строго по твоим типам
-        if (noteType === "index") {
+        // Распределяем строго по твоей логике
+        if (noteType === "index" || fileNameLow.includes("сюжет") || fileNameLow === "оглавление") {
           mainLinks.push(note);
-        } else if (noteType === "movement") {
+        } else if (noteType === "movement" || (isChapter && !noteType)) {
+          // Если тип явно movement ИЛИ если это подраздел/римская цифра без указанного типа
           movementLinks.push(note);
         } else if (noteType === "character") {
           characterLinks.push(note);
         } else if (noteType === "object") {
           objectLinks.push(note);
         } else {
-          // Если файл по какой-то причине не размечен, отправляем его в базовый текстовый массив
-          movementLinks.push(note);
+          // Если тип не определился (например, Eleventy очистил кэш), но это НЕ глава — 
+          // значит, это аналитическая статья (персонаж)
+          characterLinks.push(note);
         }
       });
 
-      // Сортировка (хронология — с учетом чисел, сущности — по алфавиту)
+      // Сортировка списков
       mainLinks.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru'));
       movementLinks.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru', { numeric: true }));
       characterLinks.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru'));
       objectLinks.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru'));
 
-      // Вспомогательная функция для сборки списков ссылок
+      // Функция генерации HTML-строк
       const generateListHtml = (collection) => {
         let html = "";
         collection.forEach(note => {
@@ -140,7 +140,7 @@ module.exports = function(eleventyConfig) {
         return html;
       };
 
-      // Сборка структурированного HTML для сайдбара в твоем порядке
+      // Сборка структурированного HTML для сайдбара СТРОГО в твоем порядке
       let sidebarHtml = `<nav class="sidebar-nav">
         <div class="sidebar-back-link">
           <a href="/digital-garden/">← На главную</a>
