@@ -12,11 +12,11 @@ module.exports = function(eleventyConfig) {
   let markdownLib = markdownIt({ html: true });
   eleventyConfig.setLibrary("md", markdownLib);
 
-  // УМНЫЙ ТРАНСФОРМЕР ССЫЛОК И СБОРКА МЕНЮ
+  // ТРАНСФОРМЕР ССЫЛОК И СБОРКА МЕНЮ
   eleventyConfig.addTransform("wrap-and-fix-links", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       
-      // ШАГ 1: Исправление вики-ссылок [[...]] во ВСЕХ файлах контента
+      // 1. Исправление вики-ссылок [[...]] во всех статьях контента
       content = content.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
         const parts = p1.split("|");
         const rawPath = parts[0].trim(); 
@@ -38,13 +38,13 @@ module.exports = function(eleventyConfig) {
         return `<a href="#">${linkText}</a>`;
       });
 
-      // ШАГ 2: СБОРКА САЙДБАРА ИЗ ТЕКСТОВОГО ФАЙЛА КОНФИГУРАЦИИ
+      // 2. СБОРКА САЙДБАРА СТРОГО ИЗ СКОМПИЛИРОВАННОГО HTML ФАЙЛА КОНФИГУРАЦИИ
       const currentFolder = this.page.inputPath.split("/").reverse()[1]; 
 
       const currentBookCollection = global.eleventyCollectionsAll ? 
         global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(`/${currentFolder}/`)) : [];
 
-      // Ищем технический файл конфигурации
+      // Жесткий поиск: ищем файл конфигурации, в системном пути которого есть "sidebar-config.md"
       const configPage = currentBookCollection.find(p => p.inputPath && p.inputPath.toLowerCase().includes("sidebar-config.md"));
 
       // Ищем главную страницу книги для красивого заголовка
@@ -61,7 +61,7 @@ module.exports = function(eleventyConfig) {
         </div>
         <h3>${currentBookTitle}</h3>`;
 
-      // Помещаем ссылку на Главную страницу книги на самый верх
+      // Ссылка на Оглавление книги — всегда на самый верх
       if (indexPage) {
         const isIndexActive = (indexPage.url === this.page.url) ? 'class="active-node"' : '';
         sidebarHtml += `<ul class="menu-section-main">
@@ -69,10 +69,10 @@ module.exports = function(eleventyConfig) {
         </ul><hr class="menu-divider">`;
       }
 
-      // Вытаскиваем структуру меню из уже готового HTML конфигуратора
+      // Парсим HTML конфигурационного файла, который Eleventy обязан выдать нам в память
       let menuContentHtml = "";
       if (configPage && configPage.content) {
-        // Режем отрендеренный HTML технического файла по заголовкам h3
+        // Режем отрендеренный контент по заголовкам h3 (наши ### в Obsidian)
         const blocks = configPage.content.split(/<h3[^>]*>/i);
 
         for (let i = 1; i < blocks.length; i++) {
@@ -89,7 +89,7 @@ module.exports = function(eleventyConfig) {
           if (ulStartIndex !== -1 && ulEndIndex !== -1 && ulStartIndex < ulEndIndex) {
             let ulBlock = block.substring(ulStartIndex, ulEndIndex + 5);
 
-            // Подсвечиваем активный пункт, если мы на нем находимся
+            // Подсвечиваем активную страницу, если читатель сидит на ней
             const currentUrlChunk = this.page.url;
             if (currentUrlChunk) {
               const escapedUrl = currentUrlChunk.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -105,20 +105,13 @@ module.exports = function(eleventyConfig) {
         }
       }
 
+      // Если контент-менеджер собрал пункты, выводим их
       if (menuContentHtml) {
         sidebarHtml += menuContentHtml;
         sidebarHtml = sidebarHtml.replace(/<hr class="menu-divider"><\/nav>$/, "</nav>");
       } else {
-        // Аварийный фолбэк на случай отсутствия конфига
-        sidebarHtml += `<ul class="menu-section-list">`;
-        currentBookCollection.forEach(note => {
-          if (note.inputPath && !note.inputPath.toLowerCase().includes("sidebar-config.md") && note.url !== (indexPage ? indexPage.url : "")) {
-            const isActive = (note.url === this.page.url) ? 'class="active-node"' : '';
-            const displayTitle = note.data && note.data.title ? note.data.title : note.fileSlug.replace(/[-_]/g, ' ');
-            sidebarHtml += `<li ${isActive}><a href="/digital-garden${note.url}">${displayTitle}</a></li>`;
-          }
-        });
-        sidebarHtml += `</ul>`;
+        // Если configPage не найден или пуст — выводим системное предупреждение вместо старой каши
+        sidebarHtml += `<p style="padding: 10px; color: #e53e3e; font-size: 0.9rem;">⚠️ Файл sidebar-config.md не найден в памяти сборщика или пуст.</p>`;
       }
 
       sidebarHtml += `</nav>`;
