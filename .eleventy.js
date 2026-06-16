@@ -4,6 +4,15 @@ module.exports = function(eleventyConfig) {
   // Копируем файл стилей в корень сайта
   eleventyConfig.addPassthroughCopy("style.css");
 
+  // === ШАГ 1: АВТОМАТИЧЕСКАЯ СОРТИРОВАННАЯ КОЛЛЕКЦИЯ ДЛЯ МЕНЮ ===
+  eleventyConfig.addCollection("confiteor", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/site/notes/confiteor/**/*.md")
+      .sort((a, b) => {
+        // Сортируем с учётом чисел в названиях (чтобы Подраздел 2 шёл перед 10)
+        return a.fileSlug.localeCompare(b.fileSlug, 'ru', { numeric: true });
+      });
+  });
+
   // Стандартная поддержка пермалинков
   eleventyConfig.addGlobalData("permalink", (data) => {
     if (!data || !data.page) return undefined;
