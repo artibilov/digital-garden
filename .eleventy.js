@@ -96,49 +96,53 @@ module.exports = function(eleventyConfig) {
           currentBookTitle = indexPage.data.title;
         }
 
-        // Берем уже готовый, отрендеренный HTML-контент страницы оглавления
+        // Берем готовый HTML-контент страницы оглавления
         const indexHtmlContent = indexPage.content || "";
 
         if (indexHtmlContent) {
-          // Паттерн: ищем заголовки типа <strong>Название</strong> или <b>Название</b>,
-          // а за ними — весь блок списка <ul>...</ul> до следующего элемента
+          // Ищем заголовки strong/b и списки ul за ними
           const blockRegex = /(?:<p>)?\s*<(strong|b)>([\s\S]*?)<\/\1>(?:\s*<\/p>)?[\s\S]*?(<ul[\s\S]*?<\/ul>)/gi;
           let match;
 
           while ((match = blockRegex.exec(indexHtmlContent)) !== null) {
-            const sectionTitle = match[2].replace(/<[^>]*>/g, "").trim(); // Чистим теги из заголовка
+            const sectionTitle = match[2].replace(/<[^>]*>/g, "").trim(); 
             let ulBlock = match[3];
 
-            // Проставляем класс активной ссылки active-node, если читатель сидит на этой странице
+            // Проставляем класс активного узла для подсветки текущей страницы
             const currentUrlChunk = this.page.url;
             if (currentUrlChunk) {
-              // Ищем ссылку на текущую страницу внутри блока ul и внедряем класс активности в тег <li>
               const escapedUrl = currentUrlChunk.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
               const activeLiRegex = new RegExp(`(<li[^>]*>\\s*<a\\s+href="[^"]*${escapedUrl}"[^>]*>)`, "i");
               ulBlock = ulBlock.replace(activeLiRegex, '<li class="active-node">$1');
             }
 
-            // Добавляем красивую разметку секции в общее меню
+            // Добавляем красивую разметку секции с заголовком и отступами
+            menuContentHtml += `<div class="sidebar-menu-section">`;
             menuContentHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
-            menuContentHtml += `<div class="menu-section-block">${ulBlock}</div><hr class="menu-divider">`;
+            menuContentHtml += `${ulBlock}`;
+            menuContentHtml += `</div><hr class="menu-divider">`;
           }
         }
       }
 
-      // Собираем сайдбар воедино
+      // Начинаем сборку каркаса меню
       sidebarHtml += `<h3>${currentBookTitle}</h3>`;
       
+      // ЖЕЛЕЗОБЕТОННО ВШИВАЕМ ОГЛАВЛЕНИЕ НА САМЫЙ ВЕРХ СУПЕР-ПУНКТОМ
       if (indexPage) {
         const isIndexActive = (indexPage.url === this.page.url) ? 'class="active-node"' : '';
-        sidebarHtml += `<ul class="menu-section-main"><li ${isIndexActive}><a href="/digital-garden${indexPage.url}">Главная страница книги</a></li></ul><hr class="menu-divider">`;
+        sidebarHtml += `<ul class="menu-section-main">
+          <li ${isIndexActive}><a href="/digital-garden${indexPage.url}">📌 Оглавление книги</a></li>
+        </ul><hr class="menu-divider">`;
       }
 
+      // Выводим структурированные блоги
       if (menuContentHtml) {
         sidebarHtml += menuContentHtml;
-        // Удаляем последний лишний разделитель
+        // Элегантно срезаем последний разделитель перед закрытием навигации
         sidebarHtml = sidebarHtml.replace(/<hr class="menu-divider"><\/nav>$/, "</nav>");
       } else {
-        // Если регулярка не смогла распарсить HTML, выводим ссылки простым списком (наш бронебойный fallback)
+        // Фоллбек на случай форс-мажора
         sidebarHtml += `<ul class="menu-section-list">`;
         currentBookCollection.forEach(note => {
           if (note.url !== (indexPage ? indexPage.url : "")) {
