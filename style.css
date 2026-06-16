@@ -106,6 +106,8 @@ li {
   border-right: 1px solid #e2e8f0;
   padding: 30px 20px;
   position: fixed;
+  top: 0;
+  left: 0;
   height: 100vh;
   overflow-y: auto;
   box-sizing: border-box;
