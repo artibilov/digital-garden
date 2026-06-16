@@ -96,53 +96,64 @@ module.exports = function(eleventyConfig) {
           currentBookTitle = indexPage.data.title;
         }
 
-        // Берем готовый HTML-контент страницы оглавления
         const indexHtmlContent = indexPage.content || "";
 
         if (indexHtmlContent) {
-          // Ищем заголовки strong/b и списки ul за ними
-          const blockRegex = /(?:<p>)?\s*<(strong|b)>([\s\S]*?)<\/\1>(?:\s*<\/p>)?[\s\S]*?(<ul[\s\S]*?<\/ul>)/gi;
-          let match;
+          // БРОНЕБОЙНЫЙ ПАРСЕР: Разбиваем HTML на куски по открывающим тегам списков <ul>
+          const rawSections = indexHtmlContent.split(/<ul[^>]*>/i);
+          
+          // Первый кусок — это текст до самого первого списка, пропускаем его
+          for (let i = 1; i < rawSections.length; i++) {
+            const previousChunk = rawSections[i - 1];
+            const currentChunk = rawSections[i];
 
-          while ((match = blockRegex.exec(indexHtmlContent)) !== null) {
-            const sectionTitle = match[2].replace(/<[^>]*>/g, "").trim(); 
-            let ulBlock = match[3];
-
-            // Проставляем класс активного узла для подсветки текущей страницы
-            const currentUrlChunk = this.page.url;
-            if (currentUrlChunk) {
-              const escapedUrl = currentUrlChunk.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-              const activeLiRegex = new RegExp(`(<li[^>]*>\\s*<a\\s+href="[^"]*${escapedUrl}"[^>]*>)`, "i");
-              ulBlock = ulBlock.replace(activeLiRegex, '<li class="active-node">$1');
+            // Из куска ДО списка вытаскиваем текст последнего жирного тега (заголовок секции)
+            const strongMatches = [...previousChunk.matchAll(/<(strong|b)>([\s\S]*?)<\/\1>/gi)];
+            let sectionTitle = "Раздел";
+            if (strongMatches.length > 0) {
+              sectionTitle = strongMatches[strongMatches.length - 1][2].replace(/<[^>]*>/g, "").trim();
             }
 
-            // Добавляем красивую разметку секции с заголовком и отступами
-            menuContentHtml += `<div class="sidebar-menu-section">`;
-            menuContentHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
-            menuContentHtml += `${ulBlock}`;
-            menuContentHtml += `</div><hr class="menu-divider">`;
+            // Из текущего куска забираем только внутренности текущего списка до закрывающего </ul>
+            const ulEndIndex = currentChunk.toLowerCase().indexOf("</ul>");
+            if (ulEndIndex !== -1) {
+              let ulInner = currentChunk.substring(0, ulEndIndex);
+
+              // Подсвечиваем активный элемент, если читатель находится на этой странице
+              const currentUrlChunk = this.page.url;
+              if (currentUrlChunk) {
+                const escapedUrl = currentUrlChunk.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                const activeLiRegex = new RegExp(`(<li[^>]*>\\s*<a\\s+href="[^"]*${escapedUrl}"[^>]*>)`, "i");
+                ulInner = ulInner.replace(activeLiRegex, '<li class="active-node">$1');
+              }
+
+              // Собираем чистый HTML блок для сайдбара
+              menuContentHtml += `<div class="sidebar-menu-section">`;
+              menuContentHtml += `<span class="menu-section-title">${sectionTitle}</span>`;
+              menuContentHtml += `<ul>${ulInner}</ul>`;
+              menuContentHtml += `</div><hr class="menu-divider">`;
+            }
           }
         }
       }
 
-      // Начинаем сборку каркаса меню
+      // Собираем заголовок книги
       sidebarHtml += `<h3>${currentBookTitle}</h3>`;
       
-      // ЖЕЛЕЗОБЕТОННО ВШИВАЕМ ОГЛАВЛЕНИЕ НА САМЫЙ ВЕРХ СУПЕР-ПУНКТОМ
+      // ГАРАНТИРОВАННО ВШИВАЕМ ССЫЛКУ НА ОГЛАВЛЕНИЕ НА САМЫЙ ВЕРХ
       if (indexPage) {
         const isIndexActive = (indexPage.url === this.page.url) ? 'class="active-node"' : '';
         sidebarHtml += `<ul class="menu-section-main">
-          <li ${isIndexActive}><a href="/digital-garden${indexPage.url}">📌 Оглавление книги</a></li>
+          <li ${isIndexActive}><a href="/digital-garden${indexPage.url}">📌 Главная страница книги</a></li>
         </ul><hr class="menu-divider">`;
       }
 
-      // Выводим структурированные блоги
+      // Если наш новый построчный парсер собрал меню — выводим его
       if (menuContentHtml) {
         sidebarHtml += menuContentHtml;
-        // Элегантно срезаем последний разделитель перед закрытием навигации
         sidebarHtml = sidebarHtml.replace(/<hr class="menu-divider"><\/nav>$/, "</nav>");
       } else {
-        // Фоллбек на случай форс-мажора
+        // Если даже это не сработало — выводим базовый плоский список как крайний аварийный случай
         sidebarHtml += `<ul class="menu-section-list">`;
         currentBookCollection.forEach(note => {
           if (note.url !== (indexPage ? indexPage.url : "")) {
