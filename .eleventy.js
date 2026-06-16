@@ -69,47 +69,96 @@ module.exports = function(eleventyConfig) {
         return `<a href="/digital-garden/${folder}/${fallbackSlug}/">${linkText}</a>`;
       });
 
-      // === УНИВЕРСАЛЬНЫЙ СБОРЩИК БОКОВОГО МЕНЮ ===
+      // === ШАГ 2: УНИВЕРСАЛЬНЫЙ СБОРЩИК БОКОВОГО МЕНЮ С ГРУППИРОВКОЙ ===
+      // Автоматически определяем текущую папку книги (например, "confiteor" или "sense")
       const currentFolder = this.page.inputPath.split("/").reverse()[1]; 
 
-      const bookTitles = {
-        "confiteor": "Я исповедуюсь",
-        "sense": "Предчувствие конца",
-        "covenant": "Завет воды"
-      };
-      const currentBookTitle = bookTitles[currentFolder] || currentFolder.toUpperCase();
-
+      // Достаем из глобальной базы ВСЕ файлы этой конкретной книги
       const currentBookCollection = global.eleventyCollectionsAll ? 
         global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(`/${currentFolder}/`)) : [];
 
-      currentBookCollection.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru', { numeric: true }));
+      // Динамический поиск красивого названия книги на основе файла оглавления
+      const mainPageOfBook = currentBookCollection.find(p => {
+        const pType = p.data.type ? p.data.type.toLowerCase().trim() : "";
+        return pType === "index" || pType === "main" || p.fileSlug.toLowerCase().includes("сюжет");
+      });
 
-      // 3. Собираем HTML меню
+      const currentBookTitle = mainPageOfBook && mainPageOfBook.data.title ? 
+        mainPageOfBook.data.title : 
+        currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1).replace(/[-_]/g, ' ');
+
+      // Распределяем файлы текущей папки по категориям на основе твоих свойств type
+      let mainLinks = [];
+      let characterLinks = [];
+      let objectLinks = [];
+      let textLinks = [];
+
+      currentBookCollection.forEach(note => {
+        const noteType = note.data.type ? note.data.type.toLowerCase().trim() : "";
+        const fileName = note.fileSlug.toLowerCase();
+
+        if (noteType === "index" || noteType === "main" || fileName.includes("сюжет")) {
+          mainLinks.push(note);
+        } else if (noteType === "character" || noteType === "movement") {
+          characterLinks.push(note);
+        } else if (noteType === "object") {
+          objectLinks.push(note);
+        } else {
+          textLinks.push(note);
+        }
+      });
+
+      // Индивидуальная сортировка каждой группы
+      mainLinks.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru'));
+      characterLinks.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru'));
+      objectLinks.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru'));
+      textLinks.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru', { numeric: true }));
+
+      // Вспомогательная функция для сборки списков ссылок
+      const generateListHtml = (collection) => {
+        let html = "";
+        collection.forEach(note => {
+          const isActive = (note.url === this.page.url) ? 'class="active-node"' : '';
+          const displayTitle = note.data.title || note.fileSlug.replace(/[-_]/g, ' ');
+          html += `<li ${isActive}><a href="/digital-garden${note.url}">${displayTitle}</a></li>`;
+        });
+        return html;
+      };
+
+      // Сборка структурированного HTML для сайдбара
       let sidebarHtml = `<nav class="sidebar-nav">
         <div class="sidebar-back-link">
           <a href="/digital-garden/">← На главную</a>
         </div>
         
-        <h3>${currentBookTitle}</h3>
-        <ul>`;
+        <h3>${currentBookTitle}</h3>`;
 
-      currentBookCollection.forEach(note => {
-        const isActive = (note.url === this.page.url) ? 'class="active-node"' : '';
-        const displayTitle = note.data.title || note.fileSlug.replace(/[-_]/g, ' ');
-        sidebarHtml += `<li ${isActive}><a href="/digital-garden${note.url}">${displayTitle}</a></li>`;
-      });
+      if (mainLinks.length > 0) {
+        sidebarHtml += `<ul class="menu-section-main">${generateListHtml(mainLinks)}</ul><hr class="menu-divider">`;
+      }
+      if (characterLinks.length > 0) {
+        sidebarHtml += `<span class="menu-section-title">Сюжет и персонажи</span>`;
+        sidebarHtml += `<ul class="menu-section-characters">${generateListHtml(characterLinks)}</ul><hr class="menu-divider">`;
+      }
+      if (objectLinks.length > 0) {
+        sidebarHtml += `<span class="menu-section-title">Артефакты и предметы</span>`;
+        sidebarHtml += `<ul class="menu-section-objects">${generateListHtml(objectLinks)}</ul><hr class="menu-divider">`;
+      }
+      if (textLinks.length > 0) {
+        sidebarHtml += `<span class="menu-section-title">Подразделы книги</span>`;
+        sidebarHtml += `<ul class="menu-section-text">${generateListHtml(textLinks)}</ul>`;
+      }
+      sidebarHtml += `</nav>`;
 
-      sidebarHtml += `</ul></nav>`;
-
-      // ВЫЧИСЛЯЕМ ЗАГОЛОВОК СТРАНИЦЫ
+      // ВЫЧИСЛЯЕМ ЗАГОЛОВОК СТРАНИЦЫ ДЛЯ ТЕГА TITLE
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
 
-      // ПРОВЕРКА ДЛЯ ГЛАВНОЙ СТРАНИЦЫ
+      // ПРОВЕРКА: Если мы на глобальной главной, то полностью скрываем меню
       const isMainPage = (this.page.url === "/" || this.page.url === "/index.html");
       const bodyClass = isMainPage ? "main-page-layout" : "";
       const renderSidebar = isMainPage ? "" : sidebarHtml;
 
-      // === ШАГ 3: ОБНОВЛЕННЫЙ ДВУХКОЛОНОЧНЫЙ HTML ШАБЛОН ===
+      // === ШАГ 3: ДВУХКОЛОНОЧНЫЙ HTML ШАБЛОН ===
       return `<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -133,7 +182,7 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
-  // Сохраняем коллекцию в глобальную видимость
+  // Сохраняем коллекцию в глобальную видимость на этапе сборки
   eleventyConfig.addCollection("allPagesGlobal", function(collectionApi) {
     global.eleventyCollectionsAll = collectionApi.getAll();
     return global.eleventyCollectionsAll;
