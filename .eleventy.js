@@ -70,10 +70,8 @@ module.exports = function(eleventyConfig) {
       });
 
       // === УНИВЕРСАЛЬНЫЙ СБОРЩИК БОКОВОГО МЕНЮ ===
-      // 1. Автоматически определяем текущую папку книги (confiteor, sense или будущие книги)
       const currentFolder = this.page.inputPath.split("/").reverse()[1]; 
 
-      // Переводим техническое имя папки в красивое название для заголовка меню
       const bookTitles = {
         "confiteor": "Я исповедуюсь",
         "sense": "Предчувствие конца",
@@ -81,14 +79,11 @@ module.exports = function(eleventyConfig) {
       };
       const currentBookTitle = bookTitles[currentFolder] || currentFolder.toUpperCase();
 
-      // 2. Достаем из глобальной базы ТОЛЬКО те файлы, которые лежат в этой же папке
       const currentBookCollection = global.eleventyCollectionsAll ? 
         global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(`/${currentFolder}/`)) : [];
 
-      // Сортируем файлы по имени
       currentBookCollection.sort((a, b) => a.fileSlug.localeCompare(b.fileSlug, 'ru', { numeric: true }));
 
-      // 3. Собираем HTML меню
       let sidebarHtml = `<nav class="sidebar-nav">
         <h3>${currentBookTitle}</h3>
         <ul>`;
@@ -101,10 +96,10 @@ module.exports = function(eleventyConfig) {
 
       sidebarHtml += `</ul></nav>`;
 
-     // ВЫЧИСЛЯЕМ ЗАГОЛОВОК СТРАНИЦЫ
+      // ВЫЧИСЛЯЕМ ЗАГОЛОВОК СТРАНИЦЫ
       const pageTitle = this.page.fileSlug ? this.page.fileSlug.replace(/[-_]/g, ' ') : "Цифровой Сад";
 
-      // ПРОВЕРКА: Если это главная страница, скрываем сайдбар и убираем левый отступ
+      // ПРОВЕРКА ДЛЯ ГЛАВНОЙ СТРАНИЦЫ
       const isMainPage = (this.page.url === "/" || this.page.url === "/index.html");
       const bodyClass = isMainPage ? "main-page-layout" : "";
       const renderSidebar = isMainPage ? "" : sidebarHtml;
@@ -129,3 +124,32 @@ module.exports = function(eleventyConfig) {
     </div>
 </body>
 </html>`;
+    }
+    return content;
+  });
+
+  // Сохраняем коллекцию в глобальную видимость
+  eleventyConfig.addCollection("allPagesGlobal", function(collectionApi) {
+    global.eleventyCollectionsAll = collectionApi.getAll();
+    return global.eleventyCollectionsAll;
+  });
+
+  // Гарантируем правильное имя для главной страницы
+  eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
+    return (data) => {
+      if (data.page.inputPath.endsWith("index.md")) {
+        return "index.html";
+      }
+      return data.permalink;
+    };
+  });
+  
+  return {
+    markdownTemplateEngine: "liquid",
+    htmlTemplateEngine: "liquid",
+    dir: {
+      input: "src/site/notes",
+      output: "_site"
+    }
+  };
+};
