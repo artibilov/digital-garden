@@ -143,6 +143,48 @@ module.exports = function(eleventyConfig) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${pageTitle}</title>
     <link rel="stylesheet" href="/digital-garden/style.css">
+    
+    <!-- Мобильная адаптация поверх основного style.css -->
+    <style>
+        @media (max-width: 768px) {
+            /* Перестраиваем общую сетку из двух колонок в одну */
+            .layout-wrapper {
+                display: flex !important;
+                flex-direction: column !important;
+            }
+
+            /* Сайдбар больше не фиксируется сбоку, а идет обычным блоком сверху */
+            .sidebar-nav {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                position: relative !important;
+                padding: 15px !important;
+                border-right: none !important;
+                border-bottom: 2px solid #e2e8f0 !important;
+                box-shadow: none !important;
+            }
+
+            /* Меню внутри сайдбара делаем более компактным для скролла на телефоне */
+            .sidebar-nav ul {
+                max-height: 200px !important;
+                overflow-y: auto !important;
+                padding-left: 10px !important;
+            }
+
+            /* Контентный блок теперь занимает всю ширину экрана */
+            .content-container {
+                margin-left: 0 !important;
+                width: 100% !important;
+                padding: 15px !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+        }
+    </style>
 </head>
 <body class="${bodyClass}">
     <div class="layout-wrapper">
