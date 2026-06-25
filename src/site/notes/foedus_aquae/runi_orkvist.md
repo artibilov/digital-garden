@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/foedus-aquae/runi-orkvist/","dg-note-properties":{"персонажи":["[[runi_orkvist]]"],"артефакты":["Атлас Грэя","Ложка для десерта (хирургический инструмент)","Сливовое вино"],"ключевые_темы":["духовное_перерождение","проказа","наставничество","дар_боли"],"type":"character","permalink":"/foedus_aquae/runi_orkvist/"}}
+{"dg-publish":true,"permalink":"/foedus-aquae/runi-orkvist/","dg-note-properties":{"персонажи":["[[runi_orkvist]]"],"артефакты":["Атлас Грэя","Ложка для десерта (хирургический инструмент)","Сливовое вино"],"ключевые_темы":["духовное_перерождение","проказа","наставничество","дар_боли"],"type":"character","permalink":"/foedus_aquae/runi_orkvist/","name":"Руни Орквист"}}
 ---
 
 
