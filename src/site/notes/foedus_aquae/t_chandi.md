@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/foedus-aquae/t-chandi/","dg-note-properties":{"персонажи":["[[elsi_arnold]]","[[runi_orkvist]]","[[digbi_kilgur]]"],"артефакты":["Автомобиль Шевроле","Сигары State Express 555","Золотые часы"],"ключевые_темы":["плантаторская_элита","алкогольная_зависимость","отцовская_любовь","социальный_статус"],"type":"character_profile","name":"Т. Чанди"}}
+{"dg-publish":true,"dg-permalink":"kerala/t_chandi","permalink":"/kerala/t_chandi/","dg-note-properties":{"персонажи":["[[elsi_arnold]]","[[runi_orkvist]]","[[digbi_kilgur]]"],"артефакты":["Автомобиль Шевроле","Сигары State Express 555","Золотые часы"],"ключевые_темы":["плантаторская_элита","алкогольная_зависимость","отцовская_любовь","социальный_статус"],"type":"character_profile","name":"Т. Чанди"}}
 ---
 
 ### Описание персонажа

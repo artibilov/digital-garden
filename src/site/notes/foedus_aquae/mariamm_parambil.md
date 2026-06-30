@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/foedus-aquae/mariamm-parambil/","dg-note-properties":{"персонажи":["[[mariamm_parambil]]","[[bolshaya_ammachi]]","[[filipos_parambil]]","[[elsi_arnold]]","[[digbi_kilgur]]"],"артефакты":["Атлас Грэя","Золотой крестик Аммачи","Дневники Филипоса"],"ключевые_темы":["медицина_как_призвание","генетический_детектив","нейрохирургия","разрушение_тайн"],"type":"character_profile","name":"Мариамма Парамбиль"}}
+{"dg-publish":true,"dg-permalink":"kerala/mariamm_parambil","permalink":"/kerala/mariamm_parambil/","dg-note-properties":{"персонажи":["[[mariamm_parambil]]","[[bolshaya_ammachi]]","[[filipos_parambil]]","[[elsi_arnold]]","[[digbi_kilgur]]"],"артефакты":["Атлас Грэя","Золотой крестик Аммачи","Дневники Филипоса"],"ключевые_темы":["медицина_как_призвание","генетический_детектив","нейрохирургия","разрушение_тайн"],"type":"character_profile","name":"Мариамма Парамбиль"}}
 ---
 
 
