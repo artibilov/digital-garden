@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/18-kamennye-hramy/","permalink":"/kerala/18-kamennye-hramy/","dg-note-properties":{"эпизод":"Каменные храмы","часть":2,"type":"movement","персонажи":["[[digbi_kilgur]]","[[klod_arnold]]","[[selesta_arnold]]"],"артефакты":["Блокнот для набросков"],"ключевые_темы":["запретная_любовь","исцеление_через_искусство","утрата_и_вера"],"символы":["Храмы Махабалипурам","Портрет Селесты"],"медицинский_трек":"Нет"}}
+{"dg-publish":true,"dg-permalink":"kerala/18-kamennye-hramy/","permalink":"/kerala/18-kamennye-hramy/","dg-note-properties":{"эпизод":"Каменные храмы","часть":2,"type":"movement","персонажи":["[[digbi_kilgur]]","[[klod_arnold]]","[[selesta_arnold]]"],"артефакты":["Блокнот для набросков"],"ключевые_темы":["запретная_любовь","исцеление_через_искусство","утрата_и_вера"],"символы":["Храмы Махабалипурам","Портрет Селесты"],"медицинский_трек":"Нет","timeslot_start":"1935","timeslot_end":"1935"}}
 ---
 
 

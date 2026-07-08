@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/03-o-chem-ne-govoryat/","permalink":"/kerala/03-o-chem-ne-govoryat/","dg-note-properties":{"эпизод":"О чем не говорят","часть":1,"персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[tankamma]]","[[dzhodzho]]","[[samuel]]","[[damodaran]]"],"артефакты":["[[Хранилище ара]]","[[Глиняный горшок для рыбы]]"],"ключевые_темы":["кастовые_барьеры","адаптация_в_семье","связь_с_природой"],"символы":["жасмин","слон"],"медицинский_трек":"Нет","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/03-o-chem-ne-govoryat/","permalink":"/kerala/03-o-chem-ne-govoryat/","dg-note-properties":{"эпизод":"О чем не говорят","часть":1,"персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[tankamma]]","[[dzhodzho]]","[[samuel]]","[[damodaran]]"],"артефакты":["[[Хранилище ара]]","[[Глиняный горшок для рыбы]]"],"ключевые_темы":["кастовые_барьеры","адаптация_в_семье","связь_с_природой"],"символы":["жасмин","слон"],"медицинский_трек":"Нет","type":"movement","timeslot_start":"1900","timeslot_end":"1900"}}
 ---
 
 

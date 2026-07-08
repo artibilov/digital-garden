@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/46-brachnaya-noch/","permalink":"/kerala/46-brachnaya-noch/","dg-note-properties":{"эпизод":"Брачная ночь","часть":5,"персонажи":["[[filipos_parambil]]","[[elsi_arnold]]","[[bolshaya_ammachi]]","[[dzhoppan]]","[[samuel]]","[[damodaran]]"],"артефакты":["Гирлянда жасмина","Карты на стене","Деревянный велосипед Нинана"],"ключевые_темы":["свадьба","интимность","обещание","конец_войны"],"символы":["Хлебное дерево (Плаву)","Золотистая аура","Слон"],"медицинский_трек":"Да","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/46-brachnaya-noch/","permalink":"/kerala/46-brachnaya-noch/","dg-note-properties":{"эпизод":"Брачная ночь","часть":5,"персонажи":["[[filipos_parambil]]","[[elsi_arnold]]","[[bolshaya_ammachi]]","[[dzhoppan]]","[[samuel]]","[[damodaran]]"],"артефакты":["Гирлянда жасмина","Карты на стене","Деревянный велосипед Нинана"],"ключевые_темы":["свадьба","интимность","обещание","конец_войны"],"символы":["Хлебное дерево (Плаву)","Золотистая аура","Слон"],"медицинский_трек":"Да","type":"movement","timeslot_start":"1945","timeslot_end":"1945"}}
 ---
 
 

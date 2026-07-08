@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/44-zemlya-tekushaya-molokom-i-medom/","permalink":"/kerala/44-zemlya-tekushaya-molokom-i-medom/","dg-note-properties":{"эпизод":"Земля, текущая молоком и медом","часть":5,"персонажи":["[[filipos_parambil]]","[[bolshaya_ammachi]]","[[master_progress]]","[[elsi_arnold]]","[[samuel]]"],"артефакты":["[[Радиоприемник]]","[[Медный котел]]","[[Газета Манорама]]"],"ключевые_темы":["голод","социальное_служение","литература_как_истина","гражданская_позиция"],"символы":["Хлебное дерево (Плаву)","Запах ацетона","Обыкновенный человек"],"медицинский_трек":"Да","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/44-zemlya-tekushaya-molokom-i-medom/","permalink":"/kerala/44-zemlya-tekushaya-molokom-i-medom/","dg-note-properties":{"эпизод":"Земля, текущая молоком и медом","часть":5,"персонажи":["[[filipos_parambil]]","[[bolshaya_ammachi]]","[[master_progress]]","[[elsi_arnold]]","[[samuel]]"],"артефакты":["[[Радиоприемник]]","[[Медный котел]]","[[Газета Манорама]]"],"ключевые_темы":["голод","социальное_служение","литература_как_истина","гражданская_позиция"],"символы":["Хлебное дерево (Плаву)","Запах ацетона","Обыкновенный человек"],"медицинский_трек":"Да","type":"movement","timeslot_start":"1943","timeslot_end":"1943"}}
 ---
 
 

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/29-utrennie-chudesa/","permalink":"/kerala/29-utrennie-chudesa/","dg-note-properties":{"эпизод":"Утренние чудеса","часть":3,"персонажи":["[[filipos_parambil]]","[[bolshaya_ammachi]]"],"артефакты":["Каноэ","Зонтик"],"ключевые_темы":["наводнение","спасение_жизни","нарушение_клятвы","страх_воды"],"символы":["Резиновая пленка","Бурлящая река"],"медицинский_трек":"Да","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/29-utrennie-chudesa/","permalink":"/kerala/29-utrennie-chudesa/","dg-note-properties":{"эпизод":"Утренние чудеса","часть":3,"персонажи":["[[filipos_parambil]]","[[bolshaya_ammachi]]"],"артефакты":["Каноэ","Зонтик"],"ключевые_темы":["наводнение","спасение_жизни","нарушение_клятвы","страх_воды"],"символы":["Резиновая пленка","Бурлящая река"],"медицинский_трек":"Да","type":"movement","timeslot_start":"1936","timeslot_end":"1936"}}
 ---
 
 ## Сюжетный каркас

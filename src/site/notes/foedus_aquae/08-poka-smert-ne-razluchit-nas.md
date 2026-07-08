@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/08-poka-smert-ne-razluchit-nas/","permalink":"/kerala/08-poka-smert-ne-razluchit-nas/","dg-note-properties":{"эпизод":"Пока смерть не разлучит нас","часть":1,"type":"movement","персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[mat_bolshoy_ammachi]]","[[dzhodzho]]","[[samuel]]","[[malutka_mol]]"],"артефакты":[],"ключевые_темы":["смерть_ребенка","семейное_проклятие","горе"],"символы":["Дождевая канава","Детский плач"],"медицинский_трек":"Да"}}
+{"dg-publish":true,"dg-permalink":"kerala/08-poka-smert-ne-razluchit-nas/","permalink":"/kerala/08-poka-smert-ne-razluchit-nas/","dg-note-properties":{"эпизод":"Пока смерть не разлучит нас","часть":1,"type":"movement","персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[mat_bolshoy_ammachi]]","[[dzhodzho]]","[[samuel]]","[[malutka_mol]]"],"артефакты":[],"ключевые_темы":["смерть_ребенка","семейное_проклятие","горе"],"символы":["Дождевая канава","Детский плач"],"медицинский_трек":"Да","timeslot_start":"1908","timeslot_end":"1908"}}
 ---
 
 

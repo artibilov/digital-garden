@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/26-nevidimye-steny/","permalink":"/kerala/26-nevidimye-steny/","dg-note-properties":{"эпизод":"Невидимые стены","часть":3,"персонажи":["[[bolshaya_ammachi]]","[[filipos_parambil]]"],"артефакты":["Гробница Мар Грегориоса","Свечи"],"ключевые_темы":["обет","материнский_страх","паломничество","мистический_опыт"],"символы":["Лодка","Река","Невидимые стены"],"медицинский_трек":"Да","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/26-nevidimye-steny/","permalink":"/kerala/26-nevidimye-steny/","dg-note-properties":{"эпизод":"Невидимые стены","часть":3,"персонажи":["[[bolshaya_ammachi]]","[[filipos_parambil]]"],"артефакты":["Гробница Мар Грегориоса","Свечи"],"ключевые_темы":["обет","материнский_страх","паломничество","мистический_опыт"],"символы":["Лодка","Река","Невидимые стены"],"медицинский_трек":"Да","type":"movement","timeslot_start":"1926","timeslot_end":"1926"}}
 ---
 
 

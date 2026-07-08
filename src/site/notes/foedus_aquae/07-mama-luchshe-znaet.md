@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/07-mama-luchshe-znaet/","permalink":"/kerala/07-mama-luchshe-znaet/","dg-note-properties":{"эпизод":"Мама лучше знает","часть":1,"type":"movement","персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[mat_bolshoy_ammachi]]","[[dzhodzho]]","[[samuel]]"],"артефакты":["Тиковый альмирах","Библия"],"ключевые_темы":["семейный_долг","материнство","великодушие"],"символы":["Маска беременности","Факел в ночи"],"медицинский_трек":"Да"}}
+{"dg-publish":true,"dg-permalink":"kerala/07-mama-luchshe-znaet/","permalink":"/kerala/07-mama-luchshe-znaet/","dg-note-properties":{"эпизод":"Мама лучше знает","часть":1,"type":"movement","персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[mat_bolshoy_ammachi]]","[[dzhodzho]]","[[samuel]]"],"артефакты":["Тиковый альмирах","Библия"],"ключевые_темы":["семейный_долг","материнство","великодушие"],"символы":["Маска беременности","Факел в ночи"],"медицинский_трек":"Да","timeslot_start":"1908","timeslot_end":"1908"}}
 ---
 
 

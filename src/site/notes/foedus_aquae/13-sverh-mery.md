@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/13-sverh-mery/","permalink":"/kerala/13-sverh-mery/","dg-note-properties":{"эпизод":"Сверх меры","часть":2,"type":"movement","персонажи":["[[digbi_kilgur]]","[[onorin_karlton]]","[[klod_arnold]]"],"артефакты":[],"ключевые_темы":["профессиональное_признание","колониальный_скепсис","величие_медицины"],"символы":["Сверх меры","Бокал хереса"],"медицинский_трек":"Да"}}
+{"dg-publish":true,"dg-permalink":"kerala/13-sverh-mery/","permalink":"/kerala/13-sverh-mery/","dg-note-properties":{"эпизод":"Сверх меры","часть":2,"type":"movement","персонажи":["[[digbi_kilgur]]","[[onorin_karlton]]","[[klod_arnold]]"],"артефакты":[],"ключевые_темы":["профессиональное_признание","колониальный_скепсис","величие_медицины"],"символы":["Сверх меры","Бокал хереса"],"медицинский_трек":"Да","timeslot_start":"1933","timeslot_end":"1933"}}
 ---
 
 

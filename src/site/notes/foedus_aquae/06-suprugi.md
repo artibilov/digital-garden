@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/06-suprugi/","permalink":"/kerala/06-suprugi/","dg-note-properties":{"эпизод":"Супруги","часть":1,"type":"movement","персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[tankamma]]","[[dzhodzho]]","[[samuel]]","[[damodaran]]","[[mat_bolshoy_ammachi]]"],"артефакты":["Золотые серьги кунукку","Библия","Газета Манорама"],"ключевые_темы":["супружеская_близость","взросление","преодоление_страха"],"символы":["Золотые серьги кунукку","Библия"],"медицинский_трек":"Да"}}
+{"dg-publish":true,"dg-permalink":"kerala/06-suprugi/","permalink":"/kerala/06-suprugi/","dg-note-properties":{"эпизод":"Супруги","часть":1,"type":"movement","персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[tankamma]]","[[dzhodzho]]","[[samuel]]","[[damodaran]]","[[mat_bolshoy_ammachi]]"],"артефакты":["Золотые серьги кунукку","Библия","Газета Манорама"],"ключевые_темы":["супружеская_близость","взросление","преодоление_страха"],"символы":["Золотые серьги кунукку","Библия"],"медицинский_трек":"Да","timeslot_start":"1903","timeslot_end":"1903"}}
 ---
 
 

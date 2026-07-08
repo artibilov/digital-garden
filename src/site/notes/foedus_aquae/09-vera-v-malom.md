@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/09-vera-v-malom/","permalink":"/kerala/09-vera-v-malom/","dg-note-properties":{"эпизод":"Вера в малом","часть":1,"type":"movement","персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[mat_bolshoy_ammachi]]","[[samuel]]","[[dzhodzho]]","[[malutka_mol]]"],"артефакты":["Водяное Древо","Металлический сундук"],"ключевые_темы":["семейное_проклятие","принятие_судьбы","супружеское_откровение"],"символы":["Водяное Древо","Металлический сундук"],"медицинский_трек":"Да"}}
+{"dg-publish":true,"dg-permalink":"kerala/09-vera-v-malom/","permalink":"/kerala/09-vera-v-malom/","dg-note-properties":{"эпизод":"Вера в малом","часть":1,"type":"movement","персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[mat_bolshoy_ammachi]]","[[samuel]]","[[dzhodzho]]","[[malutka_mol]]"],"артефакты":["Водяное Древо","Металлический сундук"],"ключевые_темы":["семейное_проклятие","принятие_судьбы","супружеское_откровение"],"символы":["Водяное Древо","Металлический сундук"],"медицинский_трек":"Да","timeslot_start":"1908","timeslot_end":"1908"}}
 ---
 
 

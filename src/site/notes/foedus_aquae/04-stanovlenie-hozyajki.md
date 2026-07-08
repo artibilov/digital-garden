@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/04-stanovlenie-hozyajki/","permalink":"/kerala/04-stanovlenie-hozyajki/","dg-note-properties":{"эпизод":"Становление хозяйки","часть":1,"персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[tankamma]]","[[dzhodzho]]","[[samuel]]"],"артефакты":["Камень для поклажи"],"ключевые_темы":["адаптация_в_семье","созидание_общины","кастовые_барьеры"],"символы":["Камень для поклажи","Кокосовый орех"],"медицинский_трек":"Нет","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/04-stanovlenie-hozyajki/","permalink":"/kerala/04-stanovlenie-hozyajki/","dg-note-properties":{"эпизод":"Становление хозяйки","часть":1,"персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[tankamma]]","[[dzhodzho]]","[[samuel]]"],"артефакты":["Камень для поклажи"],"ключевые_темы":["адаптация_в_семье","созидание_общины","кастовые_барьеры"],"символы":["Камень для поклажи","Кокосовый орех"],"медицинский_трек":"Нет","type":"movement","timeslot_start":"1900","timeslot_end":"1900"}}
 ---
 
 

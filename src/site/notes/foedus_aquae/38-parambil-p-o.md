@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/38-parambil-p-o/","permalink":"/kerala/38-parambil-p-o/","dg-note-properties":{"эпизод":"Парамбиль П. О.","часть":5,"персонажи":["[[bolshaya_ammachi]]","[[filipos_parambil]]","[[master_progress]]","[[shoshamma]]"],"артефакты":["Пишущая машинка","Библиотека Парамбиля"],"ключевые_темы":["прогресс","образование","гражданское_сознание","бюрократия"],"символы":["Почтовое отделение","Копирка"],"медицинский_трек":"Да","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/38-parambil-p-o/","permalink":"/kerala/38-parambil-p-o/","dg-note-properties":{"эпизод":"Парамбиль П. О.","часть":5,"персонажи":["[[bolshaya_ammachi]]","[[filipos_parambil]]","[[master_progress]]","[[shoshamma]]"],"артефакты":["Пишущая машинка","Библиотека Парамбиля"],"ключевые_темы":["прогресс","образование","гражданское_сознание","бюрократия"],"символы":["Почтовое отделение","Копирка"],"медицинский_трек":"Да","type":"movement","timeslot_start":"1938","timeslot_end":"1941"}}
 ---
 
 ## Сюжетный каркас

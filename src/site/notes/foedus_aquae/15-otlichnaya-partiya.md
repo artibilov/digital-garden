@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/15-otlichnaya-partiya/","permalink":"/kerala/15-otlichnaya-partiya/","dg-note-properties":{"эпизод":"Отличная партия","часть":2,"type":"movement","персонажи":["[[digbi_kilgur]]","[[klod_arnold]]","[[selesta_arnold]]"],"артефакты":["Картина калигхат","Гранатовый сок"],"ключевые_темы":["одиночество_в_браке","родство_душ","искусство_и_бегство"],"символы":["Картина калигхат","Рождественская елка в тропиках"],"медицинский_трек":"Нет"}}
+{"dg-publish":true,"dg-permalink":"kerala/15-otlichnaya-partiya/","permalink":"/kerala/15-otlichnaya-partiya/","dg-note-properties":{"эпизод":"Отличная партия","часть":2,"type":"movement","персонажи":["[[digbi_kilgur]]","[[klod_arnold]]","[[selesta_arnold]]"],"артефакты":["Картина калигхат","Гранатовый сок"],"ключевые_темы":["одиночество_в_браке","родство_душ","искусство_и_бегство"],"символы":["Картина калигхат","Рождественская елка в тропиках"],"медицинский_трек":"Нет","timeslot_start":"1933","timeslot_end":"1933"}}
 ---
 
 

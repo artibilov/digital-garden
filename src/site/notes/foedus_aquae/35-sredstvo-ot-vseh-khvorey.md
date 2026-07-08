@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/35-sredstvo-ot-vseh-khvorey/","permalink":"/kerala/35-sredstvo-ot-vseh-khvorey/","dg-note-properties":{"эпизод":"Средство от всех хворей","часть":4,"персонажи":["[[filipos_parambil]]","[[digbi_kilgur]]","[[t_chandi]]","[[elsi_arnold]]","[[bolshaya_ammachi]]"],"артефакты":["Автомобиль Шевроле","Блокнот для рисунков"],"ключевые_темы":["последствия_травмы","социальное_клеймо","предзнаменование","возвращение_домой"],"символы":["Шевроле (сила и движение)","Лицо вурдалака"],"медицинский_трек":"Да","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/35-sredstvo-ot-vseh-khvorey/","permalink":"/kerala/35-sredstvo-ot-vseh-khvorey/","dg-note-properties":{"эпизод":"Средство от всех хворей","часть":4,"персонажи":["[[filipos_parambil]]","[[digbi_kilgur]]","[[t_chandi]]","[[elsi_arnold]]","[[bolshaya_ammachi]]"],"артефакты":["Автомобиль Шевроле","Блокнот для рисунков"],"ключевые_темы":["последствия_травмы","социальное_клеймо","предзнаменование","возвращение_домой"],"символы":["Шевроле (сила и движение)","Лицо вурдалака"],"медицинский_трек":"Да","type":"movement","timeslot_start":"1936","timeslot_end":"1936"}}
 ---
 
 

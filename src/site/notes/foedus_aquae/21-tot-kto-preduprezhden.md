@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/21-tot-kto-preduprezhden/","permalink":"/kerala/21-tot-kto-preduprezhden/","dg-note-properties":{"эпизод":"Тот, кто предупрежден","часть":2,"персонажи":["[[digbi_kilgur]]","[[selesta_arnold]]","[[klod_arnold]]"],"артефакты":["[[Анонимное письмо]]"],"ключевые_темы":["шантаж","моральный_выбор","юридическое_давление","репутация"],"символы":["[[Теннисный корт]]"],"медицинский_трек":"Да","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/21-tot-kto-preduprezhden/","permalink":"/kerala/21-tot-kto-preduprezhden/","dg-note-properties":{"эпизод":"Тот, кто предупрежден","часть":2,"персонажи":["[[digbi_kilgur]]","[[selesta_arnold]]","[[klod_arnold]]"],"артефакты":["[[Анонимное письмо]]"],"ключевые_темы":["шантаж","моральный_выбор","юридическое_давление","репутация"],"символы":["[[Теннисный корт]]"],"медицинский_трек":"Да","type":"movement","timeslot_start":"1935","timeslot_end":"1935"}}
 ---
 
 ## Сюжетный каркас

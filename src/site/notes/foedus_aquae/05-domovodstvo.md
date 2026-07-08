@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/05-domovodstvo/","permalink":"/kerala/05-domovodstvo/","dg-note-properties":{"эпизод":"Домоводство","часть":1,"type":"movement","персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[tankamma]]","[[dzhodzho]]","[[samuel]]","[[mat_bolshoy_ammachi]]"],"артефакты":["Ключ от ара","Хранилище ара"],"ключевые_темы":["адаптация_в_семье","семейное_проклятие","материнство"],"символы":["Дождь","Дух матери"],"медицинский_трек":"Да"}}
+{"dg-publish":true,"dg-permalink":"kerala/05-domovodstvo/","permalink":"/kerala/05-domovodstvo/","dg-note-properties":{"эпизод":"Домоводство","часть":1,"type":"movement","персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[tankamma]]","[[dzhodzho]]","[[samuel]]","[[mat_bolshoy_ammachi]]"],"артефакты":["Ключ от ара","Хранилище ара"],"ключевые_темы":["адаптация_в_семье","семейное_проклятие","материнство"],"символы":["Дождь","Дух матери"],"медицинский_трек":"Да","timeslot_start":"1900","timeslot_end":"1900"}}
 ---
 
 

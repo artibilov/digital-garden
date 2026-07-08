@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/25-chuzhak-v-dome/","permalink":"/kerala/25-chuzhak-v-dome/","dg-note-properties":{"эпизод":"Чужак в доме","часть":3,"персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[samuel]]","[[damodaran]]","[[filipos_parambil]]","[[Baby Mol]]"],"артефакты":["Коробочка с опиумом","Медная велакку"],"ключевые_темы":["преемственность","угасание_патриарха","материнство","принятие_несовершенства"],"символы":["Банановая плантация","Вырытые ямы","Шепот призрака"],"медицинский_трек":"Да","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/25-chuzhak-v-dome/","permalink":"/kerala/25-chuzhak-v-dome/","dg-note-properties":{"эпизод":"Чужак в доме","часть":3,"персонажи":["[[bolshaya_ammachi]]","[[bolshoy_appachen]]","[[samuel]]","[[damodaran]]","[[filipos_parambil]]","[[Baby Mol]]"],"артефакты":["Коробочка с опиумом","Медная велакку"],"ключевые_темы":["преемственность","угасание_патриарха","материнство","принятие_несовершенства"],"символы":["Банановая плантация","Вырытые ямы","Шепот призрака"],"медицинский_трек":"Да","timeslot_start":"1923","timeslot_end":"1924","type":"movement"}}
 ---
 
 ## Сюжетный каркас

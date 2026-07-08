@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/27-naverhu-luchshe/","permalink":"/kerala/27-naverhu-luchshe/","dg-note-properties":{"эпизод":"Наверху лучше","часть":3,"персонажи":["[[filipos_parambil]]","[[samuel]]","[[bolshaya_ammachi]]","[[dzhoppan]]"],"артефакты":["Пальмовый учебник","Бамбуковая розга"],"ключевые_темы":["кастовая_дискриминация","право_на_образование","преодоление_страха","наставничество"],"символы":["Верхушка пальмы","Ил"],"медицинский_трек":"Да","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/27-naverhu-luchshe/","permalink":"/kerala/27-naverhu-luchshe/","dg-note-properties":{"эпизод":"Наверху лучше","часть":3,"персонажи":["[[filipos_parambil]]","[[samuel]]","[[bolshaya_ammachi]]","[[dzhoppan]]"],"артефакты":["Пальмовый учебник","Бамбуковая розга"],"ключевые_темы":["кастовая_дискриминация","право_на_образование","преодоление_страха","наставничество"],"символы":["Верхушка пальмы","Ил"],"медицинский_трек":"Да","type":"movement","timeslot_start":"1932","timeslot_end":"1932"}}
 ---
 
 
