@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/54-prenatalny-angel/","permalink":"/kerala/54-prenatalny-angel/","dg-note-properties":{"эпизод":"Пренатальный ангел","часть":6,"timeslot_start":1951,"timeslot_end":1951,"персонажи":["[[bolshaya_ammachi]]","[[filipos_parambil]]","[[elsi_arnold]]","[[mariamm_parambil]]","[[anna_chedethi\|anna_chedethi]]"],"артефакты":["16-фитильная велакку","Гнездо из прутьев"],"ключевые_темы":["рождение","выживание","сестринство","разочарование"],"символы":["Гнездо","Кровь","Свет лампады"],"медицинский_трек":"Да","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/54-prenatalny-angel/","permalink":"/kerala/54-prenatalny-angel/","dg-note-properties":{"эпизод":"Пренатальный ангел","часть":6,"timeslot_start":1951,"timeslot_end":1951,"персонажи":["[[bolshaya_ammachi]]","[[filipos_parambil]]","[[elsi_arnold]]","[[mariamm_parambil]]"],"артефакты":["16-фитильная велакку","Гнездо из прутьев"],"ключевые_темы":["рождение","выживание","сестринство","разочарование"],"символы":["Гнездо","Кровь","Свет лампады"],"медицинский_трек":"Да","type":"movement"}}
 ---
 
 
