@@ -61,6 +61,7 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/53-kamennaya-zhenschina\|53. Каменная Женщина]]
 - [[foedus_aquae/54-prenatalny-angel\|54. Пренатальный ангел]]
 - [[foedus_aquae/55-ditya-eto-devochka\|55. Дитя — это девочка]]
+- [[foedus_aquae/56-propavshaya\|56. Пропавшая]]
 
 ### Основные действующие лица
 
