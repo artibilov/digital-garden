@@ -66,6 +66,7 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/58-zazhgite-lampu\|58 Зажгите лампу]]
 - [[foedus_aquae/59-dobrye-ugnetateli-i-blagodarnye-ugnetennye\|59 Добрые угнетатели и благодарные угнетенные]]
 - [[foedus_aquae/60-otkrytie-bolnitsy\|60 Открытие больницы]]
+- [[foedus_aquae/61-prizvanie\|61 Призвание]]
 ### Основные действующие лица
 
 - [[foedus_aquae/bolshaya_ammachi\|Большая Амачи]]
