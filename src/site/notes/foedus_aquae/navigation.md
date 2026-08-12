@@ -62,7 +62,10 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/54-prenatalny-angel\|54. Пренатальный ангел]]
 - [[foedus_aquae/55-ditya-eto-devochka\|55. Дитя — это девочка]]
 - [[foedus_aquae/56-propavshaya\|56. Пропавшая]]
-
+- [[foedus_aquae/57-nepokorenny\|57 Непокоренный]]
+- [[foedus_aquae/58-zazhgite-lampu\|58 Зажгите лампу]]
+- [[foedus_aquae/59-dobrye-ugnetateli-i-blagodarnye-ugnetennye\|59 Добрые угнетатели и благодарные угнетенные]]
+- [[foedus_aquae/60-otkrytie-bolnitsy\|60 Открытие больницы]]
 ### Основные действующие лица
 
 - [[foedus_aquae/bolshaya_ammachi\|Большая Амачи]]
@@ -85,3 +88,5 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/mariamm_parambil\|Мариамма]]
 - [[foedus_aquae/kromvel\|Кромвель]]
 - [[foedus_aquae/master_progress\|Мастер прогресса]]
+- [[foedus_aquae/lenin_parambil\|Ленин во веки веков]]
+- 
