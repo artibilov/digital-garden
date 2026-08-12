@@ -62,12 +62,12 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/54-prenatalny-angel\|54. Пренатальный ангел]]
 - [[foedus_aquae/55-ditya-eto-devochka\|55. Дитя — это девочка]]
 - [[foedus_aquae/56-propavshaya\|56. Пропавшая]]
-- [[foedus_aquae/57-nepokorenny\|57 Непокоренный]]
-- [[foedus_aquae/58-zazhgite-lampu\|58 Зажгите лампу]]
-- [[foedus_aquae/59-dobrye-ugnetateli-i-blagodarnye-ugnetennye\|59 Добрые угнетатели и благодарные угнетенные]]
-- [[foedus_aquae/60-otkrytie-bolnitsy\|60 Открытие больницы]]
-- [[foedus_aquae/61-prizvanie\|61 Призвание]]
-- [[foedus_aquae/62-segodnya-nochyu\|62 Сегодня ночью]]
+- [[foedus_aquae/57-nepokorenny\|57. Непокоренный]]
+- [[foedus_aquae/58-zazhgite-lampu\|58. Зажгите лампу]]
+- [[foedus_aquae/59-dobrye-ugnetateli-i-blagodarnye-ugnetennye\|59. Добрые угнетатели и благодарные угнетенные]]
+- [[foedus_aquae/60-otkrytie-bolnitsy\|60. Открытие больницы]]
+- [[foedus_aquae/61-prizvanie\|61. Призвание]]
+- [[foedus_aquae/62-segodnya-nochyu\|62. Сегодня ночью]]
 ### Основные действующие лица
 
 - [[foedus_aquae/bolshaya_ammachi\|Большая Амачи]]
