@@ -67,6 +67,7 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/59-dobrye-ugnetateli-i-blagodarnye-ugnetennye\|59 Добрые угнетатели и благодарные угнетенные]]
 - [[foedus_aquae/60-otkrytie-bolnitsy\|60 Открытие больницы]]
 - [[foedus_aquae/61-prizvanie\|61 Призвание]]
+- [[foedus_aquae/62-segodnya-nochyu\|62 Сегодня ночью]]
 ### Основные действующие лица
 
 - [[foedus_aquae/bolshaya_ammachi\|Большая Амачи]]
