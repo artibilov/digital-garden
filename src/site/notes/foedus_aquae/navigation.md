@@ -70,6 +70,7 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/62-segodnya-nochyu\|62. Сегодня ночью]]
 - [[foedus_aquae/63-voploschenny-i-razvoploschenny\|63, Воплощенный и развоплощенный]]
 - [[foedus_aquae/64-ginglimoartrodialny-sustav\|64. Гинглимоартродиальный сустав]]
+- [[foedus_aquae/65-esli-by-bog-mog-govorit\|65. Если бы Бог мог говорить]]
 
 ### Основные действующие лица
 
