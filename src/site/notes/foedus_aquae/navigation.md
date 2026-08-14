@@ -69,6 +69,8 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/61-prizvanie\|61. Призвание]]
 - [[foedus_aquae/62-segodnya-nochyu\|62. Сегодня ночью]]
 - [[foedus_aquae/63-voploschenny-i-razvoploschenny\|63, Воплощенный и развоплощенный]]
+- [[foedus_aquae/64-ginglimoartrodialny-sustav\|64. Гинглимоартродиальный сустав]]
+
 ### Основные действующие лица
 
 - [[foedus_aquae/bolshaya_ammachi\|Большая Амачи]]
