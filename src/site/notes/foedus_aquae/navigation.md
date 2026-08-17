@@ -71,6 +71,7 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/63-voploschenny-i-razvoploschenny\|63, Воплощенный и развоплощенный]]
 - [[foedus_aquae/64-ginglimoartrodialny-sustav\|64. Гинглимоартродиальный сустав]]
 - [[foedus_aquae/65-esli-by-bog-mog-govorit\|65. Если бы Бог мог говорить]]
+- [[foedus_aquae/66-rokovaya-cherta\|66. Роковая черта]]
 
 ### Основные действующие лица
 
