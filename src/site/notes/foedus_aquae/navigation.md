@@ -75,6 +75,7 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/67-luchshe-snaruzhi-chem-vnutri\|67. Лучше снаружи, чем внутри]]
 - [[foedus_aquae/68-gonchie-nebes\|68. Гончие небес]]
 - [[foedus_aquae/69-uvidet-to-chto-sumeesh-predstavit\|69. Увидеть то, что сумеешь представить]]
+- [[foedus_aquae/70-sdelat-reshitelny-shag\|70. Сделать решительный шаг]]
 
 ### Основные действующие лица
 
