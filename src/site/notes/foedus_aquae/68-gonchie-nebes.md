@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/68-gonchie-nebes/","permalink":"/kerala/68-gonchie-nebes/","dg-note-properties":{"эпизод":"Гончие небес","часть":8,"timeslot_start":1973,"timeslot_end":1973,"персонажи":["[[mariamm_parambil]]","[[filipos_parambil]]","[[anna_chedethi]]","[[dzhoppan]]","[[lenin_parambil]]"],"артефакты":["[[Анатомия Грэя]]","Клятва Парацельса","Дневники Филипоса"],"ключевые_темы":["возвращение_домой","идеологический_разлом","социальная_справедливость","связь_поколений"],"символы":["[[Каменная Женщина\|Каменная Женщина]]","[[Гнездо\|Гнездо]]","Канал"],"медицинский_трек":"Да","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/68-gonchie-nebes/","permalink":"/kerala/68-gonchie-nebes/","dg-note-properties":{"эпизод":"Гончие небес","часть":8,"timeslot_start":1973,"timeslot_end":1973,"персонажи":["[[mariamm_parambil]]","[[filipos_parambil]]","[[anna_chedethi]]","[[dzhoppan]]","[[lenin_parambil]]"],"артефакты":["[[Анатомия Грэя]]","Клятва Парацельса","Дневники Филипоса"],"ключевые_темы":["возвращение_домой","идеологический_разлом","социальная_справедливость","связь_поколений"],"символы":["Канал"],"медицинский_трек":"Да","type":"movement"}}
 ---
 
 
