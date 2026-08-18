@@ -82,7 +82,7 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/74-vnutrenniy-svidetel\|74. Внутренний свидетель]]
 - [[foedus_aquae/75-sostoyaniya-soznaniya\|75. Состояния сознания]]
 - [[foedus_aquae/76-probuzhdeniya\|76. Пробуждения]]
-
+- [[foedus_aquae/77-dorogami-revolyutsii\|77. Дорогами революции]]
 ### Основные действующие лица
 
 - [[foedus_aquae/bolshaya_ammachi\|Большая Амачи]]
