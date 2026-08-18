@@ -77,7 +77,7 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/69-uvidet-to-chto-sumeesh-predstavit\|69. Увидеть то, что сумеешь представить]]
 - [[foedus_aquae/70-sdelat-reshitelny-shag\|70. Сделать решительный шаг]]
 - [[foedus_aquae/71-mertvye-vosstanut-netlennymi\|71. Мертвые восстанут нетленными]]
-- [[foedus_aquae/72-vnutrenniy-svidetel\|72. Внутренний свидетель]]
+- [[foedus_aquae/72-bolezn-reklinghauzena\|72. Болезнь Реклингхаузена]]
 - [[foedus_aquae/73-tri-pravila-buduschey-nevesty\|73. Три правила будущей невесты]]
 - [[foedus_aquae/74-vnutrenniy-svidetel\|74. Внутренний свидетель]]
 - [[foedus_aquae/75-sostoyaniya-soznaniya\|75. Состояния сознания]]
