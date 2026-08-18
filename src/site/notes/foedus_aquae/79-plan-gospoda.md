@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"kerala/79-plan-gospoda/","permalink":"/kerala/79-plan-gospoda/","dg-note-properties":{"эпизод":"Внутренний свидетель","часть":9,"timeslot_start":1977,"timeslot_end":1977,"персонажи":["[[mariamm_parambil]]","[[filipos_parambil]]","[[elsi_arnold]]","[[bolshaya_ammachi]]"],"артефакты":["Дневники Филипоса","Перьевая ручка Паркер 51"],"ключевые_темы":["кризис_идентичности","отцовство_по_выбору","разрушение_тайн","генетика"],"символы":["Белая прядь","Чернильные пятна","Зеркало"],"медицинский_трек":"Да","type":"movement"}}
+{"dg-publish":true,"dg-permalink":"kerala/79-plan-gospoda/","permalink":"/kerala/79-plan-gospoda/","dg-note-properties":{"эпизод":"План Господа","часть":9,"timeslot_start":1977,"timeslot_end":1977,"персонажи":["[[mariamm_parambil]]","[[filipos_parambil]]","[[elsi_arnold]]","[[bolshaya_ammachi]]"],"артефакты":["Дневники Филипоса","Перьевая ручка Паркер 51"],"ключевые_темы":["кризис_идентичности","отцовство_по_выбору","разрушение_тайн","генетика"],"символы":["Белая прядь","Чернильные пятна","Зеркало"],"медицинский_трек":"Да","type":"movement"}}
 ---
 
 
