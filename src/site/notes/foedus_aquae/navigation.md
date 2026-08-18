@@ -81,6 +81,7 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/73-tri-pravila-buduschey-nevesty\|73. Три правила будущей невесты]]
 - [[foedus_aquae/74-vnutrenniy-svidetel\|74. Внутренний свидетель]]
 - [[foedus_aquae/75-sostoyaniya-soznaniya\|75. Состояния сознания]]
+- [[foedus_aquae/76-probuzhdeniya\|76. Пробуждения]]
 
 ### Основные действующие лица
 
