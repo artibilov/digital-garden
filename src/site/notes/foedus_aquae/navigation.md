@@ -84,6 +84,7 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/76-probuzhdeniya\|76. Пробуждения]]
 - [[foedus_aquae/77-dorogami-revolyutsii\|77. Дорогами революции]]
 - [[foedus_aquae/78-sledi-za-nim\|78. Следи за ним]]
+- [[foedus_aquae/79-plan-gospoda\|79. План Господа]]
 ### Основные действующие лица
 
 - [[foedus_aquae/bolshaya_ammachi\|Большая Амачи]]
