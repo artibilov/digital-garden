@@ -87,6 +87,9 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/79-plan-gospoda\|79. План Господа]]
 - [[foedus_aquae/80-nevozmozhnost-morgnut\|80. Невозможность моргнуть]]
 - [[foedus_aquae/81-proshloe-vstrechaetsya-s-buduschim\|81. Прошлое встречается с будущим]]
+- [[foedus_aquae/82-tvorchestvo\|82. Творчество]]
+- [[foedus_aquae/83-lyubit-bolnogo\|83. Любить больного]]
+- [[foedus_aquae/84-postizhenie-mira\|84. Постижение мира]]
 ### Основные действующие лица
 
 - [[foedus_aquae/bolshaya_ammachi\|Большая Амачи]]
