@@ -73,6 +73,8 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/65-esli-by-bog-mog-govorit\|65. Если бы Бог мог говорить]]
 - [[foedus_aquae/66-rokovaya-cherta\|66. Роковая черта]]
 - [[foedus_aquae/67-luchshe-snaruzhi-chem-vnutri\|67. Лучше снаружи, чем внутри]]
+- [[foedus_aquae/68-gonchie-nebes\|68. Гончие небес]]
+- [[foedus_aquae/69-uvidet-to-chto-sumeesh-predstavit\|69. Увидеть то, что сумеешь представить]]
 
 ### Основные действующие лица
 
