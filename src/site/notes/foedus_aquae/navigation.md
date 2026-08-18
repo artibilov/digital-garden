@@ -80,6 +80,8 @@ Esto служебный файл для автоматической сборк�
 - [[foedus_aquae/72-vnutrenniy-svidetel\|72. Внутренний свидетель]]
 - [[foedus_aquae/73-tri-pravila-buduschey-nevesty\|73. Три правила будущей невесты]]
 - [[foedus_aquae/74-vnutrenniy-svidetel\|74. Внутренний свидетель]]
+- [[foedus_aquae/75-sostoyaniya-soznaniya\|75. Состояния сознания]]
+
 ### Основные действующие лица
 
 - [[foedus_aquae/bolshaya_ammachi\|Большая Амачи]]
