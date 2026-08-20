@@ -15,7 +15,7 @@ Esto служебный файл для автоматической сборк�
 - [[jerusalem/characters/dorin_uorren\|Дорин Уоррен]]
 
 **Артефакты**
-- [[jerusalem/artifacts/doznanie-vernallov\|Дознание Верналлов]]
+- [[jerusalem/artifacts/doznanie_vernallov\|Дознание Верналлов]]
 - [[jerusalem/artifacts/zolotye_instrumenty\|Золотые инструменты]]
 
 **Локации**
