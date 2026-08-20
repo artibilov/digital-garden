@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"jerusalem/movements/prelyudiya-neokonchenniy-trud/","permalink":"/jerusalem/movements/prelyudiya-neokonchenniy-trud/","dg-note-properties":{"type":"movement","эпизод":"Прелюдия. НЕОКОНЧЕННЫЙ ТРУД","часть":1,"персонажи":["[[jerusalem/characters/alma_uorren\|Альма Уоррен]]","[[jerusalem/characters/maikl_uorren\|Майкл Уоррен]]","[[jerusalem/characters/dorin_uorren\|Дорин Уоррен]]","[[jerusalem/characters/tretiy_boro\|Третий Боро]]"],"timeslot_start":1959,"timeslot_end":1959}}
+{"dg-publish":true,"dg-permalink":"jerusalem/movements/prelyudiya-neokonchenniy-trud/","permalink":"/jerusalem/movements/prelyudiya-neokonchenniy-trud/","dg-note-properties":{"type":"movement","эпизод":"Прелюдия. НЕОКОНЧЕННЫЙ ТРУД","часть":1,"timeslot_start":1959,"timeslot_end":1959}}
 ---
 
 [[jerusalem/characters/dorin_uorren\|Дорин Уоррен]] вместе со своей пятилетней дочерью [[jerusalem/characters/alma_uorren\|Альмой Уоррен]] и младенцем [[jerusalem/characters/maikl_uorren\|Майклом Уорреном]], находящимся в детской коляске, возвращаются после покупок в верхнем «Вулворте» и идут по [[jerusalem/locations/abingtonskaya_ulica\|Абингтонской улице]].

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"jerusalem/artifacts/portimot_di_noran/","permalink":"/jerusalem/artifacts/portimot_di_noran/","dg-note-properties":{"type":"artifact","персонажи":["[[tretiy_boro|Третий Боро]]"],"timeslot_start":null,"timeslot_end":null}}
+{"dg-publish":true,"dg-permalink":"jerusalem/artifacts/portimot_di_noran/","permalink":"/jerusalem/artifacts/portimot_di_noran/","dg-note-properties":{"type":"artifact","timeslot_start":null,"timeslot_end":null}}
 ---
 
 * **Название**: [[jerusalem/locations/portimot_di_noran\|Портимот ди Норан]] (Portimote de Noran).
