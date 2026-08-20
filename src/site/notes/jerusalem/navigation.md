@@ -5,12 +5,14 @@
 Esto служебный файл для автоматической сборки бокового меню книги.
 
 ### Содержание
+
 * [[jerusalem/movements/prelyudiya_neokonchenniy_trud\|Прелюдия. НЕОКОНЧЕННЫЙ ТРУД]]
 * [[jerusalem/movements/strasti_po_asbo\|Страсти по ASBO]]
 * [[jerusalem/movements/neprikayannye\|Неприкаянные]]
 * [[jerusalem/movements/mesto_oboznacheno_krestom\|Место обозначено крестом]]
 
 ### Герои
+
 * [[jerusalem/characters/alma_uorren\|Альма Уоррен]]
 * [[jerusalem/characters/maikl_uorren\|Майкл Уоррен]]
 * [[jerusalem/characters/dorin_uorren\|Дорин Уоррен]]
@@ -38,6 +40,7 @@ Esto служебный файл для автоматической сборк�
 * [[jerusalem/characters/denni_raili\|Дэнни Райли]]
 
 ### Локации
+
 * [[jerusalem/locations/abingtonskaya_ulica\|Абингтонская улица]]
 * [[jerusalem/locations/magazin_plotnikov\|Магазин плотников]]
 * [[jerusalem/locations/rucheyniy_pereulok\|Ручейный переулок]]
@@ -51,6 +54,7 @@ Esto служебный файл для автоматической сборк�
 * [[jerusalem/locations/shepchushchaya_galereya\|Шепчущая галерея]]
 
 ### Артефакты
+
 * [[jerusalem/locations/portimot_di_noran\|Портимот ди Норан]]
 * [[jerusalem/artifacts/doznanie_vernallov\|Дознание Верналлов]]
 * [[jerusalem/artifacts/zolotye_instrumenty\|Золотые инструменты плотников]]
