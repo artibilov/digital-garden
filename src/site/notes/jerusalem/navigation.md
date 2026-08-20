@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/jerusalem/navigation/","title":"Навигация по книге","dg-note-properties":{"title":"Навигация по книге","permalink":"/jerusalem/navigation/"}}
+{"dg-publish":true,"permalink":"/jerusalem/navigation/","title":"Навигация по книге","dg-note-properties":{"title":"Навигация по книге","permalink":"jerusalem/navigation"}}
 ---
 
 Esto служебный файл для автоматической сборки бокового меню книги.
