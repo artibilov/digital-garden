@@ -8,6 +8,7 @@ Esto служебный файл для автоматической сборк�
 * [[jerusalem/movements/prelyudiya_neokonchenniy_trud\|Прелюдия. НЕОКОНЧЕННЫЙ ТРУД]]
 * [[jerusalem/movements/strasti_po_asbo\|Страсти по ASBO]]
 * [[jerusalem/movements/neprikayannye\|Неприкаянные]]
+* [[jerusalem/movements/mesto_oboznacheno_krestom\|Место обозначено крестом]]
 
 ### Герои
 * [[jerusalem/characters/alma_uorren\|Альма Уоррен]]
@@ -28,11 +29,17 @@ Esto служебный файл для автоматической сборк�
 * [[jerusalem/characters/monah_petr\|Монах Петр]]
 * [[jerusalem/characters/meri_dzhein\|Мэри Джейн]]
 * [[jerusalem/characters/drug_freddi_na_alom_kolodce\|Пожилой друг Фредди на Алом Колодце]]
+* [[jerusalem/characters/ern_vernall\|Эрн Верналл]]
+* [[jerusalem/characters/enn_vernall\|Энн Верналл]]
+* [[jerusalem/characters/tursa_vernall\|Турса Верналл]]
+* [[jerusalem/characters/dzhon_vernall\|Джон Верналл]]
+* [[jerusalem/characters/bill_mabbut\|Билл Маббут]]
+* [[jerusalem/characters/albert_pickles\|Альберт Пиклс]]
+* [[jerusalem/characters/denni_raili\|Дэнни Райли]]
 
 ### Локации
 * [[jerusalem/locations/abingtonskaya_ulica\|Абингтонская улица]]
 * [[jerusalem/locations/magazin_plotnikov\|Магазин плотников]]
-* [[jerusalem/locations/portimot_di_noran\|Портимот ди Норан]]
 * [[jerusalem/locations/rucheyniy_pereulok\|Ручейный переулок]]
 * [[jerusalem/locations/bannaya_ulica\|Банная улица]]
 * [[jerusalem/locations/zolotaya_ulica\|Золотая улица]]
@@ -40,8 +47,11 @@ Esto служебный файл для автоматической сборк�
 * [[jerusalem/locations/cerkov_svyatogo_petra\|Церковь Святого Петра]]
 * [[jerusalem/locations/bilyardny_zal_na_podkovnoy\|Бильярдный зал на Подковной улице]]
 * [[jerusalem/locations/kabinet_dzhordzhi\|Кабинет Джорджи]]
+* [[jerusalem/locations/sobor_svyatogo_pavla\|Собор Святого Павла]]
+* [[jerusalem/locations/shepchushchaya_galereya\|Шепчущая галерея]]
 
 ### Артефакты
+* [[jerusalem/locations/portimot_di_noran\|Портимот ди Норан]]
 * [[jerusalem/artifacts/doznanie_vernallov\|Дознание Верналлов]]
 * [[jerusalem/artifacts/zolotye_instrumenty\|Золотые инструменты плотников]]
 * [[jerusalem/artifacts/albom_o_diane\|Альбом о принцессе Диане]]
