@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"jerusalem/artifacts/zolotye-instrumenty","permalink":"/jerusalem/artifacts/zolotye-instrumenty/","dg-note-properties":{"type":"artifact","персонажи":[],"timeslot_start":null,"timeslot_end":null}}
+{"dg-publish":true,"dg-permalink":"jerusalem/artifacts/zolotye-instrumenty/","permalink":"/jerusalem/artifacts/zolotye-instrumenty/","dg-note-properties":{"type":"artifact","персонажи":[],"timeslot_start":null,"timeslot_end":null}}
 ---
 
 

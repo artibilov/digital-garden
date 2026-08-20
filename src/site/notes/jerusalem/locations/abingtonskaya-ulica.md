@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"jerusalem/locations/abingtonskaya-ulica","permalink":"/jerusalem/locations/abingtonskaya-ulica/","dg-note-properties":{"type":"location","персонажи":[],"timeslot_start":null,"timeslot_end":null}}
+{"dg-publish":true,"dg-permalink":"jerusalem/locations/abingtonskaya-ulica/","permalink":"/jerusalem/locations/abingtonskaya-ulica/","dg-note-properties":{"type":"location","персонажи":[],"timeslot_start":null,"timeslot_end":null}}
 ---
 
 * **Название**: [[jerusalem/locations/abingtonskaya-ulica\|Абингтонская улица]] (Abington Street).

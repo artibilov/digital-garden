@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"jerusalem/locations/rucheyniy-pereulok","permalink":"/jerusalem/locations/rucheyniy-pereulok/","dg-note-properties":{"type":"location","персонажи":[],"timeslot_start":null,"timeslot_end":null}}
+{"dg-publish":true,"dg-permalink":"jerusalem/locations/rucheyniy-pereulok/","permalink":"/jerusalem/locations/rucheyniy-pereulok/","dg-note-properties":{"type":"location","персонажи":[],"timeslot_start":null,"timeslot_end":null}}
 ---
 
 * **Название**: [[jerusalem/locations/rucheyniy-pereulok\|Ручейный переулок]] (Scarlet Well Street / Brook Street).

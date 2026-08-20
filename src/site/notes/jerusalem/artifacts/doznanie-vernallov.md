@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"jerusalem/artifacts/doznanie-vernallov","permalink":"/jerusalem/artifacts/doznanie-vernallov/","dg-note-properties":{"type":"artifact","персонажи":["[[jerusalem/characters/dorin-uorren\|Дорин Уоррен]]","[[tretiy-boro|Третий Боро]]"],"timeslot_start":null,"timeslot_end":null}}
+{"dg-publish":true,"dg-permalink":"jerusalem/artifacts/doznanie-vernallov/","permalink":"/jerusalem/artifacts/doznanie-vernallov/","dg-note-properties":{"type":"artifact","персонажи":["[[jerusalem/characters/dorin-uorren\|Дорин Уоррен]]","[[tretiy-boro|Третий Боро]]"],"timeslot_start":null,"timeslot_end":null}}
 ---
 
 

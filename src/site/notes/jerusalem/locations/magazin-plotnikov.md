@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"jerusalem/locations/magazin-plotnikov","permalink":"/jerusalem/locations/magazin-plotnikov/","dg-note-properties":{"type":"location","персонажи":["[[tretiy-boro|Третий Боро]]","[[dorin-uorren|Дорин Уоррен]]"],"timeslot_start":null,"timeslot_end":null}}
+{"dg-publish":true,"dg-permalink":"jerusalem/locations/magazin-plotnikov/","permalink":"/jerusalem/locations/magazin-plotnikov/","dg-note-properties":{"type":"location","персонажи":["[[tretiy-boro|Третий Боро]]","[[dorin-uorren|Дорин Уоррен]]"],"timeslot_start":null,"timeslot_end":null}}
 ---
 
 * **Название**: [[jerusalem/locations/magazin-plotnikov\|Магазин плотников]] (The Carpenters' Shop).

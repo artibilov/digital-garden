@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"jerusalem/characters/alma-uorren","permalink":"/jerusalem/characters/alma-uorren/","dg-note-properties":{"type":"character","персонажи":["[[jerusalem/characters/alma-uorren\|Альма Уоррен]]"],"timeslot_start":1954,"timeslot_end":null}}
+{"dg-publish":true,"dg-permalink":"jerusalem/characters/alma-uorren/","permalink":"/jerusalem/characters/alma-uorren/","dg-note-properties":{"type":"character","персонажи":["[[jerusalem/characters/alma-uorren\|Альма Уоррен]]"],"timeslot_start":1954,"timeslot_end":null}}
 ---
 
 * **Имя**: [[jerusalem/characters/alma-uorren\|Альма Уоррен]] (Alma Warren).

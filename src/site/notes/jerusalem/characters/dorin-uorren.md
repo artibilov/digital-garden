@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"jerusalem/characters/dorin-uorren","permalink":"/jerusalem/characters/dorin-uorren/","dg-note-properties":{"type":"character","персонажи":["[[jerusalem/characters/dorin-uorren\|Дорин Уоррен]]"],"timeslot_start":null,"timeslot_end":null}}
+{"dg-publish":true,"dg-permalink":"jerusalem/characters/dorin-uorren/","permalink":"/jerusalem/characters/dorin-uorren/","dg-note-properties":{"type":"character","персонажи":["[[jerusalem/characters/dorin-uorren\|Дорин Уоррен]]"],"timeslot_start":null,"timeslot_end":null}}
 ---
 
 * **Имя**: [[jerusalem/characters/dorin-uorren\|Дорин Уоррен]] (Doreen Warren), урожденная Верналл.

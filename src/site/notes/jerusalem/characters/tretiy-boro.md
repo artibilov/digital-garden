@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"jerusalem/characters/tretiy-boro","permalink":"/jerusalem/characters/tretiy-boro/","dg-note-properties":{"type":"character","персонажи":["[[jerusalem/characters/tretiy-boro\|Третий Боро]]"],"timeslot_start":null,"timeslot_end":null}}
+{"dg-publish":true,"dg-permalink":"jerusalem/characters/tretiy-boro/","permalink":"/jerusalem/characters/tretiy-boro/","dg-note-properties":{"type":"character","персонажи":["[[jerusalem/characters/tretiy-boro\|Третий Боро]]"],"timeslot_start":null,"timeslot_end":null}}
 ---
 
 * **Имя**: [[jerusalem/characters/tretiy-boro\|Третий Боро]] (Third Borough), также упоминается как «Трёшный Бора».
