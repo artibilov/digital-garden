@@ -1,0 +1,16 @@
+---
+{"dg-publish":true,"dg-permalink":"jerusalem/movements/strasti_po_asbo","permalink":"/jerusalem/movements/strasti_po_asbo/","dg-note-properties":{"type":"movement","эпизод":"Страсти по ASBO","часть":1,"timeslot_start":2006,"timeslot_end":2006}}
+---
+
+
+В пятницу, 26 мая 2006 года, девятнадцатилетняя проститутка [[jerusalem/characters/marla_stails\|Марла Стайлс]] находится в своей запущенной квартире в одном из корпусов социального жилья на [[jerusalem/locations/bannaya_ulica\|Банной улице]] в Боро. На ней висит [[jerusalem/artifacts/sudebnoe_predpisanie_asbo\|судебное предписание ASBO]], полученное из-за постоянных конфликтов с недоброжелательной соседкой [[jerusalem/characters/linda_roberts\|Линдой Робертс]].
+
+[[jerusalem/characters/marla_stails\|Марла Стайлс]] пытается отвлечься от депрессии и отсутствия наркотиков. Она рассматривает свой [[jerusalem/artifacts/albom_o_diane\|Альбом о принцессе Диане]] — самодельный альбом со склеенной аппликацией на обложке, где лицо покойной принцессы Дианы вклеено на место солнца. Для нее этот альбом является настоящим шедевром искусства.
+
+К ней в дверь стучится сосед, пожилой политический активист [[jerusalem/characters/roman_tompson\|Роман Томпсон]], который приглашает ее посетить завтра в субботу выставку картин своей знакомой художницы Альмы Уоррен на Замковом Холме. [[jerusalem/characters/marla_stails\|Марла]] дает обещание прийти, хотя оба понимают, что она этого не сделает. Оставшись одна, [[jerusalem/characters/marla_stails\|Марла]] злится на свою мать [[jerusalem/characters/rouz_stails\|Роуз Стайлс]], которая критикует ее за образ жизни и торговлю собой на Графтонской улице, хотя сама злоупотребляет сидром и марихуаной. В мыслях [[jerusalem/characters/marla_stails\|Марлы]] также появляется ее воображаемый сигаретный демон [[jerusalem/characters/pepelny_moisei\|Пепельный Моисей]], возникающий из тлеющего огонька сигареты.
+
+[[jerusalem/characters/marla_stails\|Марла Стайлс]] выходит на улицу в поисках клиентов. Она идет по [[jerusalem/locations/bannaya_ulica\|Банной улице]], пересекает Конный Рынок и останавливается на углу [[jerusalem/locations/zolotaya_ulica\|Золотой улицы]] и [[jerusalem/locations/podkovnaya_ulica\|Подковной улицы]], надеясь перехватить возвращающихся с работы мужчин. Она фантазирует об идеальном накачанном и женственном парне с чувством юмора, за встречу с которым сама была бы готова заплатить, лишь бы не сталкиваться со своим сутенером [[jerusalem/characters/kit\|Китом]].
+
+На углу [[jerusalem/locations/zolotaya_ulica\|Золотой улицы]] [[jerusalem/characters/marla_stails\|Марла]] сталкивается со странно одетым, пьяным и эксцентричным мужчиной средних лет. Это [[jerusalem/characters/benedikt_perrit\|Бенедикт Перрит]]. Она предлагает ему «развлечься», однако [[jerusalem/characters/benedikt_perrit\|Бенедикт]] театрально и преувеличенно комично разыгрывает шок, начинает смеяться и заявляет, что он «публикующийся поэт». [[jerusalem/characters/marla_stails\|Марла]] решает уйти и идет мимо [[jerusalem/locations/cerkov_svyatogo_petra\|Церкви Святого Петра]] в сторону вокзала, замечая у дверей храма спальные мешки бездомных.
+
+Осознавая бесперспективность работы у вокзала из-за обилия камер, [[jerusalem/characters/marla_stails\|Марла]] решает пойти к наркодилеру [[jerusalem/characters/zhirny_kenni\|Жирному Кенни]], который живет в корпусе у
