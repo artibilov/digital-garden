@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"jerusalem/characters/maikl-uorren/","permalink":"/jerusalem/characters/maikl-uorren/","dg-note-properties":{"type":"character","персонажи":["[[jerusalem/characters/maikl-uorren\|Майкл Уоррен]]"],"timeslot_start":1958,"timeslot_end":null}}
+{"dg-publish":true,"dg-permalink":"jerusalem/characters/maikl-uorren/","permalink":"/jerusalem/characters/maikl-uorren/","dg-note-properties":{"type":"character","персонажи":null,"timeslot_start":1958,"timeslot_end":null}}
 ---
 
 * **Имя**: [[jerusalem/characters/maikl-uorren\|Майкл Уоррен]] (Michael Warren), в будущем также известный как Мик, Уорри или Могучий Майк.
