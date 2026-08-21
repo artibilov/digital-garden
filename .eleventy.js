@@ -45,16 +45,34 @@ module.exports = function(eleventyConfig) {
         return resolveWikiLink(p1, allPages);
       });
 
-      // 2. СБОРКА САЙДБАРА ИЗ СЛУЖЕБНОГО ФАЙЛА НАВИГАЦИИ
-      const currentFolder = this.page.inputPath.split("/").reverse()[1]; 
+// 2. СБОРКА САЙДБАРА ИЗ СЛУЖЕБНОГО ФАЙЛА НАВИГАЦИИ
+      const pathSegments = this.page.inputPath.split("/").filter(Boolean);
+      const folderSegments = pathSegments.slice(0, -1);
 
-      const currentBookCollection = global.eleventyCollectionsAll ? 
-        global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(`/${currentFolder}/`)) : [];
+      let configPage = null;
+      let currentBookCollection = [];
+      let currentFolder = folderSegments[folderSegments.length - 1] || "";
 
-      const configPage = currentBookCollection.find(p => p.inputPath && p.inputPath.toLowerCase().includes("navigation.md"));
+      // Поднимаемся от текущей подпапки к корню книги в поисках navigation.md
+      for (let i = folderSegments.length; i > 0; i--) {
+        const targetPathPart = "/" + folderSegments.slice(0, i).join("/") + "/";
+        
+        const matches = global.eleventyCollectionsAll ? 
+          global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(targetPathPart)) : [];
+
+        const nav = matches.find(p => p.inputPath && p.inputPath.toLowerCase().includes("navigation.md"));
+
+        if (nav) {
+          configPage = nav;
+          currentBookCollection = matches;
+          currentFolder = folderSegments[i - 1];
+          break;
+        }
+      }
+
       const indexPage = currentBookCollection.find(p => p.data && (p.data.type === "index" || p.data.type === "main"));
 
-      let currentBookTitle = currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1);
+      let currentBookTitle = currentFolder ? currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1) : "Книга";
       if (indexPage && indexPage.data && indexPage.data.title) {
         currentBookTitle = indexPage.data.title;
       }
