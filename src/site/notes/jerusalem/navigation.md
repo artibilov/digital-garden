@@ -11,7 +11,7 @@ Esto служебный файл для автоматической сборк�
 * [[jerusalem/movements/neprikayannye\|Неприкаянные]]
 * [[jerusalem/movements/mesto_oboznacheno_krestom\|Место обозначено крестом]]
 
-### Герои
+### Основные действующие лица
 
 * [[jerusalem/characters/alma_uorren\|Альма Уоррен]]
 * [[jerusalem/characters/maikl_uorren\|Майкл Уоррен]]
