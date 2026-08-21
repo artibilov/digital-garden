@@ -127,7 +127,6 @@ module.exports = function(eleventyConfig) {
       const bodyClass = isMainPage ? "main-page-layout" : "";
       const renderSidebar = isMainPage ? "" : sidebarHtml;
 
-      // ОЧИСТКА ТЕКСТА ОТ ОСТАТКОВ СКРИПТОВ ПЛАГИНА
       let mainTextContent = content;
       const scriptRegex = /(<script[\s\S]*?<\/script>)/gi;
       let matchScript;
@@ -146,39 +145,42 @@ module.exports = function(eleventyConfig) {
     <link rel="stylesheet" href="/digital-garden/style.css">
     
     <style>
-        /* ГЛОБАЛЬНЫЕ СТИЛИ ВСПЛЫВАЮЩЕЙ СНОСКИ (работают везде) */
-        .footnote-popover {
-            position: fixed !important;
-            z-index: 999999 !important;
-            background: #ffffff !important;
-            color: #1a202c !important;
-            border: 1px solid #cbd5e1 !important;
-            border-radius: 8px !important;
-            padding: 10px 14px !important;
-            font-size: 0.85rem !important;
-            line-height: 1.4 !important;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
-            width: 280px !important;
-            max-width: 90vw !important;
-            visibility: hidden;
-            opacity: 0;
-            pointer-events: none;
-            margin: 0 !important;
-            transition: opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
-        }
-
-        .footnote-popover.is-active {
-            visibility: visible !important;
-            opacity: 1 !important;
+        /* ЧИСТЫЙ CSS ДЛЯ ВСПЛЫВАЮЩИХ СНОСОК ВНУТРИ ТЕКСТА */
+        .footnote-ref {
+            position: relative !important;
+            display: inline-block !important;
         }
 
         .footnote-ref a {
-            text-decoration: none;
-            font-weight: bold;
-            color: #3182ce;
+            text-decoration: none !important;
+            font-weight: bold !important;
+            color: #3182ce !important;
+            padding: 0 2px !important;
         }
 
-        /* Мобильная адаптация поверх основного style.css */
+        /* Окно сноски через CSS ::after */
+        .footnote-ref[data-footnote]:hover::after {
+            content: attr(data-footnote);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            color: #2d3748;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.82rem;
+            font-weight: normal;
+            line-height: 1.4;
+            white-space: normal;
+            width: max-content;
+            max-width: 280px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            z-index: 9999;
+            pointer-events: none;
+        }
+
         @media (max-width: 768px) {
             .layout-wrapper {
                 display: flex !important;
@@ -225,8 +227,6 @@ module.exports = function(eleventyConfig) {
         </main>
     </div>
 
-    <div id="footnote-popover" class="footnote-popover"></div>
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var sidebar = document.querySelector(".sidebar-nav");
@@ -238,53 +238,26 @@ module.exports = function(eleventyConfig) {
                 });
             }
 
-            // ЛОГИКА ВСПЛЫВАЮЩИХ СНОСОК
-            var popover = document.getElementById("footnote-popover");
-            if (!popover) return;
+            // ПЕРЕНОС ТЕКСТА СНОСОК В АТРИБУТ DATA-FOOTNOTE
+            var refs = document.querySelectorAll(".footnote-ref");
+            refs.forEach(function(ref) {
+                var link = ref.querySelector("a");
+                if (!link) return;
+                
+                var href = link.getAttribute("href");
+                if (!href) return;
 
-            document.body.appendChild(popover);
-
-            var fnLinks = document.querySelectorAll("a[href^='#fn']");
-
-            fnLinks.forEach(function(link) {
-                if (link.classList.contains("footnote-backref") || link.getAttribute("href").startsWith("#fnref")) {
-                    return;
-                }
-
-                link.addEventListener("mouseenter", function(e) {
-                    var targetId = link.getAttribute("href").substring(1);
-                    var targetElem = document.getElementById(targetId);
-                    
-                    if (!targetElem) return;
-
-                    var clone = targetElem.cloneNode(true);
+                var fnId = href.replace("#", "");
+                var targetFn = document.getElementById(fnId);
+                
+                if (targetFn) {
+                    var clone = targetFn.cloneNode(true);
                     var backrefs = clone.querySelectorAll(".footnote-backref");
                     backrefs.forEach(function(b) { b.remove(); });
-
-                    popover.innerHTML = clone.innerHTML;
-
-                    var rect = link.getBoundingClientRect();
-                    var popoverWidth = 280;
                     
-                    var left = rect.left + (rect.width / 2) - (popoverWidth / 2);
-                    if (left < 10) left = 10;
-                    if (left + popoverWidth > window.innerWidth - 10) {
-                        left = window.innerWidth - popoverWidth - 10;
-                    }
-
-                    var top = rect.top - popover.offsetHeight - 8;
-                    if (top < 10) {
-                        top = rect.bottom + 8;
-                    }
-
-                    popover.style.left = left + "px";
-                    popover.style.top = top + "px";
-                    popover.classList.add("is-active");
-                });
-
-                link.addEventListener("mouseleave", function() {
-                    popover.classList.remove("is-active");
-                });
+                    var text = clone.textContent.trim();
+                    ref.setAttribute("data-footnote", text);
+                }
             });
         });
     </script>
