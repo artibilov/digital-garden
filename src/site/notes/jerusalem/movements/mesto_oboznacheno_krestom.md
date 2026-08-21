@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"jerusalem/movements/mesto_oboznacheno_krestom","permalink":"/jerusalem/movements/mesto_oboznacheno_krestom/","dg-note-properties":{"type":"movement","эпизод":"Место обозначено крестом","часть":1,"timeslot_start":1715,"timeslot_end":1715}}
+{"dg-publish":true,"dg-permalink":"jerusalem/movements/mesto_oboznacheno_krestom/","permalink":"/jerusalem/movements/mesto_oboznacheno_krestom/","dg-note-properties":{"type":"movement","эпизод":"Место обозначено крестом","часть":1,"timeslot_start":1715,"timeslot_end":1715}}
 ---
 
 
