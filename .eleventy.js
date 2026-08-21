@@ -20,7 +20,7 @@ module.exports = function(eleventyConfig) {
     const linkText = (parts[1] || parts[0]).trim(); 
 
     const targetFileName = rawPath.split("/").pop().replace(".md", "").toLowerCase().trim();
-    const pagesSource = (allPages.length > 0) ? allPages : (global.eleventyCollectionsAll || []);
+    const pagesSource = (allPages && allPages.length > 0) ? allPages : (global.eleventyCollectionsAll || []);
 
     const foundPage = pagesSource.find(page => {
       if (!page.inputPath) return false;
@@ -45,7 +45,7 @@ module.exports = function(eleventyConfig) {
         return resolveWikiLink(p1, allPages);
       });
 
-// 2. СБОРКА САЙДБАРА ИЗ СЛУЖЕБНОГО ФАЙЛА НАВИГАЦИИ
+      // 2. СБОРКА САЙДБАРА ИЗ СЛУЖЕБНОГО ФАЙЛА НАВИГАЦИИ (ПОИСК СНИЗУ ВВЕРХ ПО ПАПКАМ)
       const currentInputPath = (this.page.inputPath || "").replace(/\\/g, "/");
       const pathParts = currentInputPath.split("/").filter(Boolean);
       const folderParts = pathParts.slice(0, -1);
@@ -54,10 +54,9 @@ module.exports = function(eleventyConfig) {
       let currentBookCollection = [];
       let currentFolder = folderParts[folderParts.length - 1] || "";
 
-      // Используем уже существующую переменную allPages или берем из global
       const pagesToSearch = (allPages && allPages.length > 0) ? allPages : (global.eleventyCollectionsAll || []);
 
-      // Поднимаемся по дереву папок снизу вверх в поисках файла navigation.md
+      // Поднимаемся по дереву папок от файла к корню в поисках navigation.md
       for (let i = folderParts.length; i > 0; i--) {
         const folderPathChunk = folderParts.slice(0, i).join("/");
         
@@ -77,20 +76,6 @@ module.exports = function(eleventyConfig) {
           });
           break;
         }
-      }
-
-      const indexPage = currentBookCollection.find(p => p.data && (p.data.type === "index" || p.data.type === "main"));
-
-      let currentBookTitle = currentFolder ? currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1) : "Книга";
-      if (indexPage && indexPage.data && indexPage.data.title) {
-        currentBookTitle = indexPage.data.title;
-      }
-
-      const indexPage = currentBookCollection.find(p => p.data && (p.data.type === "index" || p.data.type === "main"));
-
-      let currentBookTitle = currentFolder ? currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1) : "Книга";
-      if (indexPage && indexPage.data && indexPage.data.title) {
-        currentBookTitle = indexPage.data.title;
       }
 
       const indexPage = currentBookCollection.find(p => p.data && (p.data.type === "index" || p.data.type === "main"));
