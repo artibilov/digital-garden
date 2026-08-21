@@ -154,25 +154,29 @@ module.exports = function(eleventyConfig) {
                 display: flex !important;
                 flex-direction: column !important;
             }
-            .footnote-popover {
-                    position: absolute;
-                    z-index: 1000;
-                    background: #ffffff;
-                    color: #2d3748;
-                    border: 1px solid #e2e8f0;
-                    border-radius: 8px;
-                    padding: 10px 14px;
-                    font-size: 0.88rem;
-                    line-height: 1.4;
-                    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-                    max-width: 320px;
-                    display: none;
-                    pointer-events: none;
-                }
-                .footnote-ref a {
-                    text-decoration: none;
-                    font-weight: bold;
-                }
+        /* Контейнер всплывающей сноски */
+          .footnote-popover {
+              position: absolute;
+              z-index: 9999;
+              background: #ffffff;
+              color: #1a202c;
+              border: 1px solid #cbd5e1;
+              border-radius: 8px;
+              padding: 8px 12px;
+              font-size: 0.85rem;
+              line-height: 1.4;
+              box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+              max-width: 300px;
+              display: none;
+              pointer-events: none;
+          }
+          /* Чтобы сама сноска визуально подсвечивалась при наведении */
+            .footnote-ref a {
+                text-decoration: none;
+                font-weight: bold;
+                color: #3182ce;
+                padding: 0 2px;
+            }
                 
             /* Сайдбар больше не фиксируется сбоку, а идет обычным блоком сверху */
             .sidebar-nav {
@@ -230,48 +234,60 @@ module.exports = function(eleventyConfig) {
 <div id="footnote-popover" class="footnote-popover"></div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var popover = document.getElementById("footnote-popover");
-        var footnoteRefs = document.querySelectorAll(".footnote-ref a");
+  document.addEventListener("DOMContentLoaded", function() {
+      var popover = document.getElementById("footnote-popover");
+      if (!popover) return;
 
-        footnoteRefs.forEach(function(ref) {
-            ref.addEventListener("mouseenter", function(e) {
-                var href = ref.getAttribute("href");
-                if (!href || !href.startsWith("#fn")) return;
+      // Находим абсолютно все ссылки, ведущие на сноски (#fn1, #fnref1 и т.д.)
+      var fnLinks = document.querySelectorAll("a[href^='#fn']");
 
-                var targetFn = document.getElementById(href.substring(1));
-                if (!targetFn) return;
+      fnLinks.forEach(function(link) {
+          // Игнорируем стрелки возврата из подвала (они ведут на #fnref)
+          if (link.classList.contains("footnote-backref") || link.getAttribute("href").startsWith("#fnref")) {
+              return;
+          }
 
-                var fnContent = targetFn.cloneNode(true);
-                var backLinks = fnContent.querySelectorAll(".footnote-backref");
-                backLinks.forEach(function(bl) { bl.remove(); });
+          link.addEventListener("mouseenter", function(e) {
+              var targetId = link.getAttribute("href").substring(1);
+              var targetElem = document.getElementById(targetId);
+              
+              if (!targetElem) return;
 
-                popover.innerHTML = fnContent.innerHTML;
-                popover.style.display = "block";
+              // Клонируем содержимое сноски
+              var clone = targetElem.cloneNode(true);
+              
+              // Удаляем стрелку возврата ↩ из текста всплывашки
+              var backrefs = clone.querySelectorAll(".footnote-backref");
+              backrefs.forEach(function(b) { b.remove(); });
 
-                var rect = ref.getBoundingClientRect();
-                var popoverWidth = 320;
-                var left = rect.left + window.scrollX - (popoverWidth / 2) + (rect.width / 2);
-                
-                if (left < 10) left = 10;
-                if (left + popoverWidth > window.innerWidth - 10) {
-                    left = window.innerWidth - popoverWidth - 10;
-                }
+              popover.innerHTML = clone.innerHTML;
+              popover.style.display = "block";
 
-                var top = rect.top + window.scrollY - popover.offsetHeight - 8;
-                if (top < window.scrollY) {
-                    top = rect.bottom + window.scrollY + 8;
-                }
+              // Расчет точных координат на экране
+              var rect = link.getBoundingClientRect();
+              var popoverWidth = 280;
+              
+              var left = rect.left + window.scrollX - (popoverWidth / 2) + (rect.width / 2);
+              if (left < 10) left = 10;
+              if (left + popoverWidth > window.innerWidth - 10) {
+                  left = window.innerWidth - popoverWidth - 10;
+              }
 
-                popover.style.left = left + "px";
-                popover.style.top = top + "px";
-            });
+              var top = rect.top + window.scrollY - popover.offsetHeight - 8;
+              if (top < window.scrollY) {
+                  top = rect.bottom + window.scrollY + 8;
+              }
 
-            ref.addEventListener("mouseleave", function() {
-                popover.style.display = "none";
-            });
-        });
-    });
+              popover.style.left = left + "px";
+              popover.style.top = top + "px";
+          });
+
+          link.addEventListener("mouseleave", function() {
+              popover.style.display = "none";
+          });
+      });
+  });
+</script>
 </script>
 
     
