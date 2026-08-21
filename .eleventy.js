@@ -1,4 +1,5 @@
 const markdownIt = require("markdown-it");
+const markdownItFootnote = require("markdown-it-footnote"); // <--- 21.08.2026
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("style.css");
@@ -9,7 +10,8 @@ module.exports = function(eleventyConfig) {
     return data.permalink || undefined; 
   });
 
-  let markdownLib = markdownIt({ html: true });
+  //let markdownLib = markdownIt({ html: true });
+  let markdownLib = markdownIt({ html: true }).use(markdownItFootnote);
   eleventyConfig.setLibrary("md", markdownLib);
 
   // ФУНКЦИЯ ПРЕВРАЩЕНИЯ ВИКИ-ССЫЛКИ В HTML
@@ -152,7 +154,26 @@ module.exports = function(eleventyConfig) {
                 display: flex !important;
                 flex-direction: column !important;
             }
-
+            .footnote-popover {
+                    position: absolute;
+                    z-index: 1000;
+                    background: #ffffff;
+                    color: #2d3748;
+                    border: 1px solid #e2e8f0;
+                    border-radius: 8px;
+                    padding: 10px 14px;
+                    font-size: 0.88rem;
+                    line-height: 1.4;
+                    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+                    max-width: 320px;
+                    display: none;
+                    pointer-events: none;
+                }
+                .footnote-ref a {
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+                
             /* Сайдбар больше не фиксируется сбоку, а идет обычным блоком сверху */
             .sidebar-nav {
                 width: 100% !important;
@@ -206,6 +227,54 @@ module.exports = function(eleventyConfig) {
             });
         });
     </script>
+<div id="footnote-popover" class="footnote-popover"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var popover = document.getElementById("footnote-popover");
+        var footnoteRefs = document.querySelectorAll(".footnote-ref a");
+
+        footnoteRefs.forEach(function(ref) {
+            ref.addEventListener("mouseenter", function(e) {
+                var href = ref.getAttribute("href");
+                if (!href || !href.startsWith("#fn")) return;
+
+                var targetFn = document.getElementById(href.substring(1));
+                if (!targetFn) return;
+
+                var fnContent = targetFn.cloneNode(true);
+                var backLinks = fnContent.querySelectorAll(".footnote-backref");
+                backLinks.forEach(function(bl) { bl.remove(); });
+
+                popover.innerHTML = fnContent.innerHTML;
+                popover.style.display = "block";
+
+                var rect = ref.getBoundingClientRect();
+                var popoverWidth = 320;
+                var left = rect.left + window.scrollX - (popoverWidth / 2) + (rect.width / 2);
+                
+                if (left < 10) left = 10;
+                if (left + popoverWidth > window.innerWidth - 10) {
+                    left = window.innerWidth - popoverWidth - 10;
+                }
+
+                var top = rect.top + window.scrollY - popover.offsetHeight - 8;
+                if (top < window.scrollY) {
+                    top = rect.bottom + window.scrollY + 8;
+                }
+
+                popover.style.left = left + "px";
+                popover.style.top = top + "px";
+            });
+
+            ref.addEventListener("mouseleave", function() {
+                popover.style.display = "none";
+            });
+        });
+    });
+</script>
+
+    
 </body>
 </html>`;
     }
