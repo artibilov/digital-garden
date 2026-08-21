@@ -46,28 +46,48 @@ module.exports = function(eleventyConfig) {
       });
 
 // 2. СБОРКА САЙДБАРА ИЗ СЛУЖЕБНОГО ФАЙЛА НАВИГАЦИИ
-      const pathSegments = this.page.inputPath.split("/").filter(Boolean);
-      const folderSegments = pathSegments.slice(0, -1);
+      // Нормализуем путь текущего файла, заменяя обратные слэши \ на прямые /
+      const currentInputPath = (this.page.inputPath || "").replace(/\\/g, "/");
+      const pathParts = currentInputPath.split("/").filter(Boolean);
+
+      // Получаем список папок, в которых находится текущий файл
+      const folderParts = pathParts.slice(0, -1);
 
       let configPage = null;
       let currentBookCollection = [];
-      let currentFolder = folderSegments[folderSegments.length - 1] || "";
+      let currentFolder = folderParts[folderParts.length - 1] || "";
 
-      // Поднимаемся от текущей подпапки к корню книги в поисках navigation.md
-      for (let i = folderSegments.length; i > 0; i--) {
-        const targetPathPart = "/" + folderSegments.slice(0, i).join("/") + "/";
+      const allPages = global.eleventyCollectionsAll || [];
+
+      // Поднимаемся по дереву папок снизу вверх в поисках файла navigation.md
+      for (let i = folderParts.length; i > 0; i--) {
+        const folderPathChunk = folderParts.slice(0, i).join("/");
         
-        const matches = global.eleventyCollectionsAll ? 
-          global.eleventyCollectionsAll.filter(p => p.inputPath && p.inputPath.includes(targetPathPart)) : [];
+        // Ищем navigation.md, у которого путь содержит текущую цепочку папок
+        const foundNav = allPages.find(p => {
+          if (!p.inputPath) return false;
+          const normalizedPath = p.inputPath.replace(/\\/g, "/");
+          return normalizedPath.includes(folderPathChunk) && normalizedPath.toLowerCase().includes("navigation.md");
+        });
 
-        const nav = matches.find(p => p.inputPath && p.inputPath.toLowerCase().includes("navigation.md"));
-
-        if (nav) {
-          configPage = nav;
-          currentBookCollection = matches;
-          currentFolder = folderSegments[i - 1];
+        if (foundNav) {
+          configPage = foundNav;
+          currentFolder = folderParts[i - 1]; // Берем название папки книги, где лежал navigation.md
+          
+          // Собираем все страницы, относящиеся к этой книге
+          currentBookCollection = allPages.filter(p => {
+            if (!p.inputPath) return false;
+            return p.inputPath.replace(/\\/g, "/").includes(folderPathChunk);
+          });
           break;
         }
+      }
+
+      const indexPage = currentBookCollection.find(p => p.data && (p.data.type === "index" || p.data.type === "main"));
+
+      let currentBookTitle = currentFolder ? currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1) : "Книга";
+      if (indexPage && indexPage.data && indexPage.data.title) {
+        currentBookTitle = indexPage.data.title;
       }
 
       const indexPage = currentBookCollection.find(p => p.data && (p.data.type === "index" || p.data.type === "main"));
