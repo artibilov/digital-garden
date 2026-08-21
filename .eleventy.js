@@ -1,5 +1,5 @@
 const markdownIt = require("markdown-it");
-const markdownItFootnote = require("markdown-it-footnote"); // <--- 21.08.2026
+const markdownItFootnote = require("markdown-it-footnote");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("style.css");
@@ -10,7 +10,6 @@ module.exports = function(eleventyConfig) {
     return data.permalink || undefined; 
   });
 
-  //let markdownLib = markdownIt({ html: true });
   let markdownLib = markdownIt({ html: true }).use(markdownItFootnote);
   eleventyConfig.setLibrary("md", markdownLib);
 
@@ -146,39 +145,46 @@ module.exports = function(eleventyConfig) {
     <title>${pageTitle}</title>
     <link rel="stylesheet" href="/digital-garden/style.css">
     
-    <!-- Мобильная адаптация поверх основного style.css -->
     <style>
+        /* ГЛОБАЛЬНЫЕ СТИЛИ ВСПЛЫВАЮЩЕЙ СНОСКИ (работают везде) */
+        .footnote-popover {
+            position: fixed !important;
+            z-index: 999999 !important;
+            background: #ffffff !important;
+            color: #1a202c !important;
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 8px !important;
+            padding: 10px 14px !important;
+            font-size: 0.85rem !important;
+            line-height: 1.4 !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+            width: 280px !important;
+            max-width: 90vw !important;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            margin: 0 !important;
+            transition: opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
+        }
+
+        .footnote-popover.is-active {
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        .footnote-ref a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #3182ce;
+        }
+
+        /* Мобильная адаптация поверх основного style.css */
         @media (max-width: 768px) {
-            /* Перестраиваем общую сетку из двух колонок в одну */
             .layout-wrapper {
                 display: flex !important;
                 flex-direction: column !important;
             }
-        /* Контейнер всплывающей сноски */
-          .footnote-popover {
-              position: absolute;
-              z-index: 9999;
-              background: #ffffff;
-              color: #1a202c;
-              border: 1px solid #cbd5e1;
-              border-radius: 8px;
-              padding: 8px 12px;
-              font-size: 0.85rem;
-              line-height: 1.4;
-              box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-              max-width: 300px;
-              display: none;
-              pointer-events: none;
-          }
-          /* Чтобы сама сноска визуально подсвечивалась при наведении */
-            .footnote-ref a {
-                text-decoration: none;
-                font-weight: bold;
-                color: #3182ce;
-                padding: 0 2px;
-            }
-                
-            /* Сайдбар больше не фиксируется сбоку, а идет обычным блоком сверху */
+
             .sidebar-nav {
                 width: 100% !important;
                 max-width: 100% !important;
@@ -190,14 +196,12 @@ module.exports = function(eleventyConfig) {
                 box-shadow: none !important;
             }
 
-            /* Меню внутри сайдбара делаем более компактным для скролла на телефоне */
             .sidebar-nav ul {
                 max-height: 200px !important;
                 overflow-y: auto !important;
                 padding-left: 10px !important;
             }
 
-            /* Контентный блок теперь занимает всю ширину экрана */
             .content-container {
                 margin-left: 0 !important;
                 width: 100% !important;
@@ -220,77 +224,70 @@ module.exports = function(eleventyConfig) {
             </div>
         </main>
     </div>
+
+    <div id="footnote-popover" class="footnote-popover"></div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var sidebar = document.querySelector(".sidebar-nav");
-            if (!sidebar) return;
-            var scrollTop = sessionStorage.getItem("sidebar-scroll");
-            if (scrollTop) { sidebar.scrollTop = parseInt(scrollTop, 10); }
-            window.addEventListener("beforeunload", function() {
-                sessionStorage.setItem("sidebar-scroll", sidebar.scrollTop);
+            if (sidebar) {
+                var scrollTop = sessionStorage.getItem("sidebar-scroll");
+                if (scrollTop) { sidebar.scrollTop = parseInt(scrollTop, 10); }
+                window.addEventListener("beforeunload", function() {
+                    sessionStorage.setItem("sidebar-scroll", sidebar.scrollTop);
+                });
+            }
+
+            // ЛОГИКА ВСПЛЫВАЮЩИХ СНОСОК
+            var popover = document.getElementById("footnote-popover");
+            if (!popover) return;
+
+            document.body.appendChild(popover);
+
+            var fnLinks = document.querySelectorAll("a[href^='#fn']");
+
+            fnLinks.forEach(function(link) {
+                if (link.classList.contains("footnote-backref") || link.getAttribute("href").startsWith("#fnref")) {
+                    return;
+                }
+
+                link.addEventListener("mouseenter", function(e) {
+                    var targetId = link.getAttribute("href").substring(1);
+                    var targetElem = document.getElementById(targetId);
+                    
+                    if (!targetElem) return;
+
+                    var clone = targetElem.cloneNode(true);
+                    var backrefs = clone.querySelectorAll(".footnote-backref");
+                    backrefs.forEach(function(b) { b.remove(); });
+
+                    popover.innerHTML = clone.innerHTML;
+
+                    var rect = link.getBoundingClientRect();
+                    var popoverWidth = 280;
+                    
+                    var left = rect.left + (rect.width / 2) - (popoverWidth / 2);
+                    if (left < 10) left = 10;
+                    if (left + popoverWidth > window.innerWidth - 10) {
+                        left = window.innerWidth - popoverWidth - 10;
+                    }
+
+                    var top = rect.top - popover.offsetHeight - 8;
+                    if (top < 10) {
+                        top = rect.bottom + 8;
+                    }
+
+                    popover.style.left = left + "px";
+                    popover.style.top = top + "px";
+                    popover.classList.add("is-active");
+                });
+
+                link.addEventListener("mouseleave", function() {
+                    popover.classList.remove("is-active");
+                });
             });
         });
     </script>
-<div id="footnote-popover" class="footnote-popover"></div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-      var popover = document.getElementById("footnote-popover");
-      if (!popover) return;
-
-      // Находим абсолютно все ссылки, ведущие на сноски (#fn1, #fnref1 и т.д.)
-      var fnLinks = document.querySelectorAll("a[href^='#fn']");
-
-      fnLinks.forEach(function(link) {
-          // Игнорируем стрелки возврата из подвала (они ведут на #fnref)
-          if (link.classList.contains("footnote-backref") || link.getAttribute("href").startsWith("#fnref")) {
-              return;
-          }
-
-          link.addEventListener("mouseenter", function(e) {
-              var targetId = link.getAttribute("href").substring(1);
-              var targetElem = document.getElementById(targetId);
-              
-              if (!targetElem) return;
-
-              // Клонируем содержимое сноски
-              var clone = targetElem.cloneNode(true);
-              
-              // Удаляем стрелку возврата ↩ из текста всплывашки
-              var backrefs = clone.querySelectorAll(".footnote-backref");
-              backrefs.forEach(function(b) { b.remove(); });
-
-              popover.innerHTML = clone.innerHTML;
-              popover.style.display = "block";
-
-              // Расчет точных координат на экране
-              var rect = link.getBoundingClientRect();
-              var popoverWidth = 280;
-              
-              var left = rect.left + window.scrollX - (popoverWidth / 2) + (rect.width / 2);
-              if (left < 10) left = 10;
-              if (left + popoverWidth > window.innerWidth - 10) {
-                  left = window.innerWidth - popoverWidth - 10;
-              }
-
-              var top = rect.top + window.scrollY - popover.offsetHeight - 8;
-              if (top < window.scrollY) {
-                  top = rect.bottom + window.scrollY + 8;
-              }
-
-              popover.style.left = left + "px";
-              popover.style.top = top + "px";
-          });
-
-          link.addEventListener("mouseleave", function() {
-              popover.style.display = "none";
-          });
-      });
-  });
-</script>
-</script>
-
-    
 </body>
 </html>`;
     }
