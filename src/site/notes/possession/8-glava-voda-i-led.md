@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"possession/8-glava-voda-i-led/","permalink":"/possession/8-glava-voda-i-led/","tags":["possession/motifs/motte-bailey","possession/motifs/dragons","possession/motifs/melusina","possession/motifs/ariachne"],"dg-note-properties":{"Глава":"Глава 8","type":"movement","персонажи":["[[possession/Roland Mitchell\|Роланд Митчелл]]","[[possession/Maud Bailey\|Мод Бейли]]","[[George Bailey|Джордж Бейли]]","[[Joan Bailey|Джоан Бейли]]"],"tags":["possession/motifs/motte-bailey","possession/motifs/dragons","possession/motifs/melusina","possession/motifs/ariachne"],"timeslot_start":"1986-11","timeslot_end":"1986-11"}}
+{"dg-publish":true,"dg-permalink":"possession/8-glava-voda-i-led/","permalink":"/possession/8-glava-voda-i-led/","dg-note-properties":{"Глава":"Глава 8","type":"movement","timeslot_start":"1986-11","timeslot_end":"1986-11"}}
 ---
 
 

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"possession/4-glava-bashnya-iz-terniy/","permalink":"/possession/4-glava-bashnya-iz-terniy/","tags":["possession/motifs/motte-bailey","possession/motifs/ariachne","possession/motifs/dragons","possession/motifs/melusina"],"dg-note-properties":{"Глава":"Глава 4","type":"movement","tags":["possession/motifs/motte-bailey","possession/motifs/ariachne","possession/motifs/dragons","possession/motifs/melusina"],"timeslot_start":"1986-10","timeslot_end":"1986-10"}}
+{"dg-publish":true,"dg-permalink":"possession/4-glava-bashnya-iz-terniy/","permalink":"/possession/4-glava-bashnya-iz-terniy/","dg-note-properties":{"Глава":"Глава 4","type":"movement","timeslot_start":"1986-10","timeslot_end":"1986-10"}}
 ---
 
 

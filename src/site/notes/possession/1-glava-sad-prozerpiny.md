@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"possession/1-glava-sad-prozerpiny/","permalink":"/possession/1-glava-sad-prozerpiny/","tags":["possession/motifs/dragons","possession/motifs/phoenix","possession/motifs/motte-bailey"],"dg-note-properties":{"Глава":"Глава 1","type":"movement","tags":["possession/motifs/dragons","possession/motifs/phoenix","possession/motifs/motte-bailey"],"timeslot_start":"1986-09","timeslot_end":"1986-09"}}
+{"dg-publish":true,"dg-permalink":"possession/1-glava-sad-prozerpiny/","permalink":"/possession/1-glava-sad-prozerpiny/","dg-note-properties":{"Глава":"Глава 1","type":"movement","timeslot_start":"1986-09","timeslot_end":"1986-09"}}
 ---
 
 

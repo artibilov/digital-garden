@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"possession/3-glava-nidhogg-v-muzee/","permalink":"/possession/3-glava-nidhogg-v-muzee/","tags":["possession/motifs/dragons","possession/motifs/melusina","possession/motifs/phoenix","possession/motifs/motte-bailey"],"dg-note-properties":{"Глава":"Глава 3","type":"movement","tags":["possession/motifs/dragons","possession/motifs/melusina","possession/motifs/phoenix","possession/motifs/motte-bailey"],"timeslot_start":"1986-09","timeslot_end":"1986-09"}}
+{"dg-publish":true,"dg-permalink":"possession/3-glava-nidhogg-v-muzee/","permalink":"/possession/3-glava-nidhogg-v-muzee/","dg-note-properties":{"Глава":"Глава 3","type":"movement","timeslot_start":"1986-09","timeslot_end":"1986-09"}}
 ---
 
 ### 1. Сюжетный и исследовательский маркер главы

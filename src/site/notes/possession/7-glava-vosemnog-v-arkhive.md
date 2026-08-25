@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"possession/7-glava-vosemnog-v-arkhive/","permalink":"/possession/7-glava-vosemnog-v-arkhive/","tags":["possession/motifs/motte-bailey","possession/motifs/ariachne","possession/motifs/dragons","possession/motifs/melusina"],"dg-note-properties":{"Глава":"Глава 7","type":"movement","персонажи":["[[possession/Beatrice Nest\|Беатриса Пуховер]]","[[possession/Roland Mitchell\|Роланд Митчелл]]","[[possession/Mortimer Cropper\|Мортимер Собрайл]]","[[possession/Ellen Ash\|Эллен Падуб]]"],"tags":["possession/motifs/motte-bailey","possession/motifs/ariachne","possession/motifs/dragons","possession/motifs/melusina"],"timeslot_start":"1986-10","timeslot_end":"1986-10"}}
+{"dg-publish":true,"dg-permalink":"possession/7-glava-vosemnog-v-arkhive/","permalink":"/possession/7-glava-vosemnog-v-arkhive/","dg-note-properties":{"Глава":"Глава 7","type":"movement","timeslot_start":"1986-10","timeslot_end":"1986-10"}}
 ---
 
 

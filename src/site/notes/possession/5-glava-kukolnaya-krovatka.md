@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"possession/5-glava-kukolnaya-krovatka/","permalink":"/possession/5-glava-kukolnaya-krovatka/","tags":["possession/motifs/motte-bailey","possession/motifs/dragons","possession/motifs/phoenix"],"dg-note-properties":{"Глава":"Глава 5","type":"movement","tags":["possession/motifs/motte-bailey","possession/motifs/dragons","possession/motifs/phoenix"],"timeslot_start":"1986-10","timeslot_end":"1986-10"}}
+{"dg-publish":true,"dg-permalink":"possession/5-glava-kukolnaya-krovatka/","permalink":"/possession/5-glava-kukolnaya-krovatka/","dg-note-properties":{"Глава":"Глава 5","type":"movement","timeslot_start":"1986-10","timeslot_end":"1986-10"}}
 ---
 
 

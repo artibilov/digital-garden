@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"possession/2-glava-v-podvale-nauki/","permalink":"/possession/2-glava-v-podvale-nauki/","tags":["possession/motifs/motte-bailey","possession/motifs/dragons"],"dg-note-properties":{"Глава":"Глава 2","type":"movement","tags":["possession/motifs/motte-bailey","possession/motifs/dragons"],"timeslot_start":"1986-09","timeslot_end":"1986-09"}}
+{"dg-publish":true,"dg-permalink":"possession/2-glava-v-podvale-nauki/","permalink":"/possession/2-glava-v-podvale-nauki/","dg-note-properties":{"Глава":"Глава 2","type":"movement","timeslot_start":"1986-09","timeslot_end":"1986-09"}}
 ---
 
 ### 1. Сюжетный и исследовательский маркер главы

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"possession/6-glava-velikiy-sobiratel/","permalink":"/possession/6-glava-velikiy-sobiratel/","tags":["possession/motifs/dragons","possession/motifs/phoenix","possession/motifs/motte-bailey"],"dg-note-properties":{"Глава":"Глава 6","type":"movement","персонажи":["[[possession/Mortimer Cropper\|Мортимер Собрайл]]","[[possession/Randolph Henry Ash\|Рандольф Генри Падуб]]","[[possession/James Blackadder\|Джеймс Аспидс]]","[[possession/Beatrice Nest\|Беатриса Пуховер]]"],"tags":["possession/motifs/dragons","possession/motifs/phoenix","possession/motifs/motte-bailey"],"timeslot_start":"1986-10","timeslot_end":"1986-10"}}
+{"dg-publish":true,"dg-permalink":"possession/6-glava-velikiy-sobiratel/","permalink":"/possession/6-glava-velikiy-sobiratel/","dg-note-properties":{"Глава":"Глава 6","type":"movement","timeslot_start":"1986-10","timeslot_end":"1986-10"}}
 ---
 
 
