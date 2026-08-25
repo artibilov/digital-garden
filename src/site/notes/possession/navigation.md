@@ -4,7 +4,7 @@
 
 Esto служебный файл для автоматической сборки бокового меню книги.
 
-**Содержание**
+### Содержание
 
 - [[possession/1-glava-sad-prozerpiny\|Глава 1.]]
 - [[possession/2-glava-v-podvale-nauki\|Глава 2.]]
@@ -15,7 +15,7 @@ Esto служебный файл для автоматической сборк�
 - [[possession/7-glava-vosemnog-v-arkhive\|Глава 7.]]
 - [[possession/8-glava-voda-i-led\|Глава 8.]]
 
-**Герои**
+### Герои
 
 - [[possession/Roland Mitchell\|Роланд Митчелл]]    
 - [[possession/Valerie Owens\|Валери Оуэнс]]
