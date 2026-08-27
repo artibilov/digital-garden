@@ -15,6 +15,7 @@ Esto служебный файл для автоматической сборк�
 - [[possession/7-glava-vosemnog-v-arkhive\|Глава 7.]]
 - [[possession/8-glava-voda-i-led\|Глава 8.]]
 - [[possession/9-glava-predel\|Глава 9.]]
+- [[possession/10-glava-perepiska\|Глава 10.]]
 
 ### Герои
 
