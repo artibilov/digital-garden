@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/23-et-in-arcadia-ego-podrazdel-23","permalink":"/confiteor/23-et-in-arcadia-ego-podrazdel-23/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"III. Et in Arcadia ego. Подраздел 23","часть":3,"персонажи":["[[adria_ardevol]]","[[karme_bosk]]","[[daniela_amato.md]]"],"артефакты":["бухгалтерские отчеты Катурла"],"ключевые_темы":["отцовский_авторитаризм","личная_ответственность","семейная_дисфункция","конформизм"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/23-et-in-arcadia-ego-podrazdel-23","permalink":"/confiteor/23-et-in-arcadia-ego-podrazdel-23/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"III. Et in Arcadia ego. Подраздел 23","часть":3,"персонажи":["[[adria_ardevol]]","[[karme_bosk]]","[[daniela_amato.md]]"],"артефакты":["бухгалтерские отчеты Катурла"],"ключевые_темы":["отцовский_авторитаризм","личная_ответственность","семейная_дисфункция","конформизм"]}}
 ---
 
 ### Аналитический разбор эпизода

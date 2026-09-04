@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/48-vita-condita-podrazdel-48","permalink":"/confiteor/48-vita-condita-podrazdel-48/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"V. Vita condita. Подраздел 48","часть":5,"персонажи":["[[adria_ardevol]]","[[sara_voltes_epstein.md]]","daniela","albert_carbonell","tito_carbonell","[[senyor_berenguer.md]]","sesiliya"],"артефакты":["дорожная сумка Сары","некролог Даниэлы"],"ключевые_темы":["одиночество","разрушение_коммуникации","мизогиния","страх_отторжения","семейные_тайны"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/48-vita-condita-podrazdel-48","permalink":"/confiteor/48-vita-condita-podrazdel-48/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"V. Vita condita. Подраздел 48","часть":5,"персонажи":["[[adria_ardevol]]","[[sara_voltes_epstein.md]]","daniela","albert_carbonell","tito_carbonell","[[senyor_berenguer.md]]","sesiliya"],"артефакты":["дорожная сумка Сары","некролог Даниэлы"],"ключевые_темы":["одиночество","разрушение_коммуникации","мизогиния","страх_отторжения","семейные_тайны"]}}
 ---
 
 ### Аналитический разбор эпизода

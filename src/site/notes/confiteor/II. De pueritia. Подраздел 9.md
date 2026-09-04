@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/09-de-pueritia-podrazdel-9","permalink":"/confiteor/09-de-pueritia-podrazdel-9/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"II. De pueritia. Подраздел 9","часть":2,"персонажи":["[[adria_ardevol]]","[[feliks_ardevol]]","[[karme_bosk]]","professor_prunes","sesiliya"],"артефакты":["фарфоровые чашки","коньяк","микенская ваза","черновики Марселя Пруста"],"ключевые_темы":["отцовский_авторитаризм","социальное_лицемерие","инструментализация_личности","суррогаты_любви","эстетический_фетишизм","эмоциональная_депривация"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/09-de-pueritia-podrazdel-9","permalink":"/confiteor/09-de-pueritia-podrazdel-9/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"II. De pueritia. Подраздел 9","часть":2,"персонажи":["[[adria_ardevol]]","[[feliks_ardevol]]","[[karme_bosk]]","professor_prunes","sesiliya"],"артефакты":["фарфоровые чашки","коньяк","микенская ваза","черновики Марселя Пруста"],"ключевые_темы":["отцовский_авторитаризм","социальное_лицемерие","инструментализация_личности","суррогаты_любви","эстетический_фетишизм","эмоциональная_депривация"]}}
 ---
 
 ### Аналитический разбор эпизода

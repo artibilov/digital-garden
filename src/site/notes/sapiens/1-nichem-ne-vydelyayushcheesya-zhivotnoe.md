@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"sapiens/1-nichem-ne-vydelyayushcheesya-zhivotnoe/","permalink":"/sapiens/1-nichem-ne-vydelyayushcheesya-zhivotnoe/","tags":["sociology/эволюция","concept/homo_sapiens"],"dg-note-properties":{"book":"Sapiens","author":"Харари","chapter_num":1,"axis":"природа-человека","tags":["sociology/эволюция","concept/homo_sapiens"]}}
+{"dg-publish":true,"dg-permalink":"sapiens/1-nichem-ne-vydelyayushcheesya-zhivotnoe/","permalink":"/sapiens/1-nichem-ne-vydelyayushcheesya-zhivotnoe/","tags":["#sociology/эволюция","#concept/homo_sapiens"],"dg-note-properties":{"book":"Sapiens","author":"Харари","chapter_num":1,"axis":"природа-человека","tags":["#sociology/эволюция","#concept/homo_sapiens"]}}
 ---
 
 ### Sapiens: Глава 1. Ничем не выделяющееся животное

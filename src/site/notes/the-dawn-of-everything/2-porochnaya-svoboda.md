@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"the-dawn-of-everything/2-porochnaya-svoboda/","permalink":"/the-dawn-of-everything/2-porochnaya-svoboda/","tags":["sociology/просвещение","concept/индигенная_критика"],"dg-note-properties":{"book":"The Dawn of Everything","author":"Гребер/Уэнгроу","chapter_num":2,"axis":"линейный-эволюционизм","tags":["sociology/просвещение","concept/индигенная_критика"]}}
+{"dg-publish":true,"dg-permalink":"the-dawn-of-everything/2-porochnaya-svoboda/","permalink":"/the-dawn-of-everything/2-porochnaya-svoboda/","tags":["#sociology/просвещение","#concept/индигенная_критика"],"dg-note-properties":{"book":"The Dawn of Everything","author":"Гребер/Уэнгроу","chapter_num":2,"axis":"линейный-эволюционизм","tags":["#sociology/просвещение","#concept/индигенная_критика"]}}
 ---
 
 ### Заря всего: Глава 2. Порочная свобода

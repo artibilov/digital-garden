@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/35-palimpsestus-podrazdel-34","permalink":"/confiteor/35-palimpsestus-podrazdel-34/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"IV. Palimpsestus. Подраздел 35","часть":4,"персонажи":["[[adria_ardevol]]","[[feliks_ardevol]]","drago_gradnik","[[bernat_plensa.md]]","[[aribert_voigt.md]]"],"артефакты":["письма Градника","письмо на арамейском","скрипка Сториони (Виал)","разбитая ученическая скрипка"],"ключевые_темы":["наследственный_грех","трансляция_вины","личная_ответственность","теодицея","банальность_зла"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/35-palimpsestus-podrazdel-34","permalink":"/confiteor/35-palimpsestus-podrazdel-34/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"IV. Palimpsestus. Подраздел 35","часть":4,"персонажи":["[[adria_ardevol]]","[[feliks_ardevol]]","drago_gradnik","[[bernat_plensa.md]]","[[aribert_voigt.md]]"],"артефакты":["письма Градника","письмо на арамейском","скрипка Сториони (Виал)","разбитая ученическая скрипка"],"ключевые_темы":["наследственный_грех","трансляция_вины","личная_ответственность","теодицея","банальность_зла"]}}
 ---
 
 ### Аналитический разбор эпизода

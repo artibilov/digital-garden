@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"/sapiens/Юваль Ной Харари Sapiens/","permalink":"/sapiens/Юваль Ной Харари Sapiens/","title":"Оглавление","tags":["gardenEntry"],"dg-note-properties":{"title":"Оглавление","tags":["gardenEntry"],"type":"index"}}
+{"dg-publish":true,"dg-permalink":"/sapiens/Юваль Ной Харари Sapiens/","permalink":"/sapiens/Юваль Ной Харари Sapiens/","title":"Оглавление","tags":["#gardenEntry"],"dg-note-properties":{"title":"Оглавление","tags":["#gardenEntry"],"type":"index"}}
 ---
 
 

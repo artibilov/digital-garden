@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/18-et-in-arcadia-ego-podrazdel-18","permalink":"/confiteor/18-et-in-arcadia-ego-podrazdel-18/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"III. Et in Arcadia ego. Подраздел 18","часть":3,"персонажи":["[[adria_ardevol]]","[[karme_bosk]]","maestro_manleu","[[bernat_plensa.md]]"],"артефакты":["скрипка Сториони (Виал)"],"ключевые_темы":["личная_ответственность","отцовский_авторитаризм","инструментализация_личности","репрессивные_институты"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/18-et-in-arcadia-ego-podrazdel-18","permalink":"/confiteor/18-et-in-arcadia-ego-podrazdel-18/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"III. Et in Arcadia ego. Подраздел 18","часть":3,"персонажи":["[[adria_ardevol]]","[[karme_bosk]]","maestro_manleu","[[bernat_plensa.md]]"],"артефакты":["скрипка Сториони (Виал)"],"ключевые_темы":["личная_ответственность","отцовский_авторитаризм","инструментализация_личности","репрессивные_институты"]}}
 ---
 
 ### Аналитический разбор эпизода

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/20-et-in-arcadia-ego-podrazdel-20","permalink":"/confiteor/20-et-in-arcadia-ego-podrazdel-20/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"III. Et in Arcadia ego. Подраздел 20","часть":3,"персонажи":["[[adria_ardevol]]","[[sara_voltes_epstein.md]]","haim_epshtejn","[[aribert_voigt.md]]"],"артефакты":["угольный портрет дяди Хаима","стетоскоп","записная книжка"],"ключевые_темы":["банальность_зла","наследственный_грех","трансляция_вины","семейная_травма","субъективность_памяти"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/20-et-in-arcadia-ego-podrazdel-20","permalink":"/confiteor/20-et-in-arcadia-ego-podrazdel-20/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"III. Et in Arcadia ego. Подраздел 20","часть":3,"персонажи":["[[adria_ardevol]]","[[sara_voltes_epstein.md]]","haim_epshtejn","[[aribert_voigt.md]]"],"артефакты":["угольный портрет дяди Хаима","стетоскоп","записная книжка"],"ключевые_темы":["банальность_зла","наследственный_грех","трансляция_вины","семейная_травма","субъективность_памяти"]}}
 ---
 
 ### Аналитический разбор эпизода

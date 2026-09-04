@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/06-de-pueritia-podrazdel-6","permalink":"/confiteor/06-de-pueritia-podrazdel-6/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"II. De pueritia. Подраздел 6","часть":2,"персонажи":["[[adria_ardevol]]","[[feliks_ardevol]]","[[karme_bosk]]","gerr_oliveres"],"артефакты":["учебник немецкого языка","игрушки"],"ключевые_темы":["отцовский_авторитаризм","суррогаты_любви","насилие_в_семейных_отношениях","инструментализация_личности","детская_мифология","репрессивные_институты"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/06-de-pueritia-podrazdel-6","permalink":"/confiteor/06-de-pueritia-podrazdel-6/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"II. De pueritia. Подраздел 6","часть":2,"персонажи":["[[adria_ardevol]]","[[feliks_ardevol]]","[[karme_bosk]]","gerr_oliveres"],"артефакты":["учебник немецкого языка","игрушки"],"ключевые_темы":["отцовский_авторитаризм","суррогаты_любви","насилие_в_семейных_отношениях","инструментализация_личности","детская_мифология","репрессивные_институты"]}}
 ---
 
 ### Аналитический разбор эпизода

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/43-vita-condita-podrazdel-43","permalink":"/confiteor/43-vita-condita-podrazdel-43/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"V. Vita condita. Подраздел 43","часть":5,"персонажи":["[[adria_ardevol]]","[[sara_voltes_epstein.md]]","maks_voltes_epstein","pau_voltes"],"артефакты":["рисунок углями","медицинское заключение","бутылка вина","пурро","книга дегустаций","белый саван","талит"],"ключевые_темы":["семейная_дисфункция","одиночество","личная_ответственность","наследственный_грех","трансляция_вины","субъективность_памяти"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/43-vita-condita-podrazdel-43","permalink":"/confiteor/43-vita-condita-podrazdel-43/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"V. Vita condita. Подраздел 43","часть":5,"персонажи":["[[adria_ardevol]]","[[sara_voltes_epstein.md]]","maks_voltes_epstein","pau_voltes"],"артефакты":["рисунок углями","медицинское заключение","бутылка вина","пурро","книга дегустаций","белый саван","талит"],"ключевые_темы":["семейная_дисфункция","одиночество","личная_ответственность","наследственный_грех","трансляция_вины","субъективность_памяти"]}}
 ---
 
 

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/32-palimpsestus-podrazdel-32","permalink":"/confiteor/32-palimpsestus-podrazdel-32/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"IV. Palimpsestus. Подраздел 32","часть":4,"персонажи":["[[adria_ardevol]]","lola_malenkaya","[[bernat_plensa.md]]","murral"],"артефакты":["картина Уржеля (Санта-Мария де Жерри)","завещание Лолы Маленькой","рукописи Гонкуров, Оруэлла, Хаксли, Павезе и Унгаретти"],"ключевые_темы":["одиночество","эстетический_фетишизм","наследственный_грех","субъективность_памяти","суррогаты_любви"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/32-palimpsestus-podrazdel-32","permalink":"/confiteor/32-palimpsestus-podrazdel-32/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"IV. Palimpsestus. Подраздел 32","часть":4,"персонажи":["[[adria_ardevol]]","lola_malenkaya","[[bernat_plensa.md]]","murral"],"артефакты":["картина Уржеля (Санта-Мария де Жерри)","завещание Лолы Маленькой","рукописи Гонкуров, Оруэлла, Хаксли, Павезе и Унгаретти"],"ключевые_темы":["одиночество","эстетический_фетишизм","наследственный_грех","субъективность_памяти","суррогаты_любви"]}}
 ---
 
 ### Аналитический разбор эпизода

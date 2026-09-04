@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"sapiens/2-drevo-poznaniya/","permalink":"/sapiens/2-drevo-poznaniya/","tags":["sociology/когнитивная-революция","concept/интерсубъективность"],"dg-note-properties":{"book":"Sapiens","author":"Харари","chapter_num":2,"axis":"природа-человека","tags":["sociology/когнитивная-революция","concept/интерсубъективность"]}}
+{"dg-publish":true,"dg-permalink":"sapiens/2-drevo-poznaniya/","permalink":"/sapiens/2-drevo-poznaniya/","tags":["#sociology/когнитивная-революция","#concept/интерсубъективность"],"dg-note-properties":{"book":"Sapiens","author":"Харари","chapter_num":2,"axis":"природа-человека","tags":["#sociology/когнитивная-революция","#concept/интерсубъективность"]}}
 ---
 
 

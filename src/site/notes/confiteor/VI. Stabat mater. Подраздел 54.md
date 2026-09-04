@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/54-stabat-mater-podrazdel-54","permalink":"/confiteor/54-stabat-mater-podrazdel-54/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"VI. Stabat mater. Подраздел 54","часть":6,"персонажи":["[[adria_ardevol]]","[[sara_voltes_epstein.md]]","[[bernat_plensa.md]]","tekla"],"артефакты":["скрипка Сториони Виал","картина Абрахама Миньона","завещание Сары","розы"],"ключевые_темы":["эвтаназия","право_на_смерть","кризис_коммуникации","вина_выжившего","моральный_выбор","эстетика_страдания"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/54-stabat-mater-podrazdel-54","permalink":"/confiteor/54-stabat-mater-podrazdel-54/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"VI. Stabat mater. Подраздел 54","часть":6,"персонажи":["[[adria_ardevol]]","[[sara_voltes_epstein.md]]","[[bernat_plensa.md]]","tekla"],"артефакты":["скрипка Сториони Виал","картина Абрахама Миньона","завещание Сары","розы"],"ключевые_темы":["эвтаназия","право_на_смерть","кризис_коммуникации","вина_выжившего","моральный_выбор","эстетика_страдания"]}}
 ---
 
 ### Аналитический разбор эпизода

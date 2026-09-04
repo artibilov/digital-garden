@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"sapiens/3-odin-den-iz-zhizni-adama-i-evy/","permalink":"/sapiens/3-odin-den-iz-zhizni-adama-i-evy/","tags":["sociology/эволюционная_психология","concept/первоначально_благополучное_общество"],"dg-note-properties":{"book":"Sapiens","author":"Харари","chapter_num":3,"axis":"миф-о-дикаре","tags":["sociology/эволюционная_психология","concept/первоначально_благополучное_общество"]}}
+{"dg-publish":true,"dg-permalink":"sapiens/3-odin-den-iz-zhizni-adama-i-evy/","permalink":"/sapiens/3-odin-den-iz-zhizni-adama-i-evy/","tags":["#sociology/эволюционная_психология","#concept/первоначально_благополучное_общество"],"dg-note-properties":{"book":"Sapiens","author":"Харари","chapter_num":3,"axis":"миф-о-дикаре","tags":["#sociology/эволюционная_психология","#concept/первоначально_благополучное_общество"]}}
 ---
 
 

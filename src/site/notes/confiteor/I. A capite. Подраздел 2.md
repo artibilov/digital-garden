@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/02-a-capite-podrazdel-2","permalink":"/confiteor/02-a-capite-podrazdel-2/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"I. A capite. Подраздел 2","часть":1,"персонажи":["[[feliks_ardevol]]","feliks_morlen","karolina_amato","drago_gradnik"],"артефакты":["зеленая коробочка","медальон Пардакской Девы"],"ключевые_темы":["религиозный_конформизм","столкновение_идеалов_и_реальности","плотские_искушения","геополитика_и_война","трансгрессия"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/02-a-capite-podrazdel-2","permalink":"/confiteor/02-a-capite-podrazdel-2/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"I. A capite. Подраздел 2","часть":1,"персонажи":["[[feliks_ardevol]]","feliks_morlen","karolina_amato","drago_gradnik"],"артефакты":["зеленая коробочка","медальон Пардакской Девы"],"ключевые_темы":["религиозный_конформизм","столкновение_идеалов_и_реальности","плотские_искушения","геополитика_и_война","трансгрессия"]}}
 ---
 
 ### Аналитический разбор эпизода

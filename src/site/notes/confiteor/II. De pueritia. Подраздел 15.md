@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/15-de-pueritia-podrazdel-15","permalink":"/confiteor/15-de-pueritia-podrazdel-15/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"II. De pueritia. Подраздел 15","часть":2,"персонажи":["[[adria_ardevol]]","[[karme_bosk]]","maestro_manleu","senyora_trulyols","[[bernat_plensa.md]]","kseniya"],"артефакты":["скрипка (Парамон)","упражнение по деи портаменти","скрипка Thouvenel"],"ключевые_темы":["отцовский_авторитаризм","инструментализация_личности","насилие_в_семейных_отношениях","развод","экзистенциальный_кризис"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/15-de-pueritia-podrazdel-15","permalink":"/confiteor/15-de-pueritia-podrazdel-15/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"II. De pueritia. Подраздел 15","часть":2,"персонажи":["[[adria_ardevol]]","[[karme_bosk]]","maestro_manleu","senyora_trulyols","[[bernat_plensa.md]]","kseniya"],"артефакты":["скрипка (Парамон)","упражнение по деи портаменти","скрипка Thouvenel"],"ключевые_темы":["отцовский_авторитаризм","инструментализация_личности","насилие_в_семейных_отношениях","развод","экзистенциальный_кризис"]}}
 ---
 
 ### Аналитический разбор эпизода

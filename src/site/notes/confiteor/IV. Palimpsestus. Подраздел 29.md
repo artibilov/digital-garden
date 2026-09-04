@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/29-palimpsestus-podrazdel-29","permalink":"/confiteor/29-palimpsestus-podrazdel-29/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"IV. Palimpsestus. Подраздел 29","часть":4,"персонажи":["[[adria_ardevol]]","murral","[[bernat_plensa.md]]","[[laura_baylina.md]]"],"артефакты":["автографы Оруэлла, Хаксли, Павезе и Унгаретти","книжные полки","скрипка Сториони (Виал)"],"ключевые_темы":["эстетический_фетишизм","наследственный_грех","суррогаты_любви","одиночество","субъективность_памяти"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/29-palimpsestus-podrazdel-29","permalink":"/confiteor/29-palimpsestus-podrazdel-29/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"IV. Palimpsestus. Подраздел 29","часть":4,"персонажи":["[[adria_ardevol]]","murral","[[bernat_plensa.md]]","[[laura_baylina.md]]"],"артефакты":["автографы Оруэлла, Хаксли, Павезе и Унгаретти","книжные полки","скрипка Сториони (Виал)"],"ключевые_темы":["эстетический_фетишизм","наследственный_грех","суррогаты_любви","одиночество","субъективность_памяти"]}}
 ---
 
 

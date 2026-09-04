@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"the-dawn-of-everything/4-svobodnye-lyudi/","permalink":"/the-dawn-of-everything/4-svobodnye-lyudi/","tags":["sociology/собственность","concept/излишек"],"dg-note-properties":{"book":"The Dawn of Everything","author":"Гребер/Уэнгроу","chapter_num":4,"axis":"происхождение-неравенства","tags":["sociology/собственность","concept/излишек"]}}
+{"dg-publish":true,"dg-permalink":"the-dawn-of-everything/4-svobodnye-lyudi/","permalink":"/the-dawn-of-everything/4-svobodnye-lyudi/","tags":["#sociology/собственность","#concept/излишек"],"dg-note-properties":{"book":"The Dawn of Everything","author":"Гребер/Уэнгроу","chapter_num":4,"axis":"происхождение-неравенства","tags":["#sociology/собственность","#concept/излишек"]}}
 ---
 
 

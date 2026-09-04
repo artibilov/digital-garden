@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"sapiens/4-potop/","permalink":"/sapiens/4-potop/","tags":["sociology/экология","concept/антропоцен"],"dg-note-properties":{"book":"Sapiens","author":"Харари","chapter_num":4,"axis":"миф-о-дикаре","tags":["sociology/экология","concept/антропоцен"]}}
+{"dg-publish":true,"dg-permalink":"sapiens/4-potop/","permalink":"/sapiens/4-potop/","tags":["#sociology/экология","#concept/антропоцен"],"dg-note-properties":{"book":"Sapiens","author":"Харари","chapter_num":4,"axis":"миф-о-дикаре","tags":["#sociology/экология","#concept/антропоцен"]}}
 ---
 
 ### Sapiens: Глава 4. Потоп

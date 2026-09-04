@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/40-vita-condita-podrazdel-40","permalink":"/confiteor/40-vita-condita-podrazdel-40/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"V. Vita condita. Подраздел 40","часть":5,"персонажи":["[[konrad_budden.md]]","elm_gonzaga","[[aribert_voigt.md]]","gerta_landau","amelia_alpaerts"],"артефакты":["салфетка в бело-голубую клетку","пистолет Стар","автомат Калашникова"],"ключевые_темы":["теодицея","банальность_зла","личная_ответственность","институциональное_насилие","субъективность_памяти"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/40-vita-condita-podrazdel-40","permalink":"/confiteor/40-vita-condita-podrazdel-40/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"V. Vita condita. Подраздел 40","часть":5,"персонажи":["[[konrad_budden.md]]","elm_gonzaga","[[aribert_voigt.md]]","gerta_landau","amelia_alpaerts"],"артефакты":["салфетка в бело-голубую клетку","пистолет Стар","автомат Калашникова"],"ключевые_темы":["теодицея","банальность_зла","личная_ответственность","институциональное_насилие","субъективность_памяти"]}}
 ---
 
 

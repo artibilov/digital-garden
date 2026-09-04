@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/17-et-in-arcadia-ego-podrazdel-17","permalink":"/confiteor/17-et-in-arcadia-ego-podrazdel-17/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"III. Et in Arcadia ego. Подраздел 17","часть":3,"персонажи":["[[adria_ardevol]]","[[bernat_plensa.md]]","[[sara_voltes_epstein.md]]","yasha_heyfec","eduard_toldra","zhensana"],"артефакты":["афиша со свастикой","билеты в Palau de la Musica"],"ключевые_темы":["репрессивные_институты","национальная_травма","институциональное_насилие","эстетический_фетишизм"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/17-et-in-arcadia-ego-podrazdel-17","permalink":"/confiteor/17-et-in-arcadia-ego-podrazdel-17/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"III. Et in Arcadia ego. Подраздел 17","часть":3,"персонажи":["[[adria_ardevol]]","[[bernat_plensa.md]]","[[sara_voltes_epstein.md]]","yasha_heyfec","eduard_toldra","zhensana"],"артефакты":["афиша со свастикой","билеты в Palau de la Musica"],"ключевые_темы":["репрессивные_институты","национальная_травма","институциональное_насилие","эстетический_фетишизм"]}}
 ---
 
 ### Аналитический разбор эпизода

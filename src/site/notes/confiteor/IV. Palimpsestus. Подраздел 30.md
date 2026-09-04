@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/30-palimpsestus-podrazdel-30","permalink":"/confiteor/30-palimpsestus-podrazdel-30/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"IV. Palimpsestus. Подраздел 30","часть":4,"персонажи":["[[adria_ardevol]]","lola_malenkaya","[[karme_bosk]]","[[sara_voltes_epstein.md]]"],"артефакты":["картина Уржеля (Санта-Мария де Жерри)","медальон Пардакской Девы","письмо Карме Боск к Рашели Эпштейн"],"ключевые_темы":["социальное_лицемерие","трансляция_вины","семейная_дисфункция","личная_ответственность","наследственный_грех"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/30-palimpsestus-podrazdel-30","permalink":"/confiteor/30-palimpsestus-podrazdel-30/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"IV. Palimpsestus. Подраздел 30","часть":4,"персонажи":["[[adria_ardevol]]","lola_malenkaya","[[karme_bosk]]","[[sara_voltes_epstein.md]]"],"артефакты":["картина Уржеля (Санта-Мария де Жерри)","медальон Пардакской Девы","письмо Карме Боск к Рашели Эпштейн"],"ключевые_темы":["социальное_лицемерие","трансляция_вины","семейная_дисфункция","личная_ответственность","наследственный_грех"]}}
 ---
 
 ### Аналитический разбор эпизода

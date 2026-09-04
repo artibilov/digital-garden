@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/35-palimpsestus-podrazdel-35","permalink":"/confiteor/35-palimpsestus-podrazdel-35/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"IV. Palimpsestus. Подраздел 35","часть":4,"персонажи":["[[adria_ardevol]]","[[sara_voltes_epstein.md]]","[[bernat_plensa.md]]","lola_malenkaya","katerina"],"артефакты":["автопортрет Сары","кресло-каталка","грязная тряпка"],"ключевые_темы":["распад_идентичности","субъективность_памяти","одиночество","суррогаты_любви"],"Комментарий":true}}
+{"dg-publish":true,"dg-permalink":"confiteor/35-palimpsestus-podrazdel-35","permalink":"/confiteor/35-palimpsestus-podrazdel-35/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"IV. Palimpsestus. Подраздел 35","часть":4,"персонажи":["[[adria_ardevol]]","[[sara_voltes_epstein.md]]","[[bernat_plensa.md]]","lola_malenkaya","katerina"],"артефакты":["автопортрет Сары","кресло-каталка","грязная тряпка"],"ключевые_темы":["распад_идентичности","субъективность_памяти","одиночество","суррогаты_любви"],"Комментарий":true}}
 ---
 
 ### Аналитический разбор эпизода

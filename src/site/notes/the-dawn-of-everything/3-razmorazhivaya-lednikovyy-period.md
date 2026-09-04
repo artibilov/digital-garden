@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"the-dawn-of-everything/3-razmorazhivaya-lednikovyy-period/","permalink":"/the-dawn-of-everything/3-razmorazhivaya-lednikovyy-period/","tags":["sociology/эволюция","concept/сезонный_дуализм"],"dg-note-properties":{"book":"The Dawn of Everything","author":"Гребер/Уэнгроу","chapter_num":3,"axis":"линейный-эволюционизм","tags":["sociology/эволюция","concept/сезонный_дуализм"]}}
+{"dg-publish":true,"dg-permalink":"the-dawn-of-everything/3-razmorazhivaya-lednikovyy-period/","permalink":"/the-dawn-of-everything/3-razmorazhivaya-lednikovyy-period/","tags":["#sociology/эволюция","#concept/сезонный_дуализм"],"dg-note-properties":{"book":"The Dawn of Everything","author":"Гребер/Уэнгроу","chapter_num":3,"axis":"линейный-эволюционизм","tags":["#sociology/эволюция","#concept/сезонный_дуализм"]}}
 ---
 
 ### Заря всего: Глава 3. Размораживая ледниковый период

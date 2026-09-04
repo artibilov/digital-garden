@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/10-de-pueritia-podrazdel-10","permalink":"/confiteor/10-de-pueritia-podrazdel-10/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"II. De pueritia. Подраздел 10","часть":2,"персонажи":["[[adria_ardevol]]","[[feliks_ardevol]]","[[karme_bosk]]","lola_malenkaya","komissar_plasencia","senyor_berenger"],"артефакты":["обломки ученической скрипки","сейф","скрипка Сториони (Виал)"],"ключевые_темы":["личная_ответственность","трансляция_вины","семейная_травма","репрессивные_институты","семейная_дисфункция"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/10-de-pueritia-podrazdel-10","permalink":"/confiteor/10-de-pueritia-podrazdel-10/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"II. De pueritia. Подраздел 10","часть":2,"персонажи":["[[adria_ardevol]]","[[feliks_ardevol]]","[[karme_bosk]]","lola_malenkaya","komissar_plasencia","senyor_berenger"],"артефакты":["обломки ученической скрипки","сейф","скрипка Сториони (Виал)"],"ключевые_темы":["личная_ответственность","трансляция_вины","семейная_травма","репрессивные_институты","семейная_дисфункция"]}}
 ---
 
 ### Аналитический разбор эпизода

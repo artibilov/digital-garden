@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"confiteor/14-de-pueritia-podrazdel-14","permalink":"/confiteor/14-de-pueritia-podrazdel-14/","tags":["gardenEntry","пересказ","movement"],"dg-note-properties":{"type":"movement","tags":["gardenEntry","пересказ","movement"],"эпизод":"II. De pueritia. Подраздел 14","часть":2,"персонажи":["[[karme_bosk]]","senyor_berenger","sesiliya","[[feliks_ardevol]]"],"артефакты":["бухгалтерские книги","письмо нотариусу"],"ключевые_темы":["социальное_лицемерие","репрессивные_институты","экономическая_эксплуатация","суррогаты_любви"]}}
+{"dg-publish":true,"dg-permalink":"confiteor/14-de-pueritia-podrazdel-14","permalink":"/confiteor/14-de-pueritia-podrazdel-14/","tags":["#gardenEntry","#пересказ","#movement"],"dg-note-properties":{"type":"movement","tags":["#gardenEntry","#пересказ","#movement"],"эпизод":"II. De pueritia. Подраздел 14","часть":2,"персонажи":["[[karme_bosk]]","senyor_berenger","sesiliya","[[feliks_ardevol]]"],"артефакты":["бухгалтерские книги","письмо нотариусу"],"ключевые_темы":["социальное_лицемерие","репрессивные_институты","экономическая_эксплуатация","суррогаты_любви"]}}
 ---
 
 ### Аналитический разбор эпизода
