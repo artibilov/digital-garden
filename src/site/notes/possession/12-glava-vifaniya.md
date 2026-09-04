@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"possession/12-glava-vifaniya/","permalink":"/possession/12-glava-vifaniya/","tags":["possession/motifs/motte-bailey","possession/motifs/ariachne","possession/motifs/melusina"],"dg-note-properties":{"Глава":"Глава 12","type":"movement","персонажи":["[[possession/Roland Mitchell\|Роланд Митчелл]]","[[possession/Maud Bailey\|Мод Бейли]]","[[Randolph Henry Ash|Рандольф Генри Падуб]]","[[Christabel LaMotte|Кристабель Ла Мотт]]","[[possession/Blanche Glover\|Бланш Перстчетт]]","[[possession/Valerie Owens\|Вэл]]","[[James Blackadder|Джеймс Аспидс]]"],"tags":["possession/motifs/motte-bailey","possession/motifs/ariachne","possession/motifs/melusina"],"timeslot_start":"1986-10","timeslot_end":"1986-10"}}
+{"dg-publish":true,"dg-permalink":"possession/12-glava-vifaniya/","permalink":"/possession/12-glava-vifaniya/","dg-note-properties":{"Глава":"Глава 12","type":"movement","timeslot_start":"1986-10","timeslot_end":"1986-10"}}
 ---
 
 ### 1. Сюжетный и исследовательский маркер главы
