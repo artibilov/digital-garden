@@ -19,6 +19,8 @@ Esto служебный файл для автоматической сборк�
 - [[possession/9-glava-predel\|Глава 11.]]
 - [[possession/12-glava-vifaniya\|Глава 12.]]
 - [[possession/13-glava-ask-i-embla\|Глава 13.]]
+- [[possession/14-glava-voda-i-kamen\|Глава 14.]]
+- [[possession/15-glava-taynoe-leto\|Глава 15.]]
 
 ### Герои
 
