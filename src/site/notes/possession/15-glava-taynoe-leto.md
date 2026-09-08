@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"possession/15-glava-taynoe-leto/","permalink":"/possession/15-glava-taynoe-leto/","dg-note-properties":{"Глава":"Глава 15","type":"movement","персонажи":["[[possession/Randolph Henry Ash\|Рандольф Генри Падуб]]","[[possession/Christabel LaMotte\|Кристабель Ла Мотт]]"],"timeslot_start":"1859-06","timeslot_end":"1859-06"}}
+{"dg-publish":true,"dg-permalink":"possession/15-glava-taynoe-leto/","permalink":"/possession/15-glava-taynoe-leto/","dg-note-properties":{"Глава":"Глава 15","type":"movement","timeslot_start":"1859-06","timeslot_end":"1859-06"}}
 ---
 
 ### 1. Сюжетный и исследовательский маркер главы

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-permalink":"possession/13-glava-ask-i-embla/","permalink":"/possession/13-glava-ask-i-embla/","tags":["possession/motifs/dragons","possession/motifs/melusina","possession/motifs/phoenix","possession/motifs/motte-bailey"],"dg-note-properties":{"Глава":"Глава 13","type":"movement","персонажи":["[[possession/Roland Mitchell\|Роланд Митчелл]]","[[possession/Maud Bailey\|Мод Бейли]]","[[possession/Randolph Henry Ash\|Рандольф Генри Падуб]]","[[possession/Mortimer Cropper\|Мортимер Собрайл]]"],"tags":["possession/motifs/dragons","possession/motifs/melusina","possession/motifs/phoenix","possession/motifs/motte-bailey"],"timeslot_start":"1986-10","timeslot_end":"1986-10"}}
+{"dg-publish":true,"dg-permalink":"possession/13-glava-ask-i-embla/","permalink":"/possession/13-glava-ask-i-embla/","dg-note-properties":{"Глава":"Глава 13","type":"movement","timeslot_start":"1986-10","timeslot_end":"1986-10"}}
 ---
 
 ### 1. Сюжетный и исследовательский маркер главы
