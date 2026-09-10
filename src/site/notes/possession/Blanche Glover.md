@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"possession/Blanche Glover/","permalink":"/possession/Blanche Glover/","dg-note-properties":{"type":"character"}}
 ---
 
-
 # [[possession/Blanche Glover\|Бланш Перстчетт]] (Blanche Glover)
 
 ### 1. Общая характеристика

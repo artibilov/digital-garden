@@ -23,7 +23,7 @@ Esto служебный файл для автоматической сборк�
 - [[possession/15-glava-taynoe-leto\|Глава 15.]]
 - [[possession/16-glava-feya-melyuzina\|Глава 16.]]
 - [[possession/17-glava\|Глава 17.]]
-
+- [[possession/18-glava\|Глава 18.]]
 ### Герои
 
 - [[possession/Roland Mitchell\|Роланд Митчелл]]    
@@ -43,3 +43,4 @@ Esto служебный файл для автоматической сборк�
 - [[possession/Henry Crabb Robinson\|Генри Крэбб Робинсон]]    
 - [[possession/Robert Graves\|Роберт Грейвс]]    
 - [[possession/Ellen Ash\|Эллен Падуб]]    
+- [[possession/Sabine de Kercooz\|Сабина де Керкоз]]
