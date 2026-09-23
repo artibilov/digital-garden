@@ -32,6 +32,9 @@ Esto служебный файл для автоматической сборк�
 - [[possession/24-glava\|Глава 24.]]
 - [[possession/25-glava-dnevnik-ellen-padub\|Глава 25.]]
 - [[possession/26-glava\|Глава 26.]]
+- [[possession/27-glava\|Глава 27.]]
+- [[possession/28-glava\|Глава 28.]]
+- [[possession/postscriptum\|Постскриптум]]
 ### Герои
 
 - [[possession/Roland Mitchell\|Роланд Митчелл]]    
