@@ -9,6 +9,7 @@
 - [[Hero_Must_Be_Alone/kniga-1-episodiy-1\|Эписодий первый]]
 - [[Hero_Must_Be_Alone/kniga-1-stasim-1\|Стасим I]]
 - [[Hero_Must_Be_Alone/kniga-1-episodiy-2\|Эписодий второй]]
+- [[Hero_Must_Be_Alone/kniga-1-stasim-2\|Стасим II]]
 
 
 **Герои**
@@ -24,3 +25,4 @@
 - [[Hero_Must_Be_Alone/autolycus\|Автолик]]
 - [[Hero_Must_Be_Alone/ifikl\|Ификл]]
 - [[Hero_Must_Be_Alone/galinthias\|Галинтиада]]
+- [[Hero_Must_Be_Alone/khiron\|Хирон]]
