@@ -31,3 +31,6 @@
 - [[Hero_Must_Be_Alone/eurytus\|Эврит]]
 - [[Hero_Must_Be_Alone/iphitus\|Ифит]]
 - [[Hero_Must_Be_Alone/castor\|Кастор]]
+---
+
+[[Hero_Must_Be_Alone/structure\|Структура мира]]
