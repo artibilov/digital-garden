@@ -11,6 +11,7 @@ Esto служебный файл для автоматической сборк�
 - [[Hero_Must_Be_Alone/kniga-1-episodiy-2\|Эписодий второй]]
 - [[Hero_Must_Be_Alone/kniga-1-stasim-2\|Стасим II]]
 - [[Hero_Must_Be_Alone/kniga-1-episodiy-3\|Эписодий третий]]
+- [[Hero_Must_Be_Alone/kniga-1-stasim-3\|Стасим III]]
 ### Герои
 - [[Hero_Must_Be_Alone/aid\|Аид]]
 - [[Hero_Must_Be_Alone/germiy\|Гермий]]
