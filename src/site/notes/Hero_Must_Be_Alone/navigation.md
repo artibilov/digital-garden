@@ -12,6 +12,7 @@ Esto служебный файл для автоматической сборк�
 - [[Hero_Must_Be_Alone/kniga-1-stasim-2\|Стасим II]]
 - [[Hero_Must_Be_Alone/kniga-1-episodiy-3\|Эписодий третий]]
 - [[Hero_Must_Be_Alone/kniga-1-stasim-3\|Стасим III]]
+- [[Hero_Must_Be_Alone/kniga-1-episodiy-4\|Эписодий четвертый]]
 ### Герои
 - [[Hero_Must_Be_Alone/aid\|Аид]]
 - [[Hero_Must_Be_Alone/germiy\|Гермий]]
@@ -30,3 +31,6 @@ Esto служебный файл для автоматической сборк�
 - [[Hero_Must_Be_Alone/eurytus\|Эврит]]
 - [[Hero_Must_Be_Alone/iphitus\|Ифит]]
 - [[Hero_Must_Be_Alone/castor\|Кастор]]
+- [[Hero_Must_Be_Alone/creon\|Креонт]]
+- [[Hero_Must_Be_Alone/dionysus\|Дионис]]
+- [[Hero_Must_Be_Alone/pan\|Пан]]
