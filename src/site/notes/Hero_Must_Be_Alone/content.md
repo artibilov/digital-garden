@@ -13,6 +13,8 @@
 - [[Hero_Must_Be_Alone/kniga-1-episodiy-3\|Эписодий третий]]
 - [[Hero_Must_Be_Alone/kniga-1-stasim-3\|Стасим III]]
 - [[Hero_Must_Be_Alone/kniga-1-episodiy-4\|Эписодий четвертый]]
+- [[Hero_Must_Be_Alone/kniga-1-stasim-4\|Стасим IV]]
+- [[Hero_Must_Be_Alone/kniga-1-episodiy-5\|Эписодий пятый]]
 
 
 **Герои**
@@ -36,6 +38,8 @@
 - [[Hero_Must_Be_Alone/creon\|Креонт]]
 - [[Hero_Must_Be_Alone/dionysus\|Дионис]]
 - [[Hero_Must_Be_Alone/pan\|Пан]]
+- [[Hero_Must_Be_Alone/iolaus\|Иолай]]
+- [[Hero_Must_Be_Alone/ares\|Арес]]
 ---
 
 [[Hero_Must_Be_Alone/structure\|Структура мира]]
