@@ -15,6 +15,7 @@
 - [[Hero_Must_Be_Alone/kniga-1-episodiy-4\|Эписодий четвертый]]
 - [[Hero_Must_Be_Alone/kniga-1-stasim-4\|Стасим IV]]
 - [[Hero_Must_Be_Alone/kniga-1-episodiy-5\|Эписодий пятый]]
+- [[Hero_Must_Be_Alone/kniga-1-stasim-5\|Стасим V]]
 
 
 **Герои**
