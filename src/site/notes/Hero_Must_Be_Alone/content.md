@@ -4,7 +4,7 @@
 
 
 **Содержание**
-Книга первая. Жертвы
+- **Книга первая. Жертвы**
 - [[Hero_Must_Be_Alone/kniga-1-parod\|Книга первая. Парод]]
 - [[Hero_Must_Be_Alone/kniga-1-episodiy-1\|Книга первая. Эписодий первый]]
 - [[Hero_Must_Be_Alone/kniga-1-stasim-1\|Книга первая. Стасим I]]
@@ -18,7 +18,7 @@
 - [[Hero_Must_Be_Alone/kniga-1-stasim-5\|Книга первая. Стасим V]]
 - [[Hero_Must_Be_Alone/kniga-1-episodiy-6\|Книга первая. Эписодий шестой]]
 - [[Hero_Must_Be_Alone/kniga-1-eksod\|Книга первая. Эксод]]
-Книга вторая. Жрецы
+- **Книга вторая. Жрецы**
 - [[Hero_Must_Be_Alone/kniga-2-parod\|Книга вторая. Парод]]
 - [[Hero_Must_Be_Alone/kniga-2-episodiy-1\|Книга вторая. Эписодий первый]]
 
