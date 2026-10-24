@@ -23,6 +23,11 @@ Esto служебный файл для автоматической сборк�
 ### Книга вторая. Жрецы
 - [[Hero_Must_Be_Alone/kniga-2-parod\|Книга вторая. Парод]]
 - [[Hero_Must_Be_Alone/kniga-2-episodiy-1\|Книга вторая. Эписодий первый]]
+- [[Hero_Must_Be_Alone/kniga-2-stasim-1\|Книга вторая. Стасим I]]
+- [[Hero_Must_Be_Alone/kniga-2-episodiy-2\|Книга вторая. Эписодий второй]]
+- [[Hero_Must_Be_Alone/kniga-2-stasim-2\|Книга вторая. Стасим II]]
+- [[Hero_Must_Be_Alone/kniga-2-episodiy-3\|Книга вторая. Эписодий третий]]
+- [[Hero_Must_Be_Alone/kniga-2-eksod\|Книга вторая. Эксод]]
 
 ### Герои
 - [[Hero_Must_Be_Alone/aid\|Аид]]
@@ -53,3 +58,4 @@ Esto служебный файл для автоматической сборк�
 - [[Hero_Must_Be_Alone/laodamia\|Лаодамия]]
 - [[Hero_Must_Be_Alone/lichas\|Лихас]]
 - [[Hero_Must_Be_Alone/deianeira\|Деянира]]
+- [[Hero_Must_Be_Alone/kron\|Крон]]
