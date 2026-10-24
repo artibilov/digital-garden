@@ -26,8 +26,7 @@
 - [[Hero_Must_Be_Alone/kniga-2-stasim-2\|Книга вторая. Стасим II]]
 - [[Hero_Must_Be_Alone/kniga-2-episodiy-3\|Книга вторая. Эписодий третий]]
 - [[Hero_Must_Be_Alone/kniga-2-eksod\|Книга вторая. Эксод]]
-
-**Герои**
+- **Герои**
 - [[Hero_Must_Be_Alone/aid\|Аид]]
 - [[Hero_Must_Be_Alone/germiy\|Гермий]]
 - [[Hero_Must_Be_Alone/poseidon\|Посейдон]]
