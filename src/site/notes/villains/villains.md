@@ -18,6 +18,10 @@
 - [[villains/akt-1-stsena-11\|Акт 1, Сцена 11]]
 - [[villains/akt-1-stsena-12\|Акт 1, Сцена 12]]
 - [[villains/akt-2-stsena-1\|Акт 2, Сцена 1]]
+- [[villains/akt-2-stsena-2\|Акт 2, Сцена 2]]
+- [[villains/akt-2-stsena-3\|Акт 2, Сцена 3]]
+- [[villains/akt-2-stsena-4\|Акт 2, Сцена 4]]
+- [[villains/akt-2-stsena-5\|Акт 2, Сцена 5]]
 
  
 
