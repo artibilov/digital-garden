@@ -20,6 +20,7 @@ Esto служебный файл для автоматической сборк�
 - [[villains/akt-1-stsena-11\|Акт 1, Сцена 11]]
 - [[villains/akt-1-stsena-12\|Акт 1, Сцена 12]]
 - [[villains/akt-2-prolog\|Акт 2, Пролог]]
+- [[villains/akt-2-stsena-1\|Акт 2, Сцена 1]]
 
 ### Герои
 - [[villains/alexander-vass\|Александр Васс]]
