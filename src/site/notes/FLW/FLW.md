@@ -12,6 +12,8 @@
 - [[FLW/glava-6\|Глава 6]]
 - [[FLW/glava-7\|Глава 7]]
 - [[FLW/glava-8\|Глава 8]]
+- [[FLW/glava-9\|Глава 9]]
+- [[FLW/glava-10\|Глава 10]]
 
 **Герои**
 - [[FLW/charles-smithson\|Чарльз Смитсон]]
