@@ -14,6 +14,7 @@
 - [[FLW/glava-8\|Глава 8]]
 - [[FLW/glava-9\|Глава 9]]
 - [[FLW/glava-10\|Глава 10]]
+- [[FLW/glava-11\|Глава 11]]
 
 **Герои**
 - [[FLW/charles-smithson\|Чарльз Смитсон]]
@@ -22,5 +23,6 @@
 - [[FLW/mrs-poulteney\|Миссис Поултни]]
 - [[FLW/mrs-tranter\|Тетушка Трантер ]]
 - [[FLW/sam-farrow\|Сэм Фарроу]]
+- [[FLW/mary\|Мэри]]
 
 ---
