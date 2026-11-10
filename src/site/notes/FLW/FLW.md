@@ -19,7 +19,11 @@
 - [[FLW/glava-13\|Глава 13]]
 - [[FLW/glava-14\|Глава 14]]
 - [[FLW/glava-15\|Глава 15]]
-
+- [[FLW/glava-16\|Глава 16]]
+- [[FLW/glava-17\|Глава 17]]
+- [[FLW/glava-18\|Глава 18]]
+- [[FLW/glava-19\|Глава 19]]
+### Герои
 **Герои**
 - [[FLW/charles-smithson\|Чарльз Смитсон]]
 - [[FLW/ernestina-freeman\|Эрнестина Фримен]]
@@ -28,5 +32,6 @@
 - [[FLW/mrs-tranter\|Тетушка Трантер ]]
 - [[FLW/sam-farrow\|Сэм Фарроу]]
 - [[FLW/mary\|Мэри]]
+- [[FLW/dr-grogan\|Доктор Майкл Гроган]]
 
 ---
