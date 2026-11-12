@@ -26,7 +26,11 @@
 - [[FLW/glava-20\|Глава 20]]
 - [[FLW/glava-21\|Глава 21]]
 - [[FLW/glava-22\|Глава 22]]
-### Герои
+- [[FLW/glava-23\|Глава 23]]
+- [[FLW/glava-24\|Глава 24]]
+- [[FLW/glava-25\|Глава 25]]
+- [[FLW/glava-26\|Глава 26]]
+
 **Герои**
 - [[FLW/charles-smithson\|Чарльз Смитсон]]
 - [[FLW/ernestina-freeman\|Эрнестина Фримен]]
