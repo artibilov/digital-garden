@@ -37,6 +37,10 @@
 - [[FLW/glava-31\|Глава 31]]
 - [[FLW/glava-32\|Глава 32]]
 - [[FLW/glava-33\|Глава 33]]
+- [[FLW/glava-34\|Глава 34]]
+- [[FLW/glava-35\|Глава 35]]
+- [[FLW/glava-36\|Глава 36]]
+- [[FLW/glava-37\|Глава 37]]
 
 **Герои**
 - [[FLW/charles-smithson\|Чарльз Смитсон]]
@@ -47,5 +51,6 @@
 - [[FLW/sam-farrow\|Сэм Фарроу]]
 - [[FLW/mary\|Мэри]]
 - [[FLW/dr-grogan\|Доктор Майкл Гроган]]
+- [[FLW/ernest-freeman\|Эрнест Фримен]]
 
 ---
