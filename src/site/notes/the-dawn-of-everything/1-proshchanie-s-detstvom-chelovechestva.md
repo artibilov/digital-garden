@@ -2,7 +2,6 @@
 {"dg-publish":true,"dg-permalink":"the-dawn-of-everything/1-proshchanie-s-detstvom-chelovechestva/","permalink":"/the-dawn-of-everything/1-proshchanie-s-detstvom-chelovechestva/","tags":["sociology/эволюция","concept/индигенная_критика"],"dg-note-properties":{"book":"The Dawn of Everything","author":"Гребер/Уэнгроу","chapter_num":1,"axis":"линейный-эволюционизм","tags":["sociology/эволюция","concept/индигенная_критика"]}}
 ---
 
-
 ### Заря всего: Глава 1. Прощание с детством человечества
 
 ##### 🎯 ТЕЗИС АВТОРА
